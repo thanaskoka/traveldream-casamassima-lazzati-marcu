@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Register Viaggio</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento mezzo di trasporto">
+			<h:panelGrid columns="3" id="regGrid">
+				<h:outputLabel for="idMezzo">Identificativo Mezzo</h:outputLabel>
+				<p:inputText id="idMezzo" value="#{registerMezzoBean.user.idMezzoTrasporto}" />
+			    <p:message for="idMezzo" />
+
+				<h:outputLabel for="idLuogoPartenza">Identificativo Luogo Partenza:</h:outputLabel>
+				<p:inputText id="idLuogoPartenza" value="#{registerMezzoBean.user.idLuogoPartenza}" />
+				<p:message for="idLuogoPartenza" />
+				
+				<h:outputLabel for="idLuogoArrivo">Identificativo Luogo Arrivo:</h:outputLabel>
+				<p:inputText id="idLuogoArrivo" value="#{registerMezzoBean.user.idLuogoArrivo}" />
+				<p:message for="idLuogoArrivo" />
+				
+				<h:outputLabel for="dataStart">Data partenza:</h:outputLabel>
+				<p:inputText id="dataStart" value="#{registerMezzoBean.user.dataInizio}" />
+				<p:message for="dataStart" />
+
+				<h:outputLabel for="dataEnd">Data Arrivo:</h:outputLabel>
+				<p:inputText id="dataEnd" value="#{registerMezzoBean.user.dataFine}"/>
+				<p:message for="dataEnd" />
+				
+				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
+				<p:inputText id="numPostiDisp" value="#{registerMezzoBean.user.postiDisponibili}"/>
+				<p:message for="numPostiDisp" />
+				
+				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
+				<p:inputText id="costoPersona" value="#{registerMezzoBean.user.costoPers}"/>
+				<p:message for="costoPersona" />
+				</h:panelGrid>
+			<p:commandButton value="Salva" update="regGrid"
+				action="#{registerMezzoBean.register()}" />
+
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

@@ -6,34 +6,44 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 public class MezzoDTO {
-	
-	private int idMezzoTrasporto;
-
-	private int costoPers;
+	@NotNull
+	@Min(0)
+	@Max(999)
+	private Integer idMezzoTrasporto;
+	@NotNull
+	@Min(0)
+	@Max(999)
+	private Integer costoPers;
 	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
 	private String dataFine;
 	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
 	private String dataInizio;
-	
-	private int idLuogoArrivo;
+	@NotNull
+	@Min(0)
+	@Max(999)
+	private Integer idLuogoArrivo;
+	@NotNull
+	@Min(0)
+	@Max(999)
+	private Integer idLuogoPartenza;
+	@NotNull
+	@Min(0)
+	@Max(999)
+	private Integer postiDisponibili;
 
-	private int idLuogoPartenza;
-
-	private int postiDisponibili;
-
-	public int getIdMezzoTrasporto() {
+	public Integer getIdMezzoTrasporto() {
 		return idMezzoTrasporto;
 	}
 
-	public void setIdMezzoTrasporto(int idMezzoTrasporto) {
+	public void setIdMezzoTrasporto(Integer idMezzoTrasporto) {
 		this.idMezzoTrasporto = idMezzoTrasporto;
 	}
 
-	public int getCostoPers() {
+	public Integer getCostoPers() {
 		return costoPers;
 	}
 
-	public void setCostoPers(int costoPers) {
+	public void setCostoPers(Integer costoPers) {
 		this.costoPers = costoPers;
 	}
 
@@ -53,27 +63,27 @@ public class MezzoDTO {
 		this.dataInizio = dataInizio;
 	}
 
-	public int getIdLuogoArrivo() {
+	public Integer getIdLuogoArrivo() {
 		return idLuogoArrivo;
 	}
 
-	public void setIdLuogoArrivo(int idLuogoArrivo) {
+	public void setIdLuogoArrivo(Integer idLuogoArrivo) {
 		this.idLuogoArrivo = idLuogoArrivo;
 	}
 
-	public int getIdLuogoPartenza() {
+	public Integer getIdLuogoPartenza() {
 		return idLuogoPartenza;
 	}
 
-	public void setIdLuogoPartenza(int idLuogoPartenza) {
+	public void setIdLuogoPartenza(Integer idLuogoPartenza) {
 		this.idLuogoPartenza = idLuogoPartenza;
 	}
 
-	public int getPostiDisponibili() {
+	public Integer getPostiDisponibili() {
 		return postiDisponibili;
 	}
 
-	public void setPostiDisponibili(int postiDisponibili) {
+	public void setPostiDisponibili(Integer postiDisponibili) {
 		this.postiDisponibili = postiDisponibili;
 	}
 

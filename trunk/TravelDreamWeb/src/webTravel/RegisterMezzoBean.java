@@ -32,7 +32,7 @@ public class RegisterMezzoBean {
 	
 	public String register() {
 		mezzoMgr.save(mezzo);
-		return "home?faces-redirect=true";
+		return "sceltaInserimento?faces-redirect=true";
 	}
 
 }

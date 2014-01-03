@@ -1,15 +1,20 @@
 package model.dto;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotEmpty;
 public class MezzoDTO {
 	
 	private int idMezzoTrasporto;
 
 	private int costoPers;
-
+	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
 	private String dataFine;
-
+	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
 	private String dataInizio;
-
+	
 	private int idLuogoArrivo;
 
 	private int idLuogoPartenza;

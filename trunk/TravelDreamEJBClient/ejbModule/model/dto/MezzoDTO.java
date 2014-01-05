@@ -18,13 +18,9 @@ public class MezzoDTO {
 	private String dataFine;
 	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
 	private String dataInizio;
-	@NotNull
-	@Min(0)
-	@Max(999)
+	
 	private Integer idLuogoArrivo;
-	@NotNull
-	@Min(0)
-	@Max(999)
+	
 	private Integer idLuogoPartenza;
 	@NotNull
 	@Min(0)

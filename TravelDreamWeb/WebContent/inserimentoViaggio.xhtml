@@ -17,16 +17,22 @@
 			    <p:message for="idMezzo" />
 
 				<h:outputLabel for="idLuogoPartenza">Identificativo Luogo Partenza:</h:outputLabel>
-				<p:inputText id="idLuogoPartenza" value="#{registerMezzoBean.user.idLuogoPartenza}" />
-				<p:message for="idLuogoPartenza" />
 				
+				<h:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                </h:selectOneMenu><p:message for="idLuogoPartenza" />
+				 
+                
 				<h:outputLabel for="idLuogoArrivo">Identificativo Luogo Arrivo:</h:outputLabel>
-				<p:inputText id="idLuogoArrivo" value="#{registerMezzoBean.user.idLuogoArrivo}" />
-				<p:message for="idLuogoArrivo" />
+				<h:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                </h:selectOneMenu><p:message for="idLuogoArrivo" />
 				
+				 
+                
 				<h:outputLabel for="dataStart">Data partenza:</h:outputLabel>
-				<p:inputText id="dataStart" value="#{registerMezzoBean.user.dataInizio}" />
-				<p:message for="dataStart" />
+				<p:inputText id="dataStart" value="#{registerMezzoBean.user.dataInizio}" /><p:message for="dataStart" />
+				
 
 				<h:outputLabel for="dataEnd">Data Arrivo:</h:outputLabel>
 				<p:inputText id="dataEnd" value="#{registerMezzoBean.user.dataFine}"/>
@@ -39,7 +45,7 @@
 				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
 				<p:inputText id="costoPersona" value="#{registerMezzoBean.user.costoPers}"/>
 				<p:message for="costoPersona" />
-				</h:panelGrid>
+				<p:inputText type="hidden" id="idLuogoPartenza" value="#{registerMezzoBean.user.idLuogoPartenza}" /><p:inputText type="hidden" id="idLuogoArrivo" value="#{registerMezzoBean.user.idLuogoArrivo}" /></h:panelGrid>
 			<p:commandButton value="Salva" update="regGrid"
 				action="#{registerMezzoBean.register()}" />
 	

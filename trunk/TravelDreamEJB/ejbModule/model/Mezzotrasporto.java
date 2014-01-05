@@ -23,10 +23,10 @@ public class Mezzotrasporto implements Serializable {
 
 	private int costoPers;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFine;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInizio;
 
 	private int idLuogoArrivo;

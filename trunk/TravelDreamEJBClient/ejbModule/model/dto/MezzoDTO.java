@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class MezzoDTO {
 	@NotNull
 	@Min(0)
-	@Max(999)
+	@Max(5000)
 	private Integer idMezzoTrasporto;
 	@NotNull
 	@Min(0)
@@ -18,9 +18,9 @@ public class MezzoDTO {
 	private Integer costoPers;
 	
 	
-	
+	@NotNull
 	private Date dataFine;
-	
+	@NotNull
 	private Date dataInizio;
 	
 	private Integer idLuogoArrivo;

@@ -18,15 +18,16 @@
 
 				<h:outputLabel for="idLuogoPartenza">Identificativo Luogo Partenza:</h:outputLabel>
 				
-				<h:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+				<p:selectOneMenu value="#{registerMezzoBean.luogoPartenza}">
                 <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
-                </h:selectOneMenu><p:message for="idLuogoPartenza" />
+                
+                </p:selectOneMenu><p:message for="idLuogoPartenza" />
 				 
                 
 				<h:outputLabel for="idLuogoArrivo">Identificativo Luogo Arrivo:</h:outputLabel>
-				<h:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+				<p:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
                 <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
-                </h:selectOneMenu><p:message for="idLuogoArrivo" />
+                </p:selectOneMenu><p:message for="idLuogoArrivo" />
 				
 				 
                 

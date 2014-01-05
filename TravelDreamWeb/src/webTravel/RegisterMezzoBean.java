@@ -22,7 +22,17 @@ public class RegisterMezzoBean {
 	private MezzoDTO mezzo;
 	@EJB
 	private LuogoMgr luogoMgr;
-	private int LuogoArrivo;
+	private int LuogoArrivo=-1;
+	private int LuogoPartenza=-1;
+	public Integer getLuogoPartenza() {
+		return LuogoPartenza;
+	}
+
+	public void setLuogoPartenza(Integer luogoPartenza) {
+		LuogoPartenza = luogoPartenza;
+	}
+
+	private List<LuogoDTO> elelis;
 	
 	public int getLuogoArrivo() {
 		return LuogoArrivo;
@@ -31,13 +41,14 @@ public class RegisterMezzoBean {
 	public void setLuogoArrivo(int luogoArrivo) {
 		LuogoArrivo = luogoArrivo;
 	}
+	
 
 	@PostConstruct
     public void init()
     {
         setElelis(luogoMgr.getLuoghi());
     }
-	private List<LuogoDTO> elelis;
+	
 	
 	public List<LuogoDTO> getElelis() {
 		return elelis;
@@ -60,6 +71,10 @@ public class RegisterMezzoBean {
 	}
 	
 	public String register() {
+		
+		mezzo.setIdLuogoArrivo(LuogoArrivo);
+		mezzo.setIdLuogoPartenza(LuogoPartenza);
+		System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());
 		mezzoMgr.save(mezzo);
 		return "sceltaInserimento?faces-redirect=true";
 	}

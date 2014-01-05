@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import model.dto.MezzoDTO;
 
+import java.util.Date;
+
 
 /**
  * The persistent class for the mezzotrasporto database table.
@@ -17,39 +19,33 @@ public class Mezzotrasporto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idMezzoTrasporto;
+	private int id;
 
 	private int costoPers;
 
-	private String dataFine;
+	@Temporal(TemporalType.DATE)
+	private Date dataFine;
 
-	private String dataInizio;
+	@Temporal(TemporalType.DATE)
+	private Date dataInizio;
 
 	private int idLuogoArrivo;
 
 	private int idLuogoPartenza;
 
+	private int idMezzoTrasporto;
+
 	private int postiDisponibili;
 
 	public Mezzotrasporto() {
 	}
-	public Mezzotrasporto(MezzoDTO mezzo){
-        
-        this.idMezzoTrasporto        = mezzo.getIdMezzoTrasporto();
-        this.costoPers    = mezzo.getCostoPers();
-        this.dataInizio     = mezzo.getDataInizio();        
-        this.dataFine    = mezzo.getDataFine();
-        this.idLuogoPartenza =mezzo.getIdLuogoPartenza();
-        this.idLuogoArrivo =mezzo.getIdLuogoArrivo();
-        this.postiDisponibili=mezzo.getPostiDisponibili();
-    }
 
-	public int getIdMezzoTrasporto() {
-		return this.idMezzoTrasporto;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdMezzoTrasporto(int idMezzoTrasporto) {
-		this.idMezzoTrasporto = idMezzoTrasporto;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getCostoPers() {
@@ -60,19 +56,19 @@ public class Mezzotrasporto implements Serializable {
 		this.costoPers = costoPers;
 	}
 
-	public String getDataFine() {
+	public Date getDataFine() {
 		return this.dataFine;
 	}
 
-	public void setDataFine(String dataFine) {
+	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
 
-	public String getDataInizio() {
+	public Date getDataInizio() {
 		return this.dataInizio;
 	}
 
-	public void setDataInizio(String dataInizio) {
+	public void setDataInizio(Date dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 
@@ -92,6 +88,14 @@ public class Mezzotrasporto implements Serializable {
 		this.idLuogoPartenza = idLuogoPartenza;
 	}
 
+	public int getIdMezzoTrasporto() {
+		return this.idMezzoTrasporto;
+	}
+
+	public void setIdMezzoTrasporto(int idMezzoTrasporto) {
+		this.idMezzoTrasporto = idMezzoTrasporto;
+	}
+
 	public int getPostiDisponibili() {
 		return this.postiDisponibili;
 	}
@@ -99,5 +103,15 @@ public class Mezzotrasporto implements Serializable {
 	public void setPostiDisponibili(int postiDisponibili) {
 		this.postiDisponibili = postiDisponibili;
 	}
+public Mezzotrasporto(MezzoDTO mezzo){
+        
+        this.idMezzoTrasporto        = mezzo.getIdMezzoTrasporto();
+        this.costoPers    = mezzo.getCostoPers();
+        this.dataInizio     = mezzo.getDataInizio();        
+        this.dataFine    = mezzo.getDataFine();
+        this.idLuogoPartenza =mezzo.getIdLuogoPartenza();
+        this.idLuogoArrivo =mezzo.getIdLuogoArrivo();
+        this.postiDisponibili=mezzo.getPostiDisponibili();
+    }
 
 }

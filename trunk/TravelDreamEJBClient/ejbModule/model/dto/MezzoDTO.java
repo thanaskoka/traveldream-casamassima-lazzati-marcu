@@ -1,4 +1,6 @@
 package model.dto;
+import java.util.Date;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -14,10 +16,12 @@ public class MezzoDTO {
 	@Min(0)
 	@Max(999)
 	private Integer costoPers;
-	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
-	private String dataFine;
-	@Pattern(regexp="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message="Invalid date")
-	private String dataInizio;
+	
+	
+	
+	private Date dataFine;
+	
+	private Date dataInizio;
 	
 	private Integer idLuogoArrivo;
 	
@@ -43,19 +47,21 @@ public class MezzoDTO {
 		this.costoPers = costoPers;
 	}
 
-	public String getDataFine() {
+	
+
+	public Date getDataFine() {
 		return dataFine;
 	}
 
-	public void setDataFine(String dataFine) {
+	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
 
-	public String getDataInizio() {
+	public Date getDataInizio() {
 		return dataInizio;
 	}
 
-	public void setDataInizio(String dataInizio) {
+	public void setDataInizio(Date dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 

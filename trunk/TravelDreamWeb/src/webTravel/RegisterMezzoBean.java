@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +25,26 @@ public class RegisterMezzoBean {
 	private LuogoMgr luogoMgr;
 	private int LuogoArrivo=-1;
 	private int LuogoPartenza=-1;
+	private Date dateP;
+	private Date dateA;
+	
+
+	public Date getDateP() {
+		return dateP;
+	}
+
+	public void setDateP(Date dateP) {
+		this.dateP = dateP;
+	}
+
+	public Date getDateA() {
+		return dateA;
+	}
+
+	public void setDateA(Date dateA) {
+		this.dateA = dateA;
+	}
+
 	public Integer getLuogoPartenza() {
 		return LuogoPartenza;
 	}
@@ -74,7 +95,9 @@ public class RegisterMezzoBean {
 		
 		mezzo.setIdLuogoArrivo(LuogoArrivo);
 		mezzo.setIdLuogoPartenza(LuogoPartenza);
-		System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());System.out.println("LUOGOARRIVO"+mezzo.getIdLuogoArrivo()+"LUOGO2"+mezzo.getIdLuogoPartenza());
+		mezzo.setDataInizio(dateP);
+		mezzo.setDataFine(dateA);
+	
 		mezzoMgr.save(mezzo);
 		return "sceltaInserimento?faces-redirect=true";
 	}

@@ -21,37 +21,37 @@
 				<p:selectOneMenu value="#{registerMezzoBean.luogoPartenza}">
                 <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
                 
-                </p:selectOneMenu><p:message for="popupButtonDate" />
+                </p:selectOneMenu>
 				 
-                
+               <h:outputLabel ></h:outputLabel>
 				<h:outputLabel>Identificativo Luogo Arrivo:</h:outputLabel>
 				<p:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
                 <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
-                </p:selectOneMenu><p:message for="popupButtonDate" />
+                </p:selectOneMenu>
 				
 				 
-                
-				<h:outputLabel >Data partenza:</h:outputLabel>
-				<p:calendar value="#{registerMezzoBean.dateP}" id="popupButtonCal" showOn="button" /> 
-				 <h:outputText value="" />  
-           		    
+                <h:outputLabel ></h:outputLabel> 
 				
-
-				<h:outputLabel >Data Arrivo:<h:outputText value="#{registerMezzoBean.dateP}" id="popupButtonDate">  
-                <f:convertDateTime pattern="d/M/yyyy" />  
-            	</h:outputText></h:outputLabel>
-				<p:calendar value="#{registerMezzoBean.dateA}" id="popupButtonCal1" showOn="button" /> 
-				 <h:outputText value="" />  
+                <h:outputText value="Data e Ora Partenza " />  
+            	<p:calendar value="#{registerMezzoBean.dateP}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateP}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+            	   
            		  
-				
+				<h:outputText value="Data e Ora Arrivo " /><p:calendar value="#{registerMezzoBean.dateA}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateA}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+                 
+            	
+            	 
 				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
-				<p:inputText id="numPostiDisp" value="#{registerMezzoBean.user.postiDisponibili}"/>
-				<p:message for="numPostiDisp" />
+				
+				<p:inputText id="numPostiDisp" value="#{registerMezzoBean.user.postiDisponibili}" /><p:message for="numPostiDisp" />
 				
 				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
 				<p:inputText id="costoPersona" value="#{registerMezzoBean.user.costoPers}"/>
 				<p:message for="costoPersona" />
-				<p:inputText type="hidden" id="idLuogoArrivo" value="#{registerMezzoBean.user.idLuogoArrivo}" /></h:panelGrid>
+				</h:panelGrid>
 			<p:commandButton value="Salva" update="regGrid"
 				action="#{registerMezzoBean.register()}" />
 	

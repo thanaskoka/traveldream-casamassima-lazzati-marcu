@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Inserimento albergo</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento Albergo">
+			<h:panelGrid columns="3" id="regGrid">
+				
+				<h:outputLabel for="location">Location:</h:outputLabel>
+                <h:selectOneMenu value="#{registerAlbergoBean.luogo}">
+                	<f:selectItems value="#{registerAlbergoBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}"/>
+                </h:selectOneMenu> 
+				<h:outputText/>
+				
+				
+				<h:outputLabel for="nome">Nome albergo:</h:outputLabel>
+				
+				<p:inputText id="nome" value="#{registerAlbergoBean.nome}" /><p:message for="nome" />
+				
+				<h:outputText value="Basic Usage: " />  
+		        <p:selectOneMenu value="#{registerAlbergoBean.stelle}">  
+		            <f:selectItem itemLabel="Select One" itemValue="" />  
+		            <f:selectItem itemLabel="★" itemValue="1" />  
+		            <f:selectItem itemLabel="★★" itemValue="2" />  
+		            <f:selectItem itemLabel="★★★" itemValue="3" />  
+		            <f:selectItem itemLabel="★★★★" itemValue="4" />  
+		            <f:selectItem itemLabel="★★★★★" itemValue="5" />  
+        </p:selectOneMenu>  	
+				
+			</h:panelGrid>
+				
+				
+			<p:commandButton value="Salva" update="regGrid"
+				action="#{registerAlbergoBean.register()}" />
+	
+			<h:link value="Indietro" outcome="sceltaInserimento" />
+	
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>

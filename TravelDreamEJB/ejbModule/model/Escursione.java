@@ -1,7 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.EscursioneDTO;
+
+import java.util.Date;
 
 
 /**
@@ -18,9 +23,11 @@ public class Escursione implements Serializable {
 
 	private int costoPerEsc;
 
-	private String dataFine;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataFine;
 
-	private String dataInizio;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataInizio;
 
 	private int idLuogo;
 
@@ -30,6 +37,14 @@ public class Escursione implements Serializable {
 
 	public Escursione() {
 	}
+public Escursione(EscursioneDTO esc){
+        
+       this.idLuogo=esc.getIdLuogo();
+       this.dataInizio=esc.getDataInizio();
+       this.dataFine=esc.getDataFine();
+       this.postiDisponibili=esc.getPostiDisp();
+       this.tipologia=esc.getDescrizone();
+    }
 
 	public int getId() {
 		return this.id;
@@ -47,19 +62,19 @@ public class Escursione implements Serializable {
 		this.costoPerEsc = costoPerEsc;
 	}
 
-	public String getDataFine() {
+	public Date getDataFine() {
 		return this.dataFine;
 	}
 
-	public void setDataFine(String dataFine) {
+	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
 
-	public String getDataInizio() {
+	public Date getDataInizio() {
 		return this.dataInizio;
 	}
 
-	public void setDataInizio(String dataInizio) {
+	public void setDataInizio(Date dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 

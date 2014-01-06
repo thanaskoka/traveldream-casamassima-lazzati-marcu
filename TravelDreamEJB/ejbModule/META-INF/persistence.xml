@@ -3,6 +3,7 @@
 	<persistence-unit name="TravelDreamEJB" transaction-type="JTA">
 		<jta-data-source>jdbc/traveldreamdb</jta-data-source>
 		<class>model.Mezzotrasporto</class>
+		<class>model.Escursione</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>

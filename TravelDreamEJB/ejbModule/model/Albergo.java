@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.AlbergoDTO;
 
 
 /**
@@ -16,44 +19,29 @@ public class Albergo implements Serializable {
 	@Id
 	private int idAlbergo;
 
-	private String dataFine;
-
-	private String dataInizio;
-
 	private int idLuogo;
 
 	private String nome;
 
 	@Column(name="numero_stelle")
-	private String numeroStelle;
-
-	private String tipologia;
+	private int numeroStelle;
 
 	public Albergo() {
 	}
 
+	public Albergo(AlbergoDTO al){
+           this.idLuogo = al.getIdLuogo();
+	       this.nome = al.getNome();
+	       this.idAlbergo = al.getIdAlbergo();
+	       this.numeroStelle = al.getNumeroStelle();
+	}
+	
 	public int getIdAlbergo() {
 		return this.idAlbergo;
 	}
 
 	public void setIdAlbergo(int idAlbergo) {
 		this.idAlbergo = idAlbergo;
-	}
-
-	public String getDataFine() {
-		return this.dataFine;
-	}
-
-	public void setDataFine(String dataFine) {
-		this.dataFine = dataFine;
-	}
-
-	public String getDataInizio() {
-		return this.dataInizio;
-	}
-
-	public void setDataInizio(String dataInizio) {
-		this.dataInizio = dataInizio;
 	}
 
 	public int getIdLuogo() {
@@ -72,20 +60,12 @@ public class Albergo implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getNumeroStelle() {
+	public int getNumeroStelle() {
 		return this.numeroStelle;
 	}
 
-	public void setNumeroStelle(String numeroStelle) {
+	public void setNumeroStelle(int numeroStelle) {
 		this.numeroStelle = numeroStelle;
-	}
-
-	public String getTipologia() {
-		return this.tipologia;
-	}
-
-	public void setTipologia(String tipologia) {
-		this.tipologia = tipologia;
 	}
 
 }

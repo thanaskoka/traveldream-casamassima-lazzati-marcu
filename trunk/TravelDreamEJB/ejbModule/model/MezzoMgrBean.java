@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import model.dto.LuogoDTO;
 import model.dto.MezzoDTO;
 
 /**
@@ -33,6 +34,33 @@ public class MezzoMgrBean implements MezzoMgr {
 		Mezzotrasporto newUser = new Mezzotrasporto(user);
 		em.persist(newUser);
 	}
+    @Override
+  	public List<MezzoDTO> getMezzo() {
+    	List<Mezzotrasporto> ele=new ArrayList<Mezzotrasporto>();
+        ele=em.createNamedQuery(Mezzotrasporto.FIND_ALL, Mezzotrasporto.class).getResultList();
+        MezzoDTO eleDTO;
+        List<MezzoDTO> elementDTO=new ArrayList<MezzoDTO>();
+        for(Mezzotrasporto e:ele)
+        {
+            eleDTO= convertToDTO(e);
+            elementDTO.add(eleDTO);
+        }
+        return elementDTO;
+  		
+  	}
 
+    
+    private MezzoDTO convertToDTO(Mezzotrasporto user) {
+    	MezzoDTO userDTO = new MezzoDTO();
+    	userDTO.setCostoPers(user.getCostoPers());
+    	userDTO.setDataFine(user.getDataFine());
+    	userDTO.setDataInizio(user.getDataInizio());
+    	userDTO.setIdLuogoArrivo(user.getIdLuogoArrivo());
+    	userDTO.setIdLuogoPartenza(user.getIdLuogoPartenza());
+    	userDTO.setIdMezzoTrasporto(user.getIdMezzoTrasporto());
+    	userDTO.setPostiDisponibili(user.getPostiDisponibili());
+    	
+    	return userDTO;
+    }
 
 }

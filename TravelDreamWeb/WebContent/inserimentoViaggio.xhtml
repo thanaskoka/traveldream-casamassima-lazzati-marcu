@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Register Viaggio</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento mezzo di trasporto">
+			<h:panelGrid columns="3" id="regGrid">
+				<h:outputLabel for="idMezzo">Identificativo Mezzo</h:outputLabel>
+				<p:inputText id="idMezzo" value="#{registerMezzoBean.user.idMezzoTrasporto}" />
+			    <p:message for="idMezzo" />
+
+				<h:outputLabel >Identificativo Luogo Partenza:</h:outputLabel>
+				
+				<p:selectOneMenu value="#{registerMezzoBean.luogoPartenza}">
+                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                </p:selectOneMenu>
+				 
+               <h:outputLabel ></h:outputLabel>
+				<h:outputLabel>Identificativo Luogo Arrivo:</h:outputLabel>
+				<p:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                </p:selectOneMenu>
+				
+				 
+                <h:outputLabel ></h:outputLabel> 
+				
+                <h:outputText value="Data e Ora Partenza " />  
+            	<p:calendar value="#{registerMezzoBean.dateP}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateP}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+            	   
+           		  
+				<h:outputText value="Data e Ora Arrivo " /><p:calendar value="#{registerMezzoBean.dateA}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateA}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+                 
+            	
+            	 
+				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
+				
+				<p:inputText id="numPostiDisp" value="#{registerMezzoBean.user.postiDisponibili}" /><p:message for="numPostiDisp" />
+				
+				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
+				<p:inputText id="costoPersona" value="#{registerMezzoBean.user.costoPers}"/>
+				<p:message for="costoPersona" />
+				</h:panelGrid>
+			<p:commandButton value="Salva" update="regGrid"
+				action="#{registerMezzoBean.register()}" />
+	
+			<h:link value="Indietro" outcome="sceltaInserimento" />
+	
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>

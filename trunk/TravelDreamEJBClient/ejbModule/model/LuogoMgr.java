@@ -9,6 +9,7 @@ import model.dto.LuogoDTO;
 public interface LuogoMgr {
 	
 	public List<LuogoDTO> getLuoghi();
+	public List<LuogoDTO> getLuoghiEsc();
 	public void save(LuogoDTO luogo) ;
 
 }

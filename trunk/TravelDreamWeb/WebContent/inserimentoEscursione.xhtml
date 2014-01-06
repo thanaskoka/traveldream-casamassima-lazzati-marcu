@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Register Viaggio</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento Escursione">
+			<h:panelGrid columns="3" id="regGrid">
+				
+				<h:outputLabel for="location">Location:</h:outputLabel>
+                <h:selectOneMenu value="#{registerEscursioneBean.luogo}">
+                <f:selectItems value="#{registerEscursioneBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}"/>
+                </h:selectOneMenu> 
+				 <h:outputText/>
+				
+				 
+               
+				
+                <h:outputText value="Data e Ora Partenza " />  
+            	<p:calendar value="#{registerEscursioneBean.dateP}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerEscursioneBean.dateP}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+            	   
+           		  
+				<h:outputText value="Data e Ora Arrivo " /><p:calendar value="#{registerEscursioneBean.dateA}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerEscursioneBean.dateA}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+                 
+            	
+            	 
+				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
+				
+				<p:inputText id="numPostiDisp" value="#{registerEscursioneBean.esc.postiDisp}" /><p:message for="numPostiDisp" />
+				
+				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
+				<p:inputText id="costoPersona" value="#{registerEscursioneBean.esc.costoPersona}"/>
+				<p:message for="costoPersona" />
+				<h:outputLabel for="descrizione">Descrizione:</h:outputLabel>
+				<p:inputText id="descrizione" value="#{registerEscursioneBean.esc.descrizone}"/>
+				<p:message for="descrizione" />
+				</h:panelGrid>
+				
+				
+			<p:commandButton value="Salva" update="regGrid"
+				action="#{registerEscursioneBean.register()}" />
+	
+			<h:link value="Indietro" outcome="sceltaInserimento" />
+	
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>

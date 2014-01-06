@@ -13,11 +13,12 @@ import model.dto.UserDTO;
  * 
  */
 @Entity
-@NamedQuery(name="Luogo.findAereoporti", query="SELECT l FROM Luogo l WHERE l.descrizione='aereoporto'")
-
+@NamedQueries({@NamedQuery(name="Luogo.findAereoporti", query="SELECT l FROM Luogo l WHERE l.descrizione='aereoporto'"),
+@NamedQuery(name="Luogo.findEscursioni", query="SELECT l FROM Luogo l WHERE l.descrizione='escursione'")})
 public class Luogo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_AEREOPORTI = "Luogo.findAereoporti";
+	public static final String FIND_ESCURSIONI = "Luogo.findEscursioni";
 	@Id
 	private int id;
 

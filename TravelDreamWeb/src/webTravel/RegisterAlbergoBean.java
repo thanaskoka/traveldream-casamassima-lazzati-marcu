@@ -83,7 +83,7 @@ public class RegisterAlbergoBean {
 	@PostConstruct
     public void init()
     {
-        setElelis(luogoMgr.getLuoghiEsc());
+        setElelis(luogoMgr.getLuoghiAl());
     }
 	
 	
@@ -99,8 +99,7 @@ public class RegisterAlbergoBean {
 		
 		al.setIdLuogo(luogo);
 		al.setNome(nome);
-		al.setNumeroStelle(stelle);
-	
+		al.setNumeroStelle(stelle);	
 		alMgr.save(al);
 		return "sceltaInserimento?faces-redirect=true";
 	}

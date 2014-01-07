@@ -1,24 +1,22 @@
 package model.dto;
 
+import javax.validation.constraints.NotNull;
+
 
 public class AlbergoDTO {
-
-	private int idAlbergo;
+	
+	@NotNull
 	private int idLuogo;
+	@NotNull
 	private String nome;
+	@NotNull
 	private int numeroStelle;
 	
 	public AlbergoDTO(){
 		
 	}
 
-	public int getIdAlbergo() {
-		return idAlbergo;
-	}
-
-	public void setIdAlbergo(int idAlbergo) {
-		this.idAlbergo = idAlbergo;
-	}
+	
 
 	public int getIdLuogo() {
 		return idLuogo;

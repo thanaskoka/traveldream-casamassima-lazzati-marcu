@@ -32,7 +32,6 @@ public class Albergo implements Serializable {
 	public Albergo(AlbergoDTO al){
            this.idLuogo = al.getIdLuogo();
 	       this.nome = al.getNome();
-	       this.idAlbergo = al.getIdAlbergo();
 	       this.numeroStelle = al.getNumeroStelle();
 	}
 	

@@ -7,6 +7,11 @@ public class EscursioneDTO {
 	
 	private int idLuogo;
 	private Date dataInizio;
+	private Date dataFine;
+	private int costoPersona;
+	private int postiDisp;
+	private String descrizone;
+	
 	public int getIdLuogo() {
 		return idLuogo;
 	}
@@ -44,9 +49,6 @@ public class EscursioneDTO {
 	public void setDescrizone(String descrizone) {
 		this.descrizone = descrizone;
 	}
-	private Date dataFine;
-	private int costoPersona;
-	private int postiDisp;
-	private String descrizone;
+	
 
 }

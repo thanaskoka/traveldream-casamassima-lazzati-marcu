@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import model.dto.LuogoDTO;
-import model.dto.UserDTO;
 
 
 /**
@@ -14,11 +13,13 @@ import model.dto.UserDTO;
  */
 @Entity
 @NamedQueries({@NamedQuery(name="Luogo.findAereoporti", query="SELECT l FROM Luogo l WHERE l.descrizione='aereoporto'"),
-@NamedQuery(name="Luogo.findEscursioni", query="SELECT l FROM Luogo l WHERE l.descrizione='escursione'")})
+@NamedQuery(name="Luogo.findEscursioni", query="SELECT l FROM Luogo l WHERE l.descrizione='escursione'"),
+@NamedQuery(name="Luogo.findAlberghi", query="SELECT l FROM Luogo l WHERE l.descrizione='albergo'")})
 public class Luogo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_AEREOPORTI = "Luogo.findAereoporti";
 	public static final String FIND_ESCURSIONI = "Luogo.findEscursioni";
+	public static final String FIND_ALBERGHI = "Luogo.findAlberghi";
 	@Id
 	private int id;
 

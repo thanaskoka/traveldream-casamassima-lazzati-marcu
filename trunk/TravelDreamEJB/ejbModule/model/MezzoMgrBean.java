@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,11 @@ import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+
+
+
+import javax.persistence.Query;
 
 import model.dto.LuogoDTO;
 import model.dto.MezzoDTO;
@@ -62,5 +68,27 @@ public class MezzoMgrBean implements MezzoMgr {
     	
     	return userDTO;
     }
+    
+    @Override
+	public void update(MezzoDTO user) {
+		int luogoP=user.getIdLuogoPartenza();
+		int luogoA=user.getIdLuogoArrivo();
+		Date dataI=user.getDataInizio();
+		Date dateF=user.getDataFine();
+		int costo=user.getCostoPers();
+		int posti=user.getPostiDisponibili();
+		int idMezzo=user.getIdMezzoTrasporto();
+		em.createQuery("UPDATE mezzotrasporto c SET c.IdLuogoPartenza= :luogoP , c.IdLuogoArrivo= :luogoA WHERE c.idMezzoTrasporto = :idMezzo",Mezzotrasporto.class);
+	}
+    
+    @Override
+	public void delete(MezzoDTO user) {
+    	
+    	String queryString = "DELETE FROM Mezzotrasporto c WHERE c.idMezzoTrasporto = ?1";
+    	Query q = em.createQuery(queryString);
+    	q.setParameter(1,user.getIdMezzoTrasporto());
+    	q.executeUpdate();
+	}
+    
 
 }

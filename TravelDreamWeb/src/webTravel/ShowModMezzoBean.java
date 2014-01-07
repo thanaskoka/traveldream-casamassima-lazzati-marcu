@@ -32,8 +32,22 @@ public class ShowModMezzoBean {
 	private Date dateA;
 	private List<LuogoDTO> elelis;
 	private List<MezzoDTO> carsSmall; 
+	private int idmezzo=-1;
 	
-	
+	public int getIdmezzo() {
+		return idmezzo;
+	}
+
+
+
+
+	public void setIdmezzo(int idmezzo) {
+		this.idmezzo = idmezzo;
+	}
+
+
+
+
 	public List<LuogoDTO> getElelis() {
 		return elelis;
 	}
@@ -165,10 +179,14 @@ public class ShowModMezzoBean {
 	}
 	
 	public void onEdit(RowEditEvent event) {  
+		
+		mezzoMgr.update(mezzo);
         
     }  
       
     public void onCancel(RowEditEvent event) {  
+    	
+    	mezzoMgr.delete(mezzo);
        
     }  
 	

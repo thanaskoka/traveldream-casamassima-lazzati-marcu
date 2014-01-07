@@ -10,7 +10,8 @@ import model.dto.MezzoDTO;
 public interface MezzoMgr {
 	
 	public void save(MezzoDTO mezzo);
-	
+	public void update(MezzoDTO mezzo);
 	public List<MezzoDTO> getMezzo() ;
+	public void delete(MezzoDTO mezzo);
 
 }

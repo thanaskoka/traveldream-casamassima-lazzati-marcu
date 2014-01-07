@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.CameraDTO;
 
 
 /**
@@ -26,6 +29,16 @@ public class Camera implements Serializable {
 
 	public Camera() {
 	}
+
+	
+	public Camera(CameraDTO c) {
+		this.costoPersoneCam = c.getCostoPersoneCam();
+		this.idAlbergo = c.getIdAlbergo();
+		this.nrCamera = c.getNrCamera();
+		this.numPersCam = c.getNumPersCam();
+	}
+
+
 
 	public int getIdCamera() {
 		return this.idCamera;

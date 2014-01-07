@@ -16,31 +16,23 @@
 			<h:panelGrid columns="3" id="regGrid">
 				
 				<h:outputLabel for="location">Location:</h:outputLabel>
-                <h:selectOneMenu value="#{registerAlbergoBean.luogo}">
-                	<f:selectItems value="#{registerAlbergoBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}"/>
+                <h:selectOneMenu value="#{registerAlbergoBean.al.idLuogo}">
+                	<f:selectItems value="#{registerAlbergoBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}(#{ElementDTO.stato})-#{ElementDTO.indirizzo}"/>
                 </h:selectOneMenu> 
 				<h:outputText/>
 				
 				
 				<h:outputLabel for="nome">Nome albergo:</h:outputLabel>
 				
-				<p:inputText id="nome" value="#{registerAlbergoBean.nome}" /><p:message for="nome" />
+				<p:inputText id="nome" value="#{registerAlbergoBean.al.nome}" /><p:message for="nome" />
 				
-				<h:outputText value="Basic Usage: " />  
-		        <p:selectOneMenu value="#{registerAlbergoBean.stelle}">  
-		            <f:selectItem itemLabel="Select One" itemValue="" />  
-		            <f:selectItem itemLabel="★" itemValue="1" />  
-		            <f:selectItem itemLabel="★★" itemValue="2" />  
-		            <f:selectItem itemLabel="★★★" itemValue="3" />  
-		            <f:selectItem itemLabel="★★★★" itemValue="4" />  
-		            <f:selectItem itemLabel="★★★★★" itemValue="5" />  
-        </p:selectOneMenu>  	
+				<h:outputText value="Numero stelle:" />  
+       			<p:rating value="#{registerAlbergoBean.al.numeroStelle}" stars="5" cancel="false"/>
 				
 			</h:panelGrid>
 				
-				
-			<p:commandButton value="Salva" update="regGrid"
-				action="#{registerAlbergoBean.register()}" />
+			
+			<p:commandButton value="Salva" update="regGrid" action="#{registerAlbergoBean.register()}" />
 	
 			<h:link value="Indietro" outcome="sceltaInserimento" />
 	

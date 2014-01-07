@@ -10,6 +10,7 @@ public interface LuogoMgr {
 	
 	public List<LuogoDTO> getLuoghi();
 	public List<LuogoDTO> getLuoghiEsc();
+	public List<LuogoDTO> getLuoghiAl();
 	public void save(LuogoDTO luogo) ;
 
 }

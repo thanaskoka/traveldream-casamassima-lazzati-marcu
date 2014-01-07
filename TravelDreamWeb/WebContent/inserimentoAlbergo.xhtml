@@ -16,7 +16,7 @@
 			<h:panelGrid columns="3" id="regGrid">
 				
 				<h:outputLabel for="location">Location:</h:outputLabel>
-                <h:selectOneMenu value="#{registerAlbergoBean.al.idLuogo}">
+                <h:selectOneMenu value="#{registerAlbergoBean.luogo}">
                 	<f:selectItems value="#{registerAlbergoBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}(#{ElementDTO.stato})-#{ElementDTO.indirizzo}"/>
                 </h:selectOneMenu> 
 				<h:outputText/>

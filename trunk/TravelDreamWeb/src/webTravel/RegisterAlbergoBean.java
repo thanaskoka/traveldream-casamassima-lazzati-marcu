@@ -98,8 +98,6 @@ public class RegisterAlbergoBean {
 	public String register() {
 		
 		al.setIdLuogo(luogo);
-		al.setNome(nome);
-		al.setNumeroStelle(stelle);	
 		alMgr.save(al);
 		return "sceltaInserimento?faces-redirect=true";
 	}

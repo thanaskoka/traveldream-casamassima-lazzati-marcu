@@ -41,9 +41,10 @@
 				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
 				<p:inputText id="costoPersona" value="#{registerEscursioneBean.esc.costoPerEsc}"/>
 				<p:message for="costoPersona" />
-				<h:outputLabel for="descrizione">Descrizione:</h:outputLabel>
-				<p:inputText id="descrizione" value="#{registerEscursioneBean.esc.tipologia}"/>
-				<p:message for="descrizione" />
+				<h:outputLabel for="info">Informazioni:</h:outputLabel>
+				<p:inputTextarea id="info" rows="6" cols="33" value="#{registerEscursioneBean.esc.infoEsc}"/>
+				<p:message for="info" />
+				
 				</h:panelGrid>
 				
 				

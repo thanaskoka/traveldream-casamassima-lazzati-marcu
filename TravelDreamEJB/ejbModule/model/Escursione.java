@@ -17,7 +17,7 @@ import java.util.Date;
 @NamedQuery(name="Escursione.findAll", query="SELECT e FROM Escursione e")
 public class Escursione implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	public static final String FIND_ALL = "Escursione.findAll";
 	@Id
 	private int id;
 
@@ -42,8 +42,8 @@ public Escursione(EscursioneDTO esc){
        this.idLuogo=esc.getIdLuogo();
        this.dataInizio=esc.getDataInizio();
        this.dataFine=esc.getDataFine();
-       this.postiDisponibili=esc.getPostiDisp();
-       this.tipologia=esc.getDescrizone();
+       this.postiDisponibili=esc.getPostiDisponibili();
+       this.tipologia=esc.getTipologia();
     }
 
 	public int getId() {

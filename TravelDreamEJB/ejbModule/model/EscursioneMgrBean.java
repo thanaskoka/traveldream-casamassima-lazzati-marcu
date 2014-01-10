@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
@@ -7,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import model.dto.EscursioneDTO;
+import model.dto.LuogoDTO;
 
 /**
  * Session Bean implementation class EscursioneMgrBean
@@ -28,5 +32,29 @@ public class EscursioneMgrBean implements EscursioneMgr {
 		Escursione newEsc = new Escursione(esc);
 		em.persist(newEsc);
 	}
+    
+    @Override
+  	public List<EscursioneDTO> getEscursioniAl() {
+    	List<Escursione> ele=new ArrayList<Escursione>();
+        ele=em.createNamedQuery(Escursione.FIND_ALL, Escursione.class).getResultList();
+        List<EscursioneDTO> elementDTO=new ArrayList<EscursioneDTO>();
+        for(Escursione e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
 
+    private EscursioneDTO convertToDTO(Escursione user) {
+		EscursioneDTO userDTO = new EscursioneDTO();
+		userDTO.setCostoPerEsc(user.getCostoPerEsc());
+		userDTO.setDataFine(user.getDataFine());
+		userDTO.setDataInizio(user.getDataInizio());
+		userDTO.setTipologia(user.getTipologia());
+		userDTO.setIdLuogo(user.getIdLuogo());
+		userDTO.setPostiDisponibili(user.getPostiDisponibili());
+		userDTO.setId(user.getId());
+		return userDTO;
+	}
 }

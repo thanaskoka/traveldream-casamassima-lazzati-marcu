@@ -16,8 +16,16 @@ public class MezzoDTO {
 	@Min(0)
 	@Max(999)
 	private Integer costoPers;
+	private int id;
 	
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@NotNull
 	private Date dataFine;
 	@NotNull

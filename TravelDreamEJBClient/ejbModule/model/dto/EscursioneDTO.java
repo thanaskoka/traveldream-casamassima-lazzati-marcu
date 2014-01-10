@@ -2,53 +2,83 @@ package model.dto;
 
 import java.util.Date;
 
+
+
 public class EscursioneDTO {
 	
+	private int id;
+
+	private int costoPerEsc;
+
 	
-	private int idLuogo;
-	private Date dataInizio;
 	private Date dataFine;
-	private int costoPersona;
-	private int postiDisp;
-	private String descrizone;
-	
-	public int getIdLuogo() {
-		return idLuogo;
+	private Date dataInizio;
+
+	private int idLuogo;
+
+	private int postiDisponibili;
+
+	private String tipologia;
+
+
+	public int getId() {
+		return id;
 	}
-	public void setIdLuogo(int idLuogo) {
-		this.idLuogo = idLuogo;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public Date getDataInizio() {
-		return dataInizio;
+
+	public int getCostoPerEsc() {
+		return costoPerEsc;
 	}
-	public void setDataInizio(Date dataInizio) {
-		this.dataInizio = dataInizio;
+
+	public void setCostoPerEsc(int costoPerEsc) {
+		this.costoPerEsc = costoPerEsc;
 	}
+
 	public Date getDataFine() {
 		return dataFine;
 	}
+
 	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
-	public int getCostoPersona() {
-		return costoPersona;
+
+	public Date getDataInizio() {
+		return dataInizio;
 	}
-	public void setCostoPersona(int costoPersona) {
-		this.costoPersona = costoPersona;
+
+	public void setDataInizio(Date dataInizio) {
+		this.dataInizio = dataInizio;
 	}
-	public int getPostiDisp() {
-		return postiDisp;
+
+	public int getIdLuogo() {
+		return idLuogo;
 	}
-	public void setPostiDisp(int postiDisp) {
-		this.postiDisp = postiDisp;
+
+	public void setIdLuogo(int idLuogo) {
+		this.idLuogo = idLuogo;
 	}
-	public String getDescrizone() {
-		return descrizone;
+
+	public int getPostiDisponibili() {
+		return postiDisponibili;
 	}
-	public void setDescrizone(String descrizone) {
-		this.descrizone = descrizone;
+
+	public void setPostiDisponibili(int postiDisponibili) {
+		this.postiDisponibili = postiDisponibili;
 	}
+
+	public String getTipologia() {
+		return tipologia;
+	}
+
+	public void setTipologia(String tipologia) {
+		this.tipologia = tipologia;
+	}
+
+	
+
 	
 
 }

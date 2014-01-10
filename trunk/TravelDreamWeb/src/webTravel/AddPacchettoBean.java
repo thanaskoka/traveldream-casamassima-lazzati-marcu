@@ -33,19 +33,6 @@ public class AddPacchettoBean {
 	private List<MezzoDTO> mezziLis;
 	private List<AlbergoDTO>albergoLis;
 	private List<EscursioneDTO>esclis;
-	public List<EscursioneDTO> getEsclis() {
-		return esclis;
-	}
-	public void setEsclis(List<EscursioneDTO> esclis) {
-		this.esclis = esclis;
-	}
-	public LuogoMgr getLuogoMgr() {
-		return luogoMgr;
-	}
-	public void setLuogoMgr(LuogoMgr luogoMgr) {
-		this.luogoMgr = luogoMgr;
-	}
-
 	private EscursioneDTO[] escScelte;
 	private List<LuogoDTO> luogoLis;
     public 	List<LuogoDTO> getLuogoLis() {
@@ -55,10 +42,10 @@ public class AddPacchettoBean {
 		this.luogoLis = elelis;
 	}
 
-	private int mezzoA;
-    private int mezzoB;
-    private int dest;
-    private int hotel;
+	private int mezzoA=-1;
+    private int mezzoB=-1;
+    private int dest=-1;
+    private int hotel=-1;
     @EJB
     private MezzoMgr mezzoMgr;
     @EJB
@@ -68,20 +55,22 @@ public class AddPacchettoBean {
     @EJB
     private LuogoMgr luogoMgr;
     
-    
-	public PacchettoMgr getPaccMgr() {
-		return paccMgr;
+    public AddPacchettoBean() {
+		paccDTO = new PacchettoDTO();
 	}
-	public void setPaccMgr(PacchettoMgr paccMgr) {
-		this.paccMgr = paccMgr;
-	}
+	
 	public PacchettoDTO getPaccDTO() {
 		return paccDTO;
 	}
 	public void setPaccDTO(PacchettoDTO paccDTO) {
 		this.paccDTO = paccDTO;
 	}
-	
+	public List<EscursioneDTO> getEsclis() {
+		return esclis;
+	}
+	public void setEsclis(List<EscursioneDTO> esclis) {
+		this.esclis = esclis;
+	}
 	
 	public List<MezzoDTO> getMezziLis() {
 		return mezziLis;
@@ -144,6 +133,14 @@ public class AddPacchettoBean {
 	public void setAlbMgr(AlbergoMgr albMgr) {
 		this.albMgr = albMgr;
 	}
+	public LuogoMgr getLuogoMgr() {
+		return luogoMgr;
+	}
+	public void setLuogoMgr(LuogoMgr luogoMgr) {
+		this.luogoMgr = luogoMgr;
+	}
+	
+
 	
 	@PostConstruct
     public void init()
@@ -157,13 +154,15 @@ public class AddPacchettoBean {
     
 public String add() {
 		ArrayList<Integer>esc=new ArrayList<Integer>();
+		Integer a=1;
 		paccDTO.setIdLuogo(dest);
 		paccDTO.setIdMezzoAndata(mezzoA);
 		paccDTO.setIdMezzoRitorno(mezzoB);
+		
 		for(int i=0;i<escScelte.length;i++)
-		{
-			esc.set(i, escScelte[i].getId());
-			
+		{	System.out.println("sono al ciclo"+i);
+			esc.add(escScelte[i].getId());
+			System.out.println("sono al ciclo"+i);
 		}
 		paccMgr.save(paccDTO,esc);
 		return "sceltaInserimento?faces-redirect=true";

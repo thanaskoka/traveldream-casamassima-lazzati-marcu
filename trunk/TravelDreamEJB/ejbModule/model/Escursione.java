@@ -44,6 +44,7 @@ public Escursione(EscursioneDTO esc){
        this.dataFine=esc.getDataFine();
        this.postiDisponibili=esc.getPostiDisponibili();
        this.tipologia=esc.getTipologia();
+       this.setCostoPerEsc(esc.getCostoPerEsc());
     }
 
 	public int getId() {

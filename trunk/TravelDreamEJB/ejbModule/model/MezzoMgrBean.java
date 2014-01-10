@@ -65,6 +65,7 @@ public class MezzoMgrBean implements MezzoMgr {
     	userDTO.setIdLuogoPartenza(user.getIdLuogoPartenza());
     	userDTO.setIdMezzoTrasporto(user.getIdMezzoTrasporto());
     	userDTO.setPostiDisponibili(user.getPostiDisponibili());
+    	userDTO.setId(user.getId());
     	
     	return userDTO;
     }

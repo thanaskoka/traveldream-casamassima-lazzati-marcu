@@ -15,7 +15,7 @@ import model.dto.AlbergoDTO;
 @NamedQuery(name="Albergo.findAll", query="SELECT a FROM Albergo a")
 public class Albergo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	public static final String FIND_ALL = "Albergo.findAll";
 	@Id
 	private int idAlbergo;
 

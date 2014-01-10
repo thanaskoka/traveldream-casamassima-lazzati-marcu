@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+        <title>Aggiungi Nuovo Pacchetto</title>
+</h:head>
+<h:body>
+        <h:form id="form">
+                <p:panel header="AddPack Form">
+                        <h:panelGrid columns="3" id="regGrid">
+
+                                <h:outputLabel for="Titolo">Titolo:</h:outputLabel>
+                                <p:inputText id="Titolo"
+                                        value="#{addPackBean.paccDTO.titolo}" />
+                                <p:message for="Titolo" />
+
+                                <h:outputLabel >Mezzo Andata</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.mezzoA}">
+               					 <f:selectItems value="#{addPackBean.mezziLis}" var="MezzoDTO" itemValue="#{MezzoDTO.id}" itemLabel="#{MezzoDTO.dataInizio}" />
+                
+                				</p:selectOneMenu>
+				 
+              					 <h:outputLabel ></h:outputLabel>
+								<h:outputLabel >Mezzo Ritorno</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.mezzoB}">
+               					 <f:selectItems value="#{addPackBean.mezziLis}" var="MezzoDTO1" itemValue="#{MezzoDTO1.id}" itemLabel="#{MezzoDTO1.dataInizio}" />
+                
+                				</p:selectOneMenu>
+				 
+              					 <h:outputLabel ></h:outputLabel>
+				
+				 
+                				
+
+                                <h:outputLabel >Luogo</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.dest}">
+               					 <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                				</p:selectOneMenu>
+				 
+              					 <h:outputLabel ></h:outputLabel>
+
+                                <h:outputLabel for="Hotel">Hotel:</h:outputLabel>
+                                <h:selectOneMenu for="Hotel" value="#{addPackBean.hotel}">
+                                        <f:selectItems id="Hotel"
+                                                value="#{addPackBean.albergoLis}" var="AlbergoDTO"
+                                                itemValue="#{AlbergoDTO.nome}" itemLabel="#{AlbergoDTO.id}" />
+                                </h:selectOneMenu>
+                                <p:message for="Hotel" />
+
+                                <h:outputLabel for="Escursion">Escursioni:</h:outputLabel>
+                                <f:facet name="header">Clicca su view per vedere i dettagli</f:facet>
+                                <p:dataTable id="Escursion" var="esc"
+                                        value="#{addPackBean.esclis}"
+                                        rowKey="#{esc.id}"
+                                        selection="#{addPackBean.escScelte}"
+                                        selectionMode="multiple">
+                                        <p:column headerText="Nome">  #{esc.tipologia}  </p:column>
+
+                                        <p:column headerText="Costo">  #{esc.costoPerEsc}  </p:column>
+
+                                        <p:column headerText="Data Iniziale">  #{esc.dataInizio}  </p:column>
+
+                                        <p:column headerText="Data Fine">  #{esc.dataFine}  </p:column>
+
+                                        <f:facet name="footer">
+                                                <p:commandButton value="View" icon="ui-icon-search" update=":form:display"
+                                                         oncomplete="PF('escursionDialog').show()" />
+                                        </f:facet>
+                                </p:dataTable>
+                                <p:dialog header="Escursion Detail" widgetVar="escursionDialog"
+                                        width="250" showEffect="explode" hideEffect="explode">
+
+                                        <p:dataList id="display"
+                                                value="#{addPackBean.escScelte}"
+                                                var="selectedEsc" type="definition">  
+  
+            Nome: #{selectedEsc.tipologia}, Description: #{selectedEsc.costoPerEsc}    
+             </p:dataList> 
+
+                                </p:dialog>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Add" update="regGrid"
+                                action="#{addPackBean.add()}" />
+                </p:panel>
+                
+        </h:form>
+</h:body>
+
+</html>

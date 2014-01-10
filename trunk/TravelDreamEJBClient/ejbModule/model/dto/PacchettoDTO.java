@@ -1,25 +1,18 @@
-package model;
+package model.dto;
 
-import java.io.Serializable;
+import javax.persistence.Column;
 
-import javax.persistence.*;
-
-import model.dto.PacchettoDTO;
-
-
-/**
- * The persistent class for the pacchetto database table.
- * 
- */
-@Entity
-@NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p")
-public class Pacchetto implements Serializable {
-	private static final long serialVersionUID = 1L;
-	public static final String FIND_ALL = "Pacchetto.findAll";
-	@Id
+public class PacchettoDTO {
+	
 	private int idPacchetto;
-
 	private int idAlbergo;
+	public int getIdAlbergo() {
+		return idAlbergo;
+	}
+
+	public void setIdAlbergo(int idAlbergo) {
+		this.idAlbergo = idAlbergo;
+	}
 
 	private int idLuogo;
 
@@ -28,35 +21,21 @@ public class Pacchetto implements Serializable {
 	private int idMezzoRitorno;
 
 	private String idUtente;
+	
 
 	@Column(name="is_modify")
 	private byte isModify;
 
-	private int numPers;
-
-	private String titolo;
-
-	public Pacchetto() {
-	}
-
 	public int getIdPacchetto() {
-		return this.idPacchetto;
+		return idPacchetto;
 	}
 
 	public void setIdPacchetto(int idPacchetto) {
 		this.idPacchetto = idPacchetto;
 	}
 
-	public int getIdAlbergo() {
-		return this.idAlbergo;
-	}
-
-	public void setIdAlbergo(int idAlbergo) {
-		this.idAlbergo = idAlbergo;
-	}
-
 	public int getIdLuogo() {
-		return this.idLuogo;
+		return idLuogo;
 	}
 
 	public void setIdLuogo(int idLuogo) {
@@ -64,7 +43,7 @@ public class Pacchetto implements Serializable {
 	}
 
 	public int getIdMezzoAndata() {
-		return this.idMezzoAndata;
+		return idMezzoAndata;
 	}
 
 	public void setIdMezzoAndata(int idMezzoAndata) {
@@ -72,7 +51,7 @@ public class Pacchetto implements Serializable {
 	}
 
 	public int getIdMezzoRitorno() {
-		return this.idMezzoRitorno;
+		return idMezzoRitorno;
 	}
 
 	public void setIdMezzoRitorno(int idMezzoRitorno) {
@@ -80,7 +59,7 @@ public class Pacchetto implements Serializable {
 	}
 
 	public String getIdUtente() {
-		return this.idUtente;
+		return idUtente;
 	}
 
 	public void setIdUtente(String idUtente) {
@@ -88,7 +67,7 @@ public class Pacchetto implements Serializable {
 	}
 
 	public byte getIsModify() {
-		return this.isModify;
+		return isModify;
 	}
 
 	public void setIsModify(byte isModify) {
@@ -96,7 +75,7 @@ public class Pacchetto implements Serializable {
 	}
 
 	public int getNumPers() {
-		return this.numPers;
+		return numPers;
 	}
 
 	public void setNumPers(int numPers) {
@@ -104,20 +83,15 @@ public class Pacchetto implements Serializable {
 	}
 
 	public String getTitolo() {
-		return this.titolo;
+		return titolo;
 	}
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
-public Pacchetto(PacchettoDTO lu) {
-		
-		this.idLuogo=lu.getIdLuogo();
-		this.idMezzoAndata=lu.getIdMezzoAndata();
-		this.idMezzoRitorno=lu.getIdMezzoRitorno();
-		this.numPers=lu.getNumPers();
-		this.titolo=lu.getTitolo();
-		this.idAlbergo=lu.getIdAlbergo();
-	}
+
+	private int numPers;
+
+	private String titolo;
 
 }

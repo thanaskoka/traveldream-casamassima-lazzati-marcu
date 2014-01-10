@@ -55,7 +55,7 @@
                                 <h:outputLabel for="Escursion">Escursioni:</h:outputLabel>
                                 <f:facet name="header">Clicca su view per vedere i dettagli</f:facet>
                                 <p:dataTable id="Escursion" var="esc" value="#{addPackBean.esclis}" rowKey="#{esc.id}" selection="#{addPackBean.escScelte}" selectionMode="multiple">
-                                        <p:column headerText="Tipologia">  #{esc.tipologia}  </p:column>
+                                        <p:column headerText="Id">  #{esc.id}  </p:column>
 
                                         <p:column headerText="Costo">  #{esc.costoPerEsc}  </p:column>
 
@@ -73,7 +73,7 @@
                                         <p:dataList id="display"
                                                 value="#{addPackBean.escScelte}" var="selectedEsc" type="definition">  
   
-            										Nome: #{selectedEsc.tipologia}   
+            										ID: #{selectedEsc.id}, Descrizione: #{selectedEsc.infoEsc}   
              							</p:dataList> 
 
                                 </p:dialog>

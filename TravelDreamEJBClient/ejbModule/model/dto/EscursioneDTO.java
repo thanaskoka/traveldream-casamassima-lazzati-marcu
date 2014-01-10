@@ -10,7 +10,9 @@ public class EscursioneDTO {
 
 	private int costoPerEsc;
 
+	private String infoEsc;
 	
+
 	private Date dataFine;
 	private Date dataInizio;
 
@@ -77,7 +79,13 @@ public class EscursioneDTO {
 		this.tipologia = tipologia;
 	}
 
-	
+	public String getInfoEsc() {
+		return infoEsc;
+	}
+
+	public void setInfoEsc(String infoEsc) {
+		this.infoEsc = infoEsc;
+	}
 
 	
 

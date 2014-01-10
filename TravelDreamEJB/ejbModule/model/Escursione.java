@@ -18,6 +18,7 @@ import java.util.Date;
 public class Escursione implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Escursione.findAll";
+	
 	@Id
 	private int id;
 
@@ -31,21 +32,15 @@ public class Escursione implements Serializable {
 
 	private int idLuogo;
 
+	@Column(name="`info escursione`")
+	private String info_escursione;
+
 	private int postiDisponibili;
 
-	private String tipologia;
+	
 
 	public Escursione() {
 	}
-public Escursione(EscursioneDTO esc){
-        
-       this.idLuogo=esc.getIdLuogo();
-       this.dataInizio=esc.getDataInizio();
-       this.dataFine=esc.getDataFine();
-       this.postiDisponibili=esc.getPostiDisponibili();
-       this.tipologia=esc.getTipologia();
-       this.setCostoPerEsc(esc.getCostoPerEsc());
-    }
 
 	public int getId() {
 		return this.id;
@@ -87,6 +82,14 @@ public Escursione(EscursioneDTO esc){
 		this.idLuogo = idLuogo;
 	}
 
+	public String getInfo_escursione() {
+		return this.info_escursione;
+	}
+
+	public void setInfo_escursione(String info_escursione) {
+		this.info_escursione = info_escursione;
+	}
+
 	public int getPostiDisponibili() {
 		return this.postiDisponibili;
 	}
@@ -95,12 +98,16 @@ public Escursione(EscursioneDTO esc){
 		this.postiDisponibili = postiDisponibili;
 	}
 
-	public String getTipologia() {
-		return this.tipologia;
-	}
-
-	public void setTipologia(String tipologia) {
-		this.tipologia = tipologia;
-	}
+	
+	public Escursione(EscursioneDTO esc){
+        
+	       this.idLuogo=esc.getIdLuogo();
+	       this.dataInizio=esc.getDataInizio();
+	       this.dataFine=esc.getDataFine();
+	       this.postiDisponibili=esc.getPostiDisponibili();
+	     
+	       this.costoPerEsc=esc.getCostoPerEsc();
+	       this.info_escursione=esc.getInfoEsc();
+	    }
 
 }

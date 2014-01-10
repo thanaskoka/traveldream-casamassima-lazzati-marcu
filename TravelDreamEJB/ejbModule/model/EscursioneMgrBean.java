@@ -51,10 +51,11 @@ public class EscursioneMgrBean implements EscursioneMgr {
 		userDTO.setCostoPerEsc(user.getCostoPerEsc());
 		userDTO.setDataFine(user.getDataFine());
 		userDTO.setDataInizio(user.getDataInizio());
-		userDTO.setTipologia(user.getTipologia());
+		
 		userDTO.setIdLuogo(user.getIdLuogo());
 		userDTO.setPostiDisponibili(user.getPostiDisponibili());
 		userDTO.setId(user.getId());
+		userDTO.setInfoEsc(user.getInfo_escursione());
 		return userDTO;
 	}
 }

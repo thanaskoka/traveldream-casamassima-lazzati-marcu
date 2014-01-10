@@ -12,7 +12,7 @@ import model.dto.PacchettoDTO;
  * 
  */
 @Entity
-@NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p")
+@NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p ORDER BY p.idPacchetto DESC")
 public class Pacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Pacchetto.findAll";

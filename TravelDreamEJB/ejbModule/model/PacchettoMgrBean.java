@@ -33,6 +33,7 @@ private EntityManager em;
     	List <Pacchetto> idPac=em.createNamedQuery(Pacchetto.FIND_ALL, Pacchetto.class).getResultList();
     	int idPacc=idPac.get(0).getIdPacchetto();
     	Escursionipacchetto escu=new Escursionipacchetto();
+    	
     	for(int i=0;i<esc.size();i++)
     	{
     		escu.setIdEscursione(esc.get(i));

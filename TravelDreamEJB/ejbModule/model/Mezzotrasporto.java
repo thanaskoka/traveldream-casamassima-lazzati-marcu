@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import model.dto.LuogoDTO;
 import model.dto.MezzoDTO;
 
 import java.util.Date;
@@ -15,11 +14,12 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="mezzotrasporto")
 @NamedQuery(name="Mezzotrasporto.findAll", query="SELECT m FROM Mezzotrasporto m")
 public class Mezzotrasporto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Mezzotrasporto.findAll";
+	
+
 	@Id
 	private int id;
 
@@ -105,7 +105,7 @@ public class Mezzotrasporto implements Serializable {
 	public void setPostiDisponibili(int postiDisponibili) {
 		this.postiDisponibili = postiDisponibili;
 	}
-public Mezzotrasporto(MezzoDTO mezzo){
+	public Mezzotrasporto(MezzoDTO mezzo){
         
         this.idMezzoTrasporto        = mezzo.getIdMezzoTrasporto();
         this.costoPers    = mezzo.getCostoPers();
@@ -115,7 +115,5 @@ public Mezzotrasporto(MezzoDTO mezzo){
         this.idLuogoArrivo =mezzo.getIdLuogoArrivo();
         this.postiDisponibili=mezzo.getPostiDisponibili();
     }
-
-
 
 }

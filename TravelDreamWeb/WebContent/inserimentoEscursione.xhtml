@@ -36,13 +36,13 @@
             	 
 				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
 				
-				<p:inputText id="numPostiDisp" value="#{registerEscursioneBean.esc.postiDisp}" /><p:message for="numPostiDisp" />
+				<p:inputText id="numPostiDisp" value="#{registerEscursioneBean.esc.postiDisponibili}" /><p:message for="numPostiDisp" />
 				
 				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
-				<p:inputText id="costoPersona" value="#{registerEscursioneBean.esc.costoPersona}"/>
+				<p:inputText id="costoPersona" value="#{registerEscursioneBean.esc.costoPerEsc}"/>
 				<p:message for="costoPersona" />
 				<h:outputLabel for="descrizione">Descrizione:</h:outputLabel>
-				<p:inputText id="descrizione" value="#{registerEscursioneBean.esc.descrizone}"/>
+				<p:inputText id="descrizione" value="#{registerEscursioneBean.esc.tipologia}"/>
 				<p:message for="descrizione" />
 				</h:panelGrid>
 				

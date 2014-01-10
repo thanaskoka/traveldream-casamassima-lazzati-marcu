@@ -14,11 +14,7 @@
                 <p:panel header="AddPack Form">
                         <h:panelGrid columns="3" id="regGrid">
 
-                                <h:outputLabel for="Titolo">Titolo:</h:outputLabel>
-                                <p:inputText id="Titolo"
-                                        value="#{addPackBean.paccDTO.titolo}" />
-                                <p:message for="Titolo" />
-
+                                
                                 <h:outputLabel >Mezzo Andata</h:outputLabel>
 				
 								<p:selectOneMenu value="#{addPackBean.mezzoA}">
@@ -30,7 +26,7 @@
 								<h:outputLabel >Mezzo Ritorno</h:outputLabel>
 				
 								<p:selectOneMenu value="#{addPackBean.mezzoB}">
-               					 <f:selectItems value="#{addPackBean.mezziLis}" var="MezzoDTO1" itemValue="#{MezzoDTO1.id}" itemLabel="#{MezzoDTO1.dataInizio}" />
+               					 <f:selectItems value="#{addPackBean.mezziLis}" var="MezzoDTO1" itemValue="#{MezzoDTO1.idMezzoTrasporto}" itemLabel="#{MezzoDTO1.dataInizio}" />
                 
                 				</p:selectOneMenu>
 				 
@@ -52,18 +48,14 @@
                                 <h:selectOneMenu for="Hotel" value="#{addPackBean.hotel}">
                                         <f:selectItems id="Hotel"
                                                 value="#{addPackBean.albergoLis}" var="AlbergoDTO"
-                                                itemValue="#{AlbergoDTO.nome}" itemLabel="#{AlbergoDTO.id}" />
+                                                itemValue="#{AlbergoDTO.id}" itemLabel="#{AlbergoDTO.nome}" />
                                 </h:selectOneMenu>
                                 <p:message for="Hotel" />
 
                                 <h:outputLabel for="Escursion">Escursioni:</h:outputLabel>
                                 <f:facet name="header">Clicca su view per vedere i dettagli</f:facet>
-                                <p:dataTable id="Escursion" var="esc"
-                                        value="#{addPackBean.esclis}"
-                                        rowKey="#{esc.id}"
-                                        selection="#{addPackBean.escScelte}"
-                                        selectionMode="multiple">
-                                        <p:column headerText="Nome">  #{esc.tipologia}  </p:column>
+                                <p:dataTable id="Escursion" var="esc" value="#{addPackBean.esclis}" rowKey="#{esc.id}" selection="#{addPackBean.escScelte}" selectionMode="multiple">
+                                        <p:column headerText="Tipologia">  #{esc.tipologia}  </p:column>
 
                                         <p:column headerText="Costo">  #{esc.costoPerEsc}  </p:column>
 
@@ -76,21 +68,18 @@
                                                          oncomplete="PF('escursionDialog').show()" />
                                         </f:facet>
                                 </p:dataTable>
-                                <p:dialog header="Escursion Detail" widgetVar="escursionDialog"
-                                        width="250" showEffect="explode" hideEffect="explode">
+                                <p:dialog header="Escursion Detail" widgetVar="escursionDialog" width="250" showEffect="explode" hideEffect="explode">
 
                                         <p:dataList id="display"
-                                                value="#{addPackBean.escScelte}"
-                                                var="selectedEsc" type="definition">  
+                                                value="#{addPackBean.escScelte}" var="selectedEsc" type="definition">  
   
-            Nome: #{selectedEsc.tipologia}, Description: #{selectedEsc.costoPerEsc}    
-             </p:dataList> 
+            										Nome: #{selectedEsc.tipologia}   
+             							</p:dataList> 
 
                                 </p:dialog>
                         </h:panelGrid>
 
-                        <p:commandButton value="Add" update="regGrid"
-                                action="#{addPackBean.add()}" />
+                        <p:commandButton value="Add" update="regGrid" action="#{addPackBean.add()}" />
                 </p:panel>
                 
         </h:form>

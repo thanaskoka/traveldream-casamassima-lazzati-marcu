@@ -27,6 +27,9 @@ public class RegisterAlbergoBean {
 	private String nome;
 	private int stelle;
 	
+	private int opt1,opt2,opt3;
+    
+	
 	private List<LuogoDTO> elelis;
 	
 	public RegisterAlbergoBean () {
@@ -80,10 +83,41 @@ public class RegisterAlbergoBean {
 	
 	
 
+	public int getOpt1() {
+		return opt1;
+	}
+
+
+	public void setOpt1(int opt1) {
+		this.opt1 = opt1;
+	}
+
+
+	public int getOpt2() {
+		return opt2;
+	}
+
+
+	public void setOpt2(int opt2) {
+		this.opt2 = opt2;
+	}
+
+
+	public int getOpt3() {
+		return opt3;
+	}
+
+
+	public void setOpt3(int opt3) {
+		this.opt3 = opt3;
+	}
+
+
 	@PostConstruct
     public void init()
     {
         setElelis(luogoMgr.getLuoghiAl());
+        
     }
 	
 	

@@ -28,6 +28,17 @@
 				
 				<h:outputText value="Numero stelle:" />  
        			<p:rating value="#{registerAlbergoBean.al.numeroStelle}" stars="5" cancel="false"/>
+       			
+       			<h:outputText value="Camere: " /> 
+       			<p:selectManyCheckbox id="lineDirection" onchange="change(1);"> 
+			        <f:selectItem itemLabel="camere singole" itemValue="Option 1" onchange="change(1);"/>
+			        <p:inputText id="c1" value="#{registerAlbergoBean.opt1}" style="display:none;" />  
+			        <f:selectItem itemLabel="camere doppie" itemValue="Option 2" onchange="change(2);"/>  
+			        <p:inputText id="c2" value="#{registerAlbergoBean.opt2}" style="display:none;" />
+			        <f:selectItem itemLabel="camere triple" itemValue="Option 3" onchange="change(3);"/>  
+			        <p:inputText id="c3" value="#{registerAlbergoBean.opt3}" style="display:none;" />	
+			    </p:selectManyCheckbox>	
+       			
 				
 			</h:panelGrid>
 				
@@ -38,6 +49,14 @@
 	
 		</p:panel>
 	</h:form>
-	
+	<script type="text/javascript">
+      function change(id) {
+        if($("#c"+id).is(":visible")) {
+        	$("#c"+id).hide();
+        } else {
+        	$("#c"+id).show();
+        }
+      }
+    </script>
 </h:body>
 </html>

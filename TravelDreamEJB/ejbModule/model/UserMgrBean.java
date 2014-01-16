@@ -92,5 +92,16 @@ public class UserMgrBean implements UserMgr {
 		userDTO.setLastName(user.getLastName());
 		return userDTO;
 	}
+    @Override
+    public UserDTO returnUser(String username,String password){
+        List<User> users=new ArrayList<User>();
+        users=em.createNamedQuery(User.FIND_ALL, User.class).getResultList();
+        for(User u:users){
+        if (username.equals(u.getEmail()) && password.equals(u.getPassword())){
+                return convertToDTO(u);
+        }
+        }
+return null;
+}
 }
 

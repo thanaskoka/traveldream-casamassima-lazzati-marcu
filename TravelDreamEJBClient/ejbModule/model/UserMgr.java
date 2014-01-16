@@ -16,5 +16,5 @@ public interface UserMgr {
 	public void unregister();
 	
 	public UserDTO getUserDTO();
-
+	public UserDTO returnUser(String username,String password);
 }

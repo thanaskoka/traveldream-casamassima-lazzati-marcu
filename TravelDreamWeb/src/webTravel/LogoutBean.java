@@ -8,11 +8,13 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class LogoutBean {
-	
-	public String logout() {
-	    FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	    return "/home?faces-redirect=true";
-	  }
+        
+        public String logout() {
+        	
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");System.out.println("ho fatto logout");
+            return "/home?faces-redirect=true";
+          }
 
 
 }

@@ -95,7 +95,7 @@ import model.dto.EscursioneDTO;
 			mezzo.setDataFine(dateA);
 		
 			mezzoMgr.save(mezzo);
-			return "sceltaInserimento?faces-redirect=true";
+			return "indexfaces-redirect=true";
 		}
 
 	}

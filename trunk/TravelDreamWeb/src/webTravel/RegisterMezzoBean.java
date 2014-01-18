@@ -99,7 +99,7 @@ public class RegisterMezzoBean {
 		mezzo.setDataFine(dateA);
 	
 		mezzoMgr.save(mezzo);
-		return "sceltaInserimento?faces-redirect=true";
+		return "index?faces-redirect=true";
 	}
 
 }

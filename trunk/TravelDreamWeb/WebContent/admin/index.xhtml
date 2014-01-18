@@ -7,8 +7,16 @@
 
 <h:body>
 	<h1>Hello #{userBean.name}</h1>
+	<p:breadCrumb>
+        <p:menuitem value="Admin"  outcome="index" />
+		<p:menuitem value="Mezzo"  outcome="showEditMezzo" />
+		<p:menuitem value="New Escursione"  outcome="inserimentoEscursione" />
+		<p:menuitem value="New Albergo"  outcome="inserimentoAlbergo" />
+	</p:breadCrumb>
 	<h:form>
+		
 		<p:commandButton action="#{logoutBean.logout}" value="Logout" />
 	</h:form>
+	
 </h:body>
 </html>

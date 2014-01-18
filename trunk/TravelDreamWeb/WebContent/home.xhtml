@@ -10,51 +10,12 @@
 <!--  <img src="img/dreams.jpg" />-->
 </h:head>
 
-      <h:form id="form">   
+       
        <p:breadCrumb>
 		<p:menuitem value="Admin"  outcome="home" />
-		<p:menuitem value="Admin"  outcome="sceltaInserimento" />
-		<p:menuitem value="login" onclick="PF('dlg').show()" />
+		<p:menuitem value="Admin"  outcome="admin/index.xhtml" />
+		<p:menuitem value="User" outcome="user/index?user=true" />
 		
 		</p:breadCrumb>
-           <p:commandButton id="logoutButton" value="Logout" update="growl"   
-                    actionListener="#{logoutBean.logout()}"   
-                    oncomplete="handleLoginRequest(xhr, status, args)"/>           
-        
-   
-  
-    <p:growl id="growl" showDetail="true" life="3000" />  
-  
-    <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">  
-  
-        <h:panelGrid columns="2" cellpadding="5">  
-            <h:outputLabel for="username" value="Username:" />  
-            <p:inputText value="#{loginBean.username}"   
-                    id="username" required="true" label="username" />  
-              
-            <h:outputLabel for="password" value="Password:" />  
-            <h:inputSecret value="#{loginBean.password}"   
-                    id="password" required="true" label="password" />  
-              
-            <f:facet name="footer">  
-                <p:commandButton id="loginButton" value="Login" update="growl"   
-                    actionListener="#{loginBean.login}"   
-                    oncomplete="handleLoginRequest(xhr, status, args)"/>  
-            </f:facet>  
-        </h:panelGrid>  
-          
-    </p:dialog>  
-</h:form>  
-  
-<script type="text/javascript">  
-    function handleLoginRequest(xhr, status, args) {  
-        if(args.validationFailed || !args.loggedIn) {  
-            PF('dlg').jq.effect("shake", { times:5 }, 100);  
-        }   
-        else {  
-            PF('dlg').hide();  
-            $('#loginLink').fadeOut();  
-        }  
-    }  
-</script>
+         
 </html>

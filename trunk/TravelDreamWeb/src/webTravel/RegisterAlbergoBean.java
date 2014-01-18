@@ -133,6 +133,6 @@ public class RegisterAlbergoBean {
 		
 		al.setIdLuogo(luogo);
 		alMgr.save(al);
-		return "sceltaInserimento?faces-redirect=true";
+		return "index?faces-redirect=true";
 	}
 }

@@ -1,0 +1,8 @@
+ADMIN
+email: admin@admin.com
+psw: admin
+
+
+USER
+email:gesu@maria.com
+psw:pippo

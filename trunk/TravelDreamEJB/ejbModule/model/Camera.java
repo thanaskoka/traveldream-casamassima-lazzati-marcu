@@ -19,7 +19,7 @@ public class Camera implements Serializable {
 	@Id
 	private int idCamera;
 
-	private String costoPersoneCam;
+	private float costoPersoneCam;
 
 	private int idAlbergo;
 
@@ -29,16 +29,13 @@ public class Camera implements Serializable {
 
 	public Camera() {
 	}
-
 	
-	public Camera(CameraDTO c) {
-		this.costoPersoneCam = c.getCostoPersoneCam();
-		this.idAlbergo = c.getIdAlbergo();
-		this.nrCamera = c.getNrCamera();
-		this.numPersCam = c.getNumPersCam();
+	public Camera(CameraDTO al){
+        this.costoPersoneCam = al.getCostoPersoneCam();
+	    this.idAlbergo = al.getIdAlbergo();
+	    this.nrCamera = al.getNrCamera();
+	    this.numPersCam = al.getNumPersCam();
 	}
-
-
 
 	public int getIdCamera() {
 		return this.idCamera;
@@ -48,11 +45,11 @@ public class Camera implements Serializable {
 		this.idCamera = idCamera;
 	}
 
-	public String getCostoPersoneCam() {
+	public float getCostoPersoneCam() {
 		return this.costoPersoneCam;
 	}
 
-	public void setCostoPersoneCam(String costoPersoneCam) {
+	public void setCostoPersoneCam(float costoPersoneCam) {
 		this.costoPersoneCam = costoPersoneCam;
 	}
 

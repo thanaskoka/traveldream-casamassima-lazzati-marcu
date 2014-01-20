@@ -16,7 +16,10 @@ import model.dto.AlbergoDTO;
 public class Albergo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Albergo.findAll";
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idAlbergo")
 	private int idAlbergo;
 
 	private int idLuogo;

@@ -54,7 +54,21 @@ public class MezzoMgrBean implements MezzoMgr {
         return elementDTO;
   		
   	}
-
+    @Override
+  	public List<MezzoDTO> getMezzoViaggioAndata(int lp,int lr) {
+    	List<Mezzotrasporto> ele=new ArrayList<Mezzotrasporto>();
+    	ele=em.createNamedQuery(Mezzotrasporto.FIND_BY_LUOGO, Mezzotrasporto.class).setParameter("luogoA",lp).setParameter("luogoP", lr).getResultList();
+        MezzoDTO eleDTO;
+        List<MezzoDTO> elementDTO=new ArrayList<MezzoDTO>();
+        for(Mezzotrasporto e:ele)
+        {
+            eleDTO= convertToDTO(e);
+            elementDTO.add(eleDTO);
+        }
+        return elementDTO;
+  		
+  	}
+    
     
     private MezzoDTO convertToDTO(Mezzotrasporto user) {
     	MezzoDTO userDTO = new MezzoDTO();

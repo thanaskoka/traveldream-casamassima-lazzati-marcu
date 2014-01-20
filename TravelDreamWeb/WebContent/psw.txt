@@ -4,5 +4,5 @@ psw: admin
 
 
 USER
-email:gesu@maria.com
+email:user@user.com
 psw:pippo

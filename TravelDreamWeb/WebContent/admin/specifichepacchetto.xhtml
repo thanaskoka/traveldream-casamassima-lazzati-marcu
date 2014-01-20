@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Register Viaggio</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento mezzo di trasporto">
+			<h:panelGrid columns="3" id="regGrid">
+				
+				<h:outputLabel >Identificativo Luogo Partenza:</h:outputLabel>
+				
+				<p:selectOneMenu value="#{addPackBean.luogoP}">
+                <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                </p:selectOneMenu>
+				 
+               <h:outputLabel ></h:outputLabel>
+				<h:outputLabel>Identificativo Luogo Arrivo:</h:outputLabel>
+				<p:selectOneMenu value="#{addPackBean.luogoA}">
+                <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                </p:selectOneMenu>
+				
+				 
+                <h:outputLabel ></h:outputLabel> 
+				
+                <h:outputText value="Data e Ora Partenza " />  
+            	<p:calendar value="#{addPackBean.dataP}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{addPackBean.dataP}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+            	   
+           		  
+				<h:outputText value="Data e Ora Arrivo " /><p:calendar value="#{addPackBean.dataA}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{addPackBean.dataA}">  
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+            	</h:outputText>
+                 
+            	
+            	 
+				</h:panelGrid>
+				<p:commandButton value="Salva" update="regGrid"
+				action="#{addPackBean.showForm()}" />
+	
+			<h:link value="Indietro" outcome="index" />
+	
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>

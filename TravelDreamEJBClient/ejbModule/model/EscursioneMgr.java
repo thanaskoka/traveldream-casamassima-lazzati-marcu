@@ -10,5 +10,6 @@ import model.dto.EscursioneDTO;
 public interface EscursioneMgr {
 	public void save(EscursioneDTO mezzo);
 	public List<EscursioneDTO> getEscursioniAl();
+	public List<EscursioneDTO> getEscursioniLuogo(String citta) ;
 
 }

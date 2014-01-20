@@ -47,6 +47,17 @@ public class LuogoMgrBean implements LuogoMgr {
   		
   	}
     @Override
+  	public LuogoDTO getCittaFromId(int id) {
+    	Luogo ele=new Luogo();
+        ele=em.createNamedQuery(Luogo.FIND_CITTA, Luogo.class).setParameter("id",id).getSingleResult();
+        LuogoDTO elementDTO=new LuogoDTO();
+        
+        	elementDTO=convertToDTO(ele);
+        
+        return elementDTO;
+  		
+  	}
+    @Override
   	public List<LuogoDTO> getLuoghiEsc() {
     	List<Luogo> ele=new ArrayList<Luogo>();
         ele=em.createNamedQuery(Luogo.FIND_ESCURSIONI, Luogo.class).getResultList();

@@ -1,14 +1,15 @@
 package model.dto;
 
 public class CameraDTO {
-	private String costoPersoneCam;
+	private float costoPersoneCam;
 	private int idAlbergo;
 	private int nrCamera;
 	private int numPersCam;
-	public String getCostoPersoneCam() {
+	
+	public float getCostoPersoneCam() {
 		return costoPersoneCam;
 	}
-	public void setCostoPersoneCam(String costoPersoneCam) {
+	public void setCostoPersoneCam(float costoPersoneCam) {
 		this.costoPersoneCam = costoPersoneCam;
 	}
 	public int getIdAlbergo() {

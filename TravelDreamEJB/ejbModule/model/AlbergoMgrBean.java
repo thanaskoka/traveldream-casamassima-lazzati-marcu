@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import model.dto.AlbergoDTO;
-import model.dto.EscursioneDTO;
 
 /**
  * Session Bean implementation class AlbergoMgrBean

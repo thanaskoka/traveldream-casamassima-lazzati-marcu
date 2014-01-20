@@ -87,6 +87,7 @@ public class AddPacchettoBean {
 	private Date dataP;
     private int luogoA;
     private int luogoP;
+    private LuogoDTO luogoAppoggio;
     @EJB
     private MezzoMgr mezzoMgr;
     @EJB
@@ -96,7 +97,13 @@ public class AddPacchettoBean {
     @EJB
     private LuogoMgr luogoMgr;
     
-    public 	List<LuogoDTO> getLuogoLis() {
+    public LuogoDTO getLuogoAppoggio() {
+		return luogoAppoggio;
+	}
+	public void setLuogoAppoggio(LuogoDTO luogoAppoggio) {
+		this.luogoAppoggio = luogoAppoggio;
+	}
+	public 	List<LuogoDTO> getLuogoLis() {
 		return luogoLis;
 	}
 	public void setLuogoLis(List<LuogoDTO> elelis) {
@@ -200,14 +207,18 @@ public class AddPacchettoBean {
     }
 	
 	public void findAll(){
-		 setAlbergoLis(albMgr.getAlbergoAl());
-		 System.out.println("id luogo partenza:"+luogoP+"id luogo Arrivo"+luogoA);
+		 setAlbergoLis(albMgr.getAlbergoAl());		 
 		 setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
 		 setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		 setEsclis(escMgr.getEscursioniAl());
+		 setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+		 setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+		
 	}
     
 public String add() {
+	
+	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
+	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
 		ArrayList<Integer>esc=new ArrayList<Integer>();
 		Integer a=1;
 		paccDTO.setIdLuogo(dest);
@@ -220,7 +231,7 @@ public String add() {
 			
 		}
 		paccMgr.save(paccDTO,esc);
-		return "sceltaInserimento?faces-redirect=true";
+		return "index?faces-redirect=true";
 	}
     
 }

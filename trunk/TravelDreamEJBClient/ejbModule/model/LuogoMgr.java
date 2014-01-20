@@ -12,5 +12,5 @@ public interface LuogoMgr {
 	public List<LuogoDTO> getLuoghiEsc();
 	public List<LuogoDTO> getLuoghiAl();
 	public void save(LuogoDTO luogo) ;
-
+	public LuogoDTO getCittaFromId(int id);
 }

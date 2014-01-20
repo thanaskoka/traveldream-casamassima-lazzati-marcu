@@ -14,12 +14,15 @@ import model.dto.LuogoDTO;
 @Entity
 @NamedQueries({@NamedQuery(name="Luogo.findAereoporti", query="SELECT l FROM Luogo l WHERE l.descrizione='aereoporto'"),
 @NamedQuery(name="Luogo.findEscursioni", query="SELECT l FROM Luogo l WHERE l.descrizione='escursione'"),
-@NamedQuery(name="Luogo.findAlberghi", query="SELECT l FROM Luogo l WHERE l.descrizione='albergo'")})
+@NamedQuery(name="Luogo.findAlberghi", query="SELECT l FROM Luogo l WHERE l.descrizione='albergo'"),
+@NamedQuery(name="Luogo.Findcitta", query="SELECT l FROM Luogo l WHERE l.id= :id")
+})
 public class Luogo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_AEREOPORTI = "Luogo.findAereoporti";
 	public static final String FIND_ESCURSIONI = "Luogo.findEscursioni";
 	public static final String FIND_ALBERGHI = "Luogo.findAlberghi";
+	public static final String FIND_CITTA = "Luogo.Findcitta";
 	@Id
 	private int id;
 

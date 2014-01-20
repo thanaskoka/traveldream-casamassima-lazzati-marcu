@@ -202,7 +202,7 @@ public class AddPacchettoBean {
     {
         
         setLuogoLis(luogoMgr.getLuoghi());
-        
+        setEsclis(escMgr.getEscursioniAl());
         
     }
 	
@@ -210,8 +210,8 @@ public class AddPacchettoBean {
 		 setAlbergoLis(albMgr.getAlbergoAl());		 
 		 setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
 		 setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		 setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
-		 setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+		 //setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+		 //setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
 		
 	}
     

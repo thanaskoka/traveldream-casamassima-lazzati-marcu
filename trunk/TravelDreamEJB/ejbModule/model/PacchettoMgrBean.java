@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
+import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -27,23 +28,31 @@ private EntityManager em;
     
     @Override
     public void save(PacchettoDTO pk,List<Integer>esc) {
+    	
     	Pacchetto pacc = new Pacchetto(pk);
     	em.persist(pacc);
     	em.flush();
     	List <Pacchetto> idPac=em.createNamedQuery(Pacchetto.FIND_ALL, Pacchetto.class).getResultList();
     	int idPacc=idPac.get(0).getIdPacchetto();
-    	Escursionipacchetto escu=new Escursionipacchetto();
-    	
-    	for(int i=0;i<esc.size();i++)
-    	{
+    	Escursionipacchetto escu;
+    	System.out.println("num esc:"+esc.size());
+		System.out.println("num esc:"+esc.size());
+		System.out.println("num esc:"+esc.size());System.out.println("num esc:"+esc.size());
+		System.out.println("num esc:"+esc.size());
+		
+		for(int i=0;i<esc.size();i++)
+    	{	
+			escu=new Escursionipacchetto();
+			em.flush();
     		escu.setIdEscursione(esc.get(i));
     		escu.setIdPacchetto(idPacc);
     		em.persist(escu);
-    		em.flush();
+    		
+    		
     		
     		
     	}
-    	
+		
     	
     }
     

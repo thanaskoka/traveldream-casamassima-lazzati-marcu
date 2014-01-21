@@ -184,27 +184,27 @@ public class RegisterAlbergoBean {
 		CameraDTO cam;
 		al.setIdLuogo(luogo);
 		alMgr.save(al);
-		for(int i = 0; i < opt1; i++){
+		if(opt1>0){
 			cam = new CameraDTO();
 			cam.setIdAlbergo(allis.get(allis.size()-1).getId());
 			cam.setCostoPersoneCam(costo1);;
-			cam.setNrCamera(i+1);
+			cam.setNrCamera(opt1);
 			cam.setNumPersCam(1);
 			camMgr.save(cam);
 		}
-		for(int i = 0; i < opt2; i++){
+		if(opt2>0){
 			cam = new CameraDTO();
 			cam.setIdAlbergo(allis.get(allis.size()-1).getId());
 			cam.setCostoPersoneCam(costo2);;
-			cam.setNrCamera(i+1);
+			cam.setNrCamera(opt2);
 			cam.setNumPersCam(2);
 			camMgr.save(cam);
 		}
-		for(int i = 0; i < opt3; i++){
+		if(opt3>0){
 			cam = new CameraDTO();
 			cam.setIdAlbergo(allis.get(allis.size()-1).getId());
 			cam.setCostoPersoneCam(costo3);;
-			cam.setNrCamera(i+1);
+			cam.setNrCamera(opt3);
 			cam.setNumPersCam(3);
 			camMgr.save(cam);
 		}

@@ -203,28 +203,29 @@ public class AddPacchettoBean {
         
         setLuogoLis(luogoMgr.getLuoghi());
         setEsclis(escMgr.getEscursioniAl());
-        
+        setAlbergoLis(albMgr.getAlbergoAl());
+        setMezziLisAnd(mezzoMgr.getMezzo());
+		 setMezziLisRit(mezzoMgr.getMezzo());
     }
 	
-	public void findAll(){
+	/*public void findAll(){
 		 setAlbergoLis(albMgr.getAlbergoAl());		 
 		 setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
 		 setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		 //setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
-		 //setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+		 setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+		 setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
 		
-	}
+	}*/
     
 public String add() {
 	
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
+
 		ArrayList<Integer>esc=new ArrayList<Integer>();
 		Integer a=1;
 		paccDTO.setIdLuogo(dest);
 		paccDTO.setIdMezzoAndata(mezzoA);
 		paccDTO.setIdMezzoRitorno(mezzoB);
-		
+		paccDTO.setIdAlbergo(hotel);
 		for(int i=0;i<escScelte.length;i++)
 		{	
 			esc.add(escScelte[i].getId());

@@ -16,6 +16,7 @@ import model.dto.PacchettoDTO;
 public class Pacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Pacchetto.findAll";
+
 	@Id
 	private int idPacchetto;
 

@@ -40,7 +40,7 @@
 								<h:outputLabel >Mezzo Ritorno</h:outputLabel>
 				
 								<p:selectOneMenu value="#{addPackBean.mezzoB}">
-               					 <f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1" itemValue="#{MezzoDTO1.idMezzoTrasporto}" itemLabel="#{MezzoDTO1.dataInizio}" />
+               					 <f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1" itemValue="#{MezzoDTO1.id}" itemLabel="#{MezzoDTO1.dataInizio}" />
                 
                 				</p:selectOneMenu>
 				 
@@ -72,7 +72,7 @@
 
                                         <f:facet name="footer">
                                                 <p:commandButton value="View" icon="ui-icon-search" update=":form:display"
-                                                         oncomplete="PF('escursionDialog').show()" />
+                                                         oncomplete="PF('escursionDialog').show()"  />
                                         </f:facet>
                                 </p:dataTable>
                                 <p:dialog header="Escursion Detail" widgetVar="escursionDialog" width="250" showEffect="explode" hideEffect="explode">

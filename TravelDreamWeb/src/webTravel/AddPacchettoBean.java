@@ -208,18 +208,24 @@ public class AddPacchettoBean {
 	@PostConstruct
     public void init()
     {	
-		dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
-    	par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
+		//dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
+    	//par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
 		//System.out.println("entro");
-        setLuogoLis(luogoMgr.getLuoghi());
-        setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
-        setAlbergoLis(albMgr.getAlbergoByLuogo(luogoAppoggio.getCitta()));		 
-		setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
-		setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		
-       // System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
-		setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+		 setLuogoLis(luogoMgr.getLuoghi());
     }
+	public void findAll(){
+		
+		
+		
+		 
+	        setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+	        setAlbergoLis(albMgr.getAlbergoByLuogo(luogoAppoggio.getCitta()));		 
+			setMezziLisAnd(mezzoMgr.getMezzoViaggioAndataR(dest, par,dataP));
+			setMezziLisRit(mezzoMgr.getMezzoViaggioAndataA(par, dest,dataA));
+			
+	       // System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
+			setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta(),dataA,dataP));
+	}
 	
 	
     

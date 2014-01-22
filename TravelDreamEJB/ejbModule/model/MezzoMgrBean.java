@@ -55,9 +55,9 @@ public class MezzoMgrBean implements MezzoMgr {
   		
   	}
     @Override
-  	public List<MezzoDTO> getMezzoViaggioAndata(int lp,int lr) {
+  	public List<MezzoDTO> getMezzoViaggioAndataA(int lp,int lr,Date dataPartenza) {
     	List<Mezzotrasporto> ele=new ArrayList<Mezzotrasporto>();
-    	ele=em.createNamedQuery(Mezzotrasporto.FIND_BY_LUOGO, Mezzotrasporto.class).setParameter("luogoA",lp).setParameter("luogoP", lr).getResultList();
+    	ele=em.createNamedQuery(Mezzotrasporto.FIND_BY_LUOGOA, Mezzotrasporto.class).setParameter("luogoA",lp).setParameter("luogoP", lr).setParameter("partenza", dataPartenza).getResultList();
         MezzoDTO eleDTO;
         List<MezzoDTO> elementDTO=new ArrayList<MezzoDTO>();
         for(Mezzotrasporto e:ele)
@@ -68,7 +68,20 @@ public class MezzoMgrBean implements MezzoMgr {
         return elementDTO;
   		
   	}
-    
+    @Override
+  	public List<MezzoDTO> getMezzoViaggioAndataR(int lp,int lr,Date dataPartenza) {
+    	List<Mezzotrasporto> ele=new ArrayList<Mezzotrasporto>();
+    	ele=em.createNamedQuery(Mezzotrasporto.FIND_BY_LUOGOR, Mezzotrasporto.class).setParameter("luogoA",lp).setParameter("luogoP", lr).setParameter("partenza", dataPartenza).getResultList();
+        MezzoDTO eleDTO;
+        List<MezzoDTO> elementDTO=new ArrayList<MezzoDTO>();
+        for(Mezzotrasporto e:ele)
+        {
+            eleDTO= convertToDTO(e);
+            elementDTO.add(eleDTO);
+        }
+        return elementDTO;
+  		
+  	}
     
     private MezzoDTO convertToDTO(Mezzotrasporto user) {
     	MezzoDTO userDTO = new MezzoDTO();

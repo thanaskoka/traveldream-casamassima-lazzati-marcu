@@ -14,7 +14,34 @@
                 <p:panel header="AddPack Form">
                         <h:panelGrid columns="3" id="regGrid">
 
-                                 
+                                  <h:outputLabel >Luogo Partenza</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.par}">
+               					 <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                				</p:selectOneMenu>
+                				 <h:outputLabel ></h:outputLabel>
+				 				<h:outputLabel >Luogo Destinazione</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.dest}">
+               					 <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                				
+                				</p:selectOneMenu>
+                				
+                				
+    							<p:calendar value="#{addPackBean.dataA}" id="popupCal1" />  
+                				<h:outputText value="Data Partenza:" />  
+            					<h:outputText value="#{addPackBean.dataA}" id="popupDate1">  
+                				<f:convertDateTime pattern="d/M/yyyy"/>  
+           					    </h:outputText>
+           					    
+           					    <p:calendar value="#{addPackBean.dataP}" id="popupCal" />  
+                				<h:outputText value="Data Ritorno :" />  
+            					<h:outputText value="#{addPackBean.dataP}" id="popupDate">  
+                				<f:convertDateTime pattern="d/M/yyyy"/>  
+           					    </h:outputText>
+           					      
+                				<p:commandButton value="Find" update="regGrid" action="#{addPackBean.findAll()}" />
                                 
                                 <h:outputLabel >Mezzo Andata</h:outputLabel>
 				

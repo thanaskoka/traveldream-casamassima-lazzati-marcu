@@ -15,7 +15,20 @@
                         <h:panelGrid columns="3" id="regGrid">
 
                                  
-                                
+                                 <h:outputLabel >Luogo Partenza</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.par}">
+               					 <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                				</p:selectOneMenu>
+                				 <h:outputLabel ></h:outputLabel>
+				 				<h:outputLabel >Luogo Destinazione</h:outputLabel>
+				
+								<p:selectOneMenu value="#{addPackBean.dest}">
+               					 <f:selectItems value="#{addPackBean.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                				</p:selectOneMenu>
+              					<p:commandButton value="Find" update="regGrid" action="#{addPackBean.findAll()}" />
                                 <h:outputLabel >Mezzo Andata</h:outputLabel>
 				
 								<p:selectOneMenu value="#{addPackBean.mezzoA}">
@@ -27,7 +40,7 @@
 								<h:outputLabel >Mezzo Ritorno</h:outputLabel>
 				
 								<p:selectOneMenu value="#{addPackBean.mezzoB}">
-               					 <f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1" itemValue="#{MezzoDTO1.idMezzoTrasporto}" itemLabel="#{MezzoDTO1.dataInizio}" />
+               					 <f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1" itemValue="#{MezzoDTO1.id}" itemLabel="#{MezzoDTO1.dataInizio}" />
                 
                 				</p:selectOneMenu>
 				 
@@ -59,7 +72,7 @@
 
                                         <f:facet name="footer">
                                                 <p:commandButton value="View" icon="ui-icon-search" update=":form:display"
-                                                         oncomplete="PF('escursionDialog').show()" />
+                                                         oncomplete="PF('escursionDialog').show()"  />
                                         </f:facet>
                                 </p:dataTable>
                                 <p:dialog header="Escursion Detail" widgetVar="escursionDialog" width="250" showEffect="explode" hideEffect="explode">

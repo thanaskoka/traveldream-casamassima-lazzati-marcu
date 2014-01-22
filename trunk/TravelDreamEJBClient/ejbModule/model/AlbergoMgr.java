@@ -11,4 +11,5 @@ import model.dto.EscursioneDTO;
 public interface AlbergoMgr {
 	public void save(AlbergoDTO alb);
 	public List<AlbergoDTO> getAlbergoAl();
+	public List<AlbergoDTO> getAlbergoByLuogo(String citta);
 }

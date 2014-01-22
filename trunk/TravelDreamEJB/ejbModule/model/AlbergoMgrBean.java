@@ -8,8 +8,10 @@ import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import model.dto.AlbergoDTO;
+import model.dto.EscursioneDTO;
 
 /**
  * Session Bean implementation class AlbergoMgrBean
@@ -47,6 +49,23 @@ public class AlbergoMgrBean implements AlbergoMgr {
         return elementDTO;
   		
   	}
+    @Override
+  	public List<AlbergoDTO> getAlbergoByLuogo(String citta) {
+    	String queryString = "SELECT e FROM Albergo e " +
+                "INNER JOIN Luogo l WHERE e.idLuogo=l.id AND l.citta= :citta";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("citta", citta);
+    	List<Albergo> ele=new ArrayList<Albergo>();
+        ele=query.getResultList();
+        List<AlbergoDTO> elementDTO=new ArrayList<AlbergoDTO>();
+        for(Albergo e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
+    
 
     private AlbergoDTO convertToDTO(Albergo user) {
 		AlbergoDTO userDTO = new AlbergoDTO();

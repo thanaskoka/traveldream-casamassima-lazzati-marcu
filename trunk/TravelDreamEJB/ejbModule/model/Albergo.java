@@ -12,11 +12,14 @@ import model.dto.AlbergoDTO;
  * 
  */
 @Entity
-@NamedQuery(name="Albergo.findAll", query="SELECT a FROM Albergo a")
+@NamedQueries({
+	@NamedQuery(name="Albergo.findAll", query="SELECT a FROM Albergo a"),
+	@NamedQuery(name="Albergo.findbyluogo", query="SELECT a FROM Albergo a WHERE a.idLuogo= :luogo")
+})
 public class Albergo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Albergo.findAll";
-
+	public static final String FIND_BY_LUOGO = "Albergo.findbyluogo";
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idAlbergo")

@@ -9,10 +9,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import model.AlbergoMgr;
 import model.EscursioneMgr;
@@ -27,15 +25,11 @@ import model.dto.PacchettoDTO;
 
 
 
-@ManagedBean(name="addPackBean")
-
+@ManagedBean(name="invioLuogo")
 @ViewScoped
-public class AddPacchettoBean {
+public class InvioLuogoBean {
 	
 	
-	private int dest;
-	
-	private int par;
 	@EJB
     private PacchettoMgr paccMgr;
 	private PacchettoDTO paccDTO;
@@ -50,9 +44,8 @@ public class AddPacchettoBean {
     
 	private int mezzoA=-1;
     private int mezzoB=-1;
-    private int i=500;
-   
-   
+    private int dest=-1;
+    private int par=-1;
     private int hotel=-1;
     private Date dataA;
     
@@ -118,8 +111,8 @@ public class AddPacchettoBean {
 		this.luogoLis = elelis;
 	}
 
-    public AddPacchettoBean() {
-		paccDTO = new PacchettoDTO();
+    public InvioLuogoBean() {
+		
 	}
 	
 	public PacchettoDTO getPaccDTO() {
@@ -207,40 +200,26 @@ public class AddPacchettoBean {
 	
 	@PostConstruct
     public void init()
-    {	
-		dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
-    	par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
-		//System.out.println("entro");
+    {
+        
         setLuogoLis(luogoMgr.getLuoghi());
-        setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
-        setAlbergoLis(albMgr.getAlbergoByLuogo(luogoAppoggio.getCitta()));		 
-		setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
-		setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		
-       // System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
-		setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+        setEsclis(escMgr.getEscursioniAl());
+        
     }
 	
-	
+	public void findAll(){
+		 setAlbergoLis(albMgr.getAlbergoAl());		 
+		 setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
+		 setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
+		 //setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+		 //setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
+		
+	}
     
 public String add() {
+	return "AddPacchetto?faces-redirect=true&idD="+dest+"&idP="+par;
 	
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
-		ArrayList<Integer>esc=new ArrayList<Integer>();
-		Integer a=1;
-		paccDTO.setIdLuogo(dest);
-		paccDTO.setIdMezzoAndata(mezzoA);
-		paccDTO.setIdMezzoRitorno(mezzoB);
 		
-		for(int i=0;i<escScelte.length;i++)
-		{	
-			esc.add(escScelte[i].getId());
-			
-		}
-		paccMgr.save(paccDTO,esc);
-		return "index?faces-redirect=true";
 	}
     
 }
-

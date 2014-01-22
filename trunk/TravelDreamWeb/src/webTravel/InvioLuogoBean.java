@@ -30,25 +30,22 @@ import model.dto.PacchettoDTO;
 public class InvioLuogoBean {
 	
 	
-	@EJB
-    private PacchettoMgr paccMgr;
-	private PacchettoDTO paccDTO;
-	private List<MezzoDTO> mezziLisAnd;
-	private List<MezzoDTO> mezziLisRit;
 	
-
-	private List<AlbergoDTO>albergoLis;
-	private List<EscursioneDTO>esclis;
-	private EscursioneDTO[] escScelte;
-	private List<LuogoDTO> luogoLis;
-    
-	private int mezzoA=-1;
+	private Date dataP;
+    private int luogoA;
+    private int luogoP;
+    private LuogoDTO luogoAppoggio;
+    private int mezzoA=-1;
     private int mezzoB=-1;
     private int dest=-1;
     private int par=-1;
     private int hotel=-1;
     private Date dataA;
-    
+    private List<EscursioneDTO>esclis;
+	private List<LuogoDTO> luogoLis;
+    @EJB
+    private LuogoMgr luogoMgr;
+
     public int getPar() {
 		return par;
 	}
@@ -79,24 +76,8 @@ public class InvioLuogoBean {
 	public void setLuogoP(int luogoP) {
 		this.luogoP = luogoP;
 	}
-	public List<MezzoDTO> getMezziLisRit() {
-		return mezziLisRit;
-	}
-	public void setMezziLisRit(List<MezzoDTO> mezziLisRit) {
-		this.mezziLisRit = mezziLisRit;
-	}
-	private Date dataP;
-    private int luogoA;
-    private int luogoP;
-    private LuogoDTO luogoAppoggio;
-    @EJB
-    private MezzoMgr mezzoMgr;
-    @EJB
-    private EscursioneMgr escMgr;
-    @EJB
-    private AlbergoMgr albMgr;
-    @EJB
-    private LuogoMgr luogoMgr;
+	
+	
     
     public LuogoDTO getLuogoAppoggio() {
 		return luogoAppoggio;
@@ -115,12 +96,7 @@ public class InvioLuogoBean {
 		
 	}
 	
-	public PacchettoDTO getPaccDTO() {
-		return paccDTO;
-	}
-	public void setPaccDTO(PacchettoDTO paccDTO) {
-		this.paccDTO = paccDTO;
-	}
+	
 	public List<EscursioneDTO> getEsclis() {
 		return esclis;
 	}
@@ -128,25 +104,7 @@ public class InvioLuogoBean {
 		this.esclis = esclis;
 	}
 	
-	public List<MezzoDTO> getMezziLisAnd() {
-		return mezziLisAnd;
-	}
-	public void setMezziLisAnd(List<MezzoDTO> mezziLis) {
-		this.mezziLisAnd = mezziLis;
-	}
-	public List<AlbergoDTO> getAlbergoLis() {
-		return albergoLis;
-	}
-	public void setAlbergoLis(List<AlbergoDTO> albergoLis) {
-		this.albergoLis = albergoLis;
-	}
 	
-	public EscursioneDTO[] getEscScelte() {
-		return escScelte;
-	}
-	public void setEscScelte(EscursioneDTO[] escScelte) {
-		this.escScelte = escScelte;
-	}
 	public int getMezzoA() {
 		return mezzoA;
 	}
@@ -171,24 +129,8 @@ public class InvioLuogoBean {
 	public void setHotel(int hotel) {
 		this.hotel = hotel;
 	}
-	public MezzoMgr getMezzoMgr() {
-		return mezzoMgr;
-	}
-	public void setMezzoMgr(MezzoMgr mezzoMgr) {
-		this.mezzoMgr = mezzoMgr;
-	}
-	public EscursioneMgr getEscMgr() {
-		return escMgr;
-	}
-	public void setEscMgr(EscursioneMgr escMgr) {
-		this.escMgr = escMgr;
-	}
-	public AlbergoMgr getAlbMgr() {
-		return albMgr;
-	}
-	public void setAlbMgr(AlbergoMgr albMgr) {
-		this.albMgr = albMgr;
-	}
+	
+	
 	public LuogoMgr getLuogoMgr() {
 		return luogoMgr;
 	}
@@ -203,18 +145,11 @@ public class InvioLuogoBean {
     {
         
         setLuogoLis(luogoMgr.getLuoghi());
-        setEsclis(escMgr.getEscursioniAl());
+        
         
     }
 	
-	public void findAll(){
-		 setAlbergoLis(albMgr.getAlbergoAl());		 
-		 setMezziLisAnd(mezzoMgr.getMezzoViaggioAndata(par, dest));
-		 setMezziLisRit(mezzoMgr.getMezzoViaggioAndata(dest, par));
-		 //setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
-		 //setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta()));
-		
-	}
+	
     
 public String add() {
 	return "AddPacchetto?faces-redirect=true&idD="+dest+"&idP="+par;

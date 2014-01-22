@@ -225,8 +225,8 @@ public class AddPacchettoBean {
     
 public String add() {
 	
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
-	System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
+	//System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
+	//System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
 		ArrayList<Integer>esc=new ArrayList<Integer>();
 		Integer a=1;
 		paccDTO.setIdLuogo(dest);

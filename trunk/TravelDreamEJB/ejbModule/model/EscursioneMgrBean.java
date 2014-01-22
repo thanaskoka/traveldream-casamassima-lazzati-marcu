@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 
 
@@ -52,11 +54,13 @@ public class EscursioneMgrBean implements EscursioneMgr {
   		
   	}
     @Override
-  	public List<EscursioneDTO> getEscursioniLuogo(String citta) {
+  	public List<EscursioneDTO> getEscursioniLuogo(String citta,Date arrivo,Date ripartenza) {
     	String queryString = "SELECT e FROM Escursione e " +
-                "INNER JOIN Luogo l WHERE e.idLuogo=l.id AND l.citta= :citta";
+                "INNER JOIN Luogo l WHERE e.idLuogo=l.id AND l.citta= :citta AND e.dataInizio > :arrivo AND e.dataFine< :ripartenza";
     	Query query = em.createQuery(queryString);
     	query.setParameter("citta", citta);
+    	query.setParameter("arrivo", arrivo);
+    	query.setParameter("ripartenza", ripartenza);
     	List<Escursione> ele=new ArrayList<Escursione>();
         ele=query.getResultList();
         List<EscursioneDTO> elementDTO=new ArrayList<EscursioneDTO>();

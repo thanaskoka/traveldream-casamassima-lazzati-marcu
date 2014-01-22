@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -13,5 +14,6 @@ public interface MezzoMgr {
 	public void update(MezzoDTO mezzo);
 	public List<MezzoDTO> getMezzo() ;
 	public void delete(MezzoDTO mezzo);
-	public List<MezzoDTO> getMezzoViaggioAndata(int lp,int lr);
+	public List<MezzoDTO> getMezzoViaggioAndataA(int lp,int lr,Date data);
+	public List<MezzoDTO> getMezzoViaggioAndataR(int lp,int lr,Date data);
 }

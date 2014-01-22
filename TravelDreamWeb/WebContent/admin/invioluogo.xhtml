@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+        <title>Aggiungi Nuovo Pacchetto</title>
+</h:head>
+<h:body>
+        <h:form id="form">
+                <p:panel header="AddPack Form">
+                        <h:panelGrid columns="3" id="regGrid">
+
+                                 
+                                 <h:outputLabel >Luogo Partenza</h:outputLabel>
+				
+								<p:selectOneMenu value="#{invioLuogo.par}">
+               					 <f:selectItems value="#{invioLuogo.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                
+                				</p:selectOneMenu>
+                				 <h:outputLabel ></h:outputLabel>
+				 				<h:outputLabel >Luogo Destinazione</h:outputLabel>
+				
+								<p:selectOneMenu value="#{invioLuogo.dest}">
+               					 <f:selectItems value="#{invioLuogo.luogoLis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+                				
+                				</p:selectOneMenu>
+              					
+                                <p:commandButton value="Find" update="regGrid" action="#{invioLuogo.add()}" />
+                	</h:panelGrid>
+                </p:panel>
+                
+        </h:form>
+</h:body>
+
+</html>

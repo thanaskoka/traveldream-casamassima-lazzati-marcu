@@ -15,7 +15,8 @@ import model.dto.LuogoDTO;
 @NamedQueries({@NamedQuery(name="Luogo.findAereoporti", query="SELECT l FROM Luogo l WHERE l.descrizione='aereoporto'"),
 @NamedQuery(name="Luogo.findEscursioni", query="SELECT l FROM Luogo l WHERE l.descrizione='escursione'"),
 @NamedQuery(name="Luogo.findAlberghi", query="SELECT l FROM Luogo l WHERE l.descrizione='albergo'"),
-@NamedQuery(name="Luogo.Findcitta", query="SELECT l FROM Luogo l WHERE l.id= :id")
+@NamedQuery(name="Luogo.Findcitta", query="SELECT l FROM Luogo l WHERE l.id= :id"),
+@NamedQuery(name="Luogo.Findid", query="SELECT l FROM Luogo l WHERE l.citta= :citta AND l.descrizione='AEREOPORTO'")
 })
 public class Luogo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,8 @@ public class Luogo implements Serializable {
 	public static final String FIND_ESCURSIONI = "Luogo.findEscursioni";
 	public static final String FIND_ALBERGHI = "Luogo.findAlberghi";
 	public static final String FIND_CITTA = "Luogo.Findcitta";
+	public static final String FIND_ID = "Luogo.Findid";
+	
 	@Id
 	private int id;
 

@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.dto.AlbergoDTO;
-import model.dto.EscursioneDTO;
 
 /**
  * Session Bean implementation class AlbergoMgrBean

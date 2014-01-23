@@ -71,7 +71,22 @@ public class EscursioneMgrBean implements EscursioneMgr {
         return elementDTO;
   		
   	}
-    
+    @Override
+    public List<EscursioneDTO> getEscursioniPacchetto(int id){
+    	String queryString = "SELECT e FROM Escursione e " +
+                "INNER JOIN Escursionipacchetto l WHERE e.id=l.idEscursione AND l.idPacchetto= :id";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("id", id);
+    	List<Escursione> ele=new ArrayList<Escursione>();
+        ele=query.getResultList();
+        List<EscursioneDTO> elementDTO=new ArrayList<EscursioneDTO>();
+        for(Escursione e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
 
     private EscursioneDTO convertToDTO(Escursione user) {
 		EscursioneDTO userDTO = new EscursioneDTO();

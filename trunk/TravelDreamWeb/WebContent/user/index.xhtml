@@ -22,10 +22,11 @@
                  <h:outputText value="Quando vuoi partire?" /> 
 				<p:calendar value="#{indexBean.dataP}" id="popupCal1" />  
                 
-            	<h:outputText ></h:outputText>
+            	<h:outputText  /> <h:outputText  /><h:outputText  />
            		<p:commandButton value="Find" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.findPack()}"  />
            		
-           		<p:dataTable id="pacchetti"  var="esc" value="#{indexBean.packLis}" rowKey="#{esc.idPacchetto}" selection="#{indexBean.selectPack}" selectionMode="single">
+           		<p:dataTable id="pacchetti"  var="esc" value="#{indexBean.packLis}" update="regGrid" rowKey="#{esc.idPacchetto}" selection="#{indexBean.selectPack}" selectionMode="single">
+                                        <p:column headerText="id">  #{esc.idPacchetto}  </p:column>
                                         <p:column headerText="Luogo">  #{esc.idLuogo}  </p:column>
 
                                         <p:column headerText="Mezzo Andata">  #{esc.idMezzoAndata}  </p:column>
@@ -34,9 +35,18 @@
 
                                         <p:column headerText="Info">  #{esc.titolo}  </p:column>
 
-                                        <f:facet name="footer">
-                                              <p:commandButton value="Escursioni" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.showEscursioniPacc()}"  />
-                                              <p:commandButton value="Procedi" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.inizoPagamento()}"  />    
+                                        
+                </p:dataTable>
+                <h:outputText  />
+                 <p:commandButton value="Escursioni" icon="ui-icon-search" update="escu"   actionListener="#{indexBean.showEscursioniPacc()}"  />  
+               
+                <h:outputText value="Escursioni associate al pacchetto selezionato" /> <h:outputText  /> <h:outputText  /> 
+                 <p:dataTable id="escu"  var="selectedEsc" value="#{indexBean.escLis}" update="regGrid" rowKey="#{selectedEsc.id}" >
+                                        <p:column headerText="id">  #{selectedEsc.id}  </p:column>
+                                        <p:column headerText="Descrizione">  #{selectedEsc.infoEsc}  </p:column>
+										<f:facet name="footer">
+                                           
+                                             
                                         </f:facet>
                 </p:dataTable>
 				

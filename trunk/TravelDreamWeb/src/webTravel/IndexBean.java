@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +9,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import model.EscursioneMgr;
+import model.EscursioniPacchettoMgr;
 import model.LuogoMgr;
 import model.PacchettoMgr;
+import model.dto.EscursioneDTO;
 import model.dto.MezzoDTO;
 import model.dto.PacchettoDTO;
 
@@ -25,8 +29,13 @@ public class IndexBean {
     private PacchettoMgr paccMgr;
 	@EJB
     private LuogoMgr luogoMgr;
+	@EJB
+    private EscursioneMgr escMgr;
 	private PacchettoDTO paccDTO;
 	private List<PacchettoDTO> packLis;
+	private List<EscursioneDTO> escLis;
+	
+
 	private PacchettoDTO selectPack;
 	private String destinazione;
 	private Date dataP;
@@ -77,6 +86,13 @@ public class IndexBean {
 	public void setDataP(Date dataP) {
 		this.dataP = dataP;
 	}
+	public List<EscursioneDTO> getEscLis() {
+		return escLis;
+	}
+
+	public void setEscLis(List<EscursioneDTO> escLis) {
+		this.escLis = escLis;
+	}
 	@PostConstruct
     public void init()
     {	
@@ -90,13 +106,19 @@ public class IndexBean {
 	
 	
 	public void findPack(){
-		System.out.println("sono quiiii");
-		System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");System.out.println("sono quiiii");
+	
 		
 		int idluogo=luogoMgr.getidAereoportiFromcitta(destinazione).getId();
 		setPackLis(paccMgr.getPacchettiLuogoData(idluogo, dataP));
 		
 	
+	}
+	
+	public void showEscursioniPacc(){
+		escLis=new ArrayList<EscursioneDTO>();
+		setEscLis(escMgr.getEscursioniPacchetto(selectPack.getIdPacchetto()));
+		
+		
 	}
 
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import model.AcquistapacchettoMgr;
@@ -67,10 +66,31 @@ public class ModifyAcquistoPacchettoBean {
 	
 	public ModifyAcquistoPacchettoBean() {
 		paccDTO = new PacchettoDTO();
+		acqpackDTO = new AcquistapacchettoDTO();
 	}
 	
 	
-    public int getNumPartecipanti() {
+    public int getIdPacchettoAcquistato() {
+		return idPacchettoAcquistato;
+	}
+
+
+	public void setIdPacchettoAcquistato(int idPacchettoAcquistato) {
+		this.idPacchettoAcquistato = idPacchettoAcquistato;
+	}
+
+
+	public AcquistapacchettoDTO getAcqpackDTO() {
+		return acqpackDTO;
+	}
+
+
+	public void setAcqpackDTO(AcquistapacchettoDTO acqpackDTO) {
+		this.acqpackDTO = acqpackDTO;
+	}
+
+
+	public int getNumPartecipanti() {
 		return numPartecipanti;
 	}
 	public void setNumPartecipanti(int numPartecipanti) {
@@ -212,19 +232,34 @@ public class ModifyAcquistoPacchettoBean {
 	
 	
     
-	public String modify(int idUser) {
+	public String modify() {
 		ArrayList<Integer>esc=new ArrayList<Integer>();
-		paccDTO.setIdLuogo(luogoA);
-		paccDTO.setIdMezzoAndata(mezzoA);
-		paccDTO.setIdMezzoRitorno(mezzoB);
+		acqpackDTO = acqpackMgr.getAcquistapacchettoById(idPacchettoAcquistato);
+		paccDTO = paccMgr.getPacchettoById(acqpackDTO.getIdPacchetto());
 		
 		for(int i=0;i<escScelte.length;i++)
-		{	
 			esc.add(escScelte[i].getId());
-			
-		}
 		
-		paccMgr.save(paccDTO,esc);
+		//se il pacchetto non è ancora stato modificato creo un nuovo record nel database
+		if(paccDTO.getIsModify() == 0){
+			PacchettoDTO newpaccDTO = new PacchettoDTO();
+			newpaccDTO.setIdLuogo(paccDTO.getIdLuogo());
+			newpaccDTO.setTitolo(paccDTO.getTitolo());
+			newpaccDTO.setIdAlbergo(hotel);
+			newpaccDTO.setIdMezzoAndata(mezzoA);
+			newpaccDTO.setIdMezzoRitorno(mezzoB);
+			newpaccDTO.setIsModify((byte)1);
+					
+			paccMgr.save(newpaccDTO,esc);
+		}
+		//altrimenti modifico il record esistente
+		else{
+			paccDTO.setIdAlbergo(hotel);
+			paccDTO.setIdMezzoAndata(mezzoA);
+			paccDTO.setIdMezzoRitorno(mezzoB);
+						
+			paccMgr.update(paccDTO, esc);
+		}
 		return "index?faces-redirect=true";
 	}
 	

@@ -6,6 +6,7 @@ public class PacchettoDTO {
 	
 	private int idPacchetto;
 	private int idAlbergo;
+	
 	public int getIdAlbergo() {
 		return idAlbergo;
 	}
@@ -19,8 +20,6 @@ public class PacchettoDTO {
 	private int idMezzoAndata;
 
 	private int idMezzoRitorno;
-
-	private String idUtente;
 	
 
 	@Column(name="is_modify")
@@ -58,14 +57,7 @@ public class PacchettoDTO {
 		this.idMezzoRitorno = idMezzoRitorno;
 	}
 
-	public String getIdUtente() {
-		return idUtente;
-	}
-
-	public void setIdUtente(String idUtente) {
-		this.idUtente = idUtente;
-	}
-
+	
 	public byte getIsModify() {
 		return isModify;
 	}
@@ -74,14 +66,7 @@ public class PacchettoDTO {
 		this.isModify = isModify;
 	}
 
-	public int getNumPers() {
-		return numPers;
-	}
-
-	public void setNumPers(int numPers) {
-		this.numPers = numPers;
-	}
-
+	
 	public String getTitolo() {
 		return titolo;
 	}
@@ -89,8 +74,6 @@ public class PacchettoDTO {
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
-
-	private int numPers;
 
 	private String titolo;
 

@@ -12,10 +12,9 @@ public interface PacchettoMgr {
     
     
 	 public void save(PacchettoDTO pacc,List<Integer>esc);
-    /*public void update(PacchettoDTO pacc);
-    
-   
-    public PacchettoDTO getPacchettoDTO();*/
+	 public void update(PacchettoDTO defpack, List<Integer>esc);
+    /*public void update(PacchettoDTO pacc);*/
+     public PacchettoDTO getPacchettoById(int id);
     
    
 

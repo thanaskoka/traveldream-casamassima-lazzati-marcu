@@ -1,17 +1,14 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import model.dto.AcquistapacchettoDTO;
-import model.dto.AlbergoDTO;
 
 /**
  * Session Bean implementation class AcquistapacchettoMgrBean
@@ -53,11 +50,17 @@ public class AcquistapacchettoMgrBean implements AcquistapacchettoMgr {
 	public void save(AcquistapacchettoDTO acqpack) {
 		Acquistapacchetto newpk = new Acquistapacchetto(acqpack);
 		em.persist(newpk);
+		em.flush();
 	}
     
     @Override
-	public void update(AcquistapacchettoDTO acqpack) {
-		Acquistapacchetto newpk = new Acquistapacchetto(acqpack);
+	public void update(AcquistapacchettoDTO acqpack, int id) {
+    	Acquistapacchetto newpk = new Acquistapacchetto();
+    	newpk = em.find(Acquistapacchetto.class, id);
+    	newpk.setIdPacchetto(acqpack.getIdPacchetto());
+    	newpk.setIdUtente(acqpack.getIdUtente());
+    	newpk.setNumPers(acqpack.getNumPers());
 		em.persist(newpk);
+		em.flush();
 	}
 }

@@ -21,39 +21,23 @@ public class PacchettoMgrBean implements PacchettoMgr {
 	
 	 
     @PersistenceContext
-private EntityManager em;
+    private EntityManager em;
     
     @Resource
     private EJBContext context;
     
     @Override
     public void save(PacchettoDTO pk,List<Integer>esc) {
-    	
+    	EscursioniPacchettoMgrBean esM = new EscursioniPacchettoMgrBean();
     	Pacchetto pacc = new Pacchetto(pk);
     	em.persist(pacc);
     	em.flush();
     	List <Pacchetto> idPac=em.createNamedQuery(Pacchetto.FIND_ALL, Pacchetto.class).getResultList();
     	int idPacc=idPac.get(0).getIdPacchetto();
-    	Escursionipacchetto escu;
-    	System.out.println("num esc:"+esc.size());
-		System.out.println("num esc:"+esc.size());
-		System.out.println("num esc:"+esc.size());System.out.println("num esc:"+esc.size());
-		System.out.println("num esc:"+esc.size());
-		
+    			
 		for(int i=0;i<esc.size();i++)
-    	{	
-			escu=new Escursionipacchetto();
-			em.flush();
-    		escu.setIdEscursione(esc.get(i));
-    		escu.setIdPacchetto(idPacc);
-    		em.persist(escu);
-    		
-    		
-    		
-    		
-    	}
-		
-    	
+			esM.save(esc.get(i).intValue(), idPacc);
+    	    	
     }
     
     

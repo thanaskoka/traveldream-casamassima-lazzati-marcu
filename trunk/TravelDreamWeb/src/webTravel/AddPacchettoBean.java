@@ -9,10 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import model.AlbergoMgr;
 import model.EscursioneMgr;
@@ -50,12 +47,35 @@ public class AddPacchettoBean {
     
 	private int mezzoA=-1;
     private int mezzoB=-1;
-    private int i=500;
    
    
     private int hotel=-1;
     private Date dataA;
     
+    private Date dataP;
+    private int luogoA;
+    private int luogoP;
+    private LuogoDTO luogoAppoggio;
+    @EJB
+    private MezzoMgr mezzoMgr;
+    @EJB
+    private EscursioneMgr escMgr;
+    @EJB
+    private AlbergoMgr albMgr;
+    @EJB
+    private LuogoMgr luogoMgr;
+    
+    
+    
+    
+    public AddPacchettoBean() {
+		paccDTO = new PacchettoDTO();
+	}
+    
+    
+    /*
+     * inizio getter and setter
+     */
     public int getPar() {
 		return par;
 	}
@@ -92,20 +112,10 @@ public class AddPacchettoBean {
 	public void setMezziLisRit(List<MezzoDTO> mezziLisRit) {
 		this.mezziLisRit = mezziLisRit;
 	}
-	private Date dataP;
-    private int luogoA;
-    private int luogoP;
-    private LuogoDTO luogoAppoggio;
-    @EJB
-    private MezzoMgr mezzoMgr;
-    @EJB
-    private EscursioneMgr escMgr;
-    @EJB
-    private AlbergoMgr albMgr;
-    @EJB
-    private LuogoMgr luogoMgr;
+	
+	    
     
-    public LuogoDTO getLuogoAppoggio() {
+	public LuogoDTO getLuogoAppoggio() {
 		return luogoAppoggio;
 	}
 	public void setLuogoAppoggio(LuogoDTO luogoAppoggio) {
@@ -118,10 +128,7 @@ public class AddPacchettoBean {
 		this.luogoLis = elelis;
 	}
 
-    public AddPacchettoBean() {
-		paccDTO = new PacchettoDTO();
-	}
-	
+    
 	public PacchettoDTO getPaccDTO() {
 		return paccDTO;
 	}
@@ -203,7 +210,9 @@ public class AddPacchettoBean {
 		this.luogoMgr = luogoMgr;
 	}
 	
-
+	/*
+     * fine getter and setter
+     */
 	
 	@PostConstruct
     public void init()
@@ -214,11 +223,7 @@ public class AddPacchettoBean {
 		 setLuogoLis(luogoMgr.getLuoghi());
     }
 	public void findAll(){
-		
-		
-		
-		 
-	        setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
+		    setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
 	        setAlbergoLis(albMgr.getAlbergoByLuogo(luogoAppoggio.getCitta()));		 
 			setMezziLisAnd(mezzoMgr.getMezzoViaggioAndataR(dest, par,dataP));
 			setMezziLisRit(mezzoMgr.getMezzoViaggioAndataA(par, dest,dataA));
@@ -229,12 +234,18 @@ public class AddPacchettoBean {
 	
 	
     
-public String add() {
-	
-	//System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
-	//System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());System.out.println("mezzoa:"+mezzoA+"mezzoB"+mezzoB+"esc scelta"+escScelte[0].getId());
+	public String add() {
+		paccMgr.save(paccDTO,setPaccAndEsc());
+		return "index?faces-redirect=true";
+	}
+
+	public String modify(){
+		paccMgr.save(paccDTO,setPaccAndEsc());
+		return "index?faces-redirect=true";
+	}
+
+	private ArrayList<Integer> setPaccAndEsc(){
 		ArrayList<Integer>esc=new ArrayList<Integer>();
-		Integer a=1;
 		paccDTO.setIdLuogo(dest);
 		paccDTO.setIdMezzoAndata(mezzoA);
 		paccDTO.setIdMezzoRitorno(mezzoB);
@@ -244,8 +255,8 @@ public String add() {
 			esc.add(escScelte[i].getId());
 			
 		}
-		paccMgr.save(paccDTO,esc);
-		return "index?faces-redirect=true";
+		
+		return esc;
 	}
     
 }

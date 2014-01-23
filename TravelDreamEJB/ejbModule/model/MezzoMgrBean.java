@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,7 +15,6 @@ import javax.persistence.PersistenceContext;
 
 import javax.persistence.Query;
 
-import model.dto.LuogoDTO;
 import model.dto.MezzoDTO;
 
 /**

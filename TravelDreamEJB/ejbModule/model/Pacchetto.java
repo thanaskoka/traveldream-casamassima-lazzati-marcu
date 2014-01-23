@@ -28,12 +28,8 @@ public class Pacchetto implements Serializable {
 
 	private int idMezzoRitorno;
 
-	private String idUtente;
-
 	@Column(name="is_modify")
 	private byte isModify;
-
-	private int numPers;
 
 	private String titolo;
 
@@ -80,14 +76,7 @@ public class Pacchetto implements Serializable {
 		this.idMezzoRitorno = idMezzoRitorno;
 	}
 
-	public String getIdUtente() {
-		return this.idUtente;
-	}
-
-	public void setIdUtente(String idUtente) {
-		this.idUtente = idUtente;
-	}
-
+	
 	public byte getIsModify() {
 		return this.isModify;
 	}
@@ -96,14 +85,7 @@ public class Pacchetto implements Serializable {
 		this.isModify = isModify;
 	}
 
-	public int getNumPers() {
-		return this.numPers;
-	}
-
-	public void setNumPers(int numPers) {
-		this.numPers = numPers;
-	}
-
+	
 	public String getTitolo() {
 		return this.titolo;
 	}
@@ -116,7 +98,6 @@ public Pacchetto(PacchettoDTO lu) {
 		this.idLuogo=lu.getIdLuogo();
 		this.idMezzoAndata=lu.getIdMezzoAndata();
 		this.idMezzoRitorno=lu.getIdMezzoRitorno();
-		this.numPers=lu.getNumPers();
 		this.titolo=lu.getTitolo();
 		this.idAlbergo=lu.getIdAlbergo();
 	}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Modifica pacchetto</title>
+</head>
+<h:body>
+	<h:form id="form">
+		<p:panel header="AddPack Form">
+			<h:panelGrid columns="3" id="regGrid">
+
+				<p>Luogo Partenza:</p>
+				<h:outputText value="#{modifyPackBean.getLuogoP()}" />
+
+				<p>Luogo Destinazione:</p>
+				<h:outputText value="#{modifyPackBean.getLuogoA()}" />
+
+				<p>Data partenza:</p>
+				<h:outputText value="#{addPackBean.dataA}" id="popupDate1">
+					<f:convertDateTime pattern="d/M/yyyy" />
+				</h:outputText>
+
+				<p>Data ritorno:</p>
+				<h:outputText value="#{addPackBean.dataP}" id="popupDate">
+					<f:convertDateTime pattern="d/M/yyyy" />
+				</h:outputText>
+
+
+				<p>Mezzo andata:</p>
+
+				<p:selectOneMenu value="#{addPackBean.mezzoA}">
+					<f:selectItems value="#{addPackBean.mezziLisAnd}" var="MezzoDTO"
+						itemValue="#{MezzoDTO.id}" itemLabel="#{MezzoDTO.dataInizio}" />
+
+				</p:selectOneMenu>
+				<h:outputLabel></h:outputLabel>
+
+				<p>Mezzo ritorno:</p>
+
+				<p:selectOneMenu value="#{addPackBean.mezzoB}">
+					<f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1"
+						itemValue="#{MezzoDTO1.idMezzoTrasporto}"
+						itemLabel="#{MezzoDTO1.dataInizio}" />
+
+				</p:selectOneMenu>
+
+				<h:outputLabel></h:outputLabel>
+
+
+				<h:outputLabel for="Hotel">Hotel:</h:outputLabel>
+				<h:selectOneMenu for="Hotel" value="#{addPackBean.hotel}">
+					<f:selectItems id="Hotel" value="#{addPackBean.albergoLis}"
+						var="AlbergoDTO" itemValue="#{AlbergoDTO.id}"
+						itemLabel="#{AlbergoDTO.nome}" />
+				</h:selectOneMenu>
+				<p:message for="Hotel" />
+
+				<h:outputLabel for="Escursion">Escursioni:</h:outputLabel>
+				<f:facet name="header">Clicca su view per vedere i dettagli</f:facet>
+				<p:dataTable id="Escursion" var="esc" value="#{addPackBean.esclis}"
+					rowKey="#{esc.id}" selection="#{addPackBean.escScelte}"
+					selectionMode="multiple">
+					<p:column headerText="Id">  #{esc.id}  </p:column>
+
+					<p:column headerText="Costo">  #{esc.costoPerEsc}  </p:column>
+
+					<p:column headerText="Data Iniziale">  #{esc.dataInizio}  </p:column>
+
+					<p:column headerText="Data Fine">  #{esc.dataFine}  </p:column>
+
+					<f:facet name="footer">
+						<p:commandButton value="View" icon="ui-icon-search"
+							update=":form:display" oncomplete="PF('escursionDialog').show()" />
+					</f:facet>
+				</p:dataTable>
+				<p:dialog header="Escursion Detail" widgetVar="escursionDialog"
+					width="250" showEffect="explode" hideEffect="explode">
+
+					<p:dataList id="display" value="#{addPackBean.escScelte}"
+						var="selectedEsc" type="definition">  
+  
+            										ID: #{selectedEsc.id}, Descrizione: #{selectedEsc.infoEsc}   
+             							</p:dataList>
+
+				</p:dialog>
+			</h:panelGrid>
+			
+			<p id="cost">Costo totale pacchetto:</p>
+			<h:outputText value="#{modifyPackBean.costoTotale}" />
+
+			<p:commandButton value="Add" action="#{addPackBean.add()}" />
+		</p:panel>
+
+	</h:form>
+</h:body>
+</html>

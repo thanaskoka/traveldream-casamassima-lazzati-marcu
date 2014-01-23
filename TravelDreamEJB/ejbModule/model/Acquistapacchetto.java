@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.AcquistapacchettoDTO;
 
 
 /**
@@ -25,6 +28,12 @@ public class Acquistapacchetto implements Serializable {
 	public Acquistapacchetto() {
 	}
 
+	public Acquistapacchetto(AcquistapacchettoDTO pk) {
+		idPacchetto = pk.getIdPacchetto();
+		idUtente = pk.getIdUtente();
+		numPers = pk.getNumPers();
+	}
+	
 	public int getId() {
 		return this.id;
 	}

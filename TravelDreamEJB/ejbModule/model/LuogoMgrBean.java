@@ -81,6 +81,17 @@ public class LuogoMgrBean implements LuogoMgr {
         return elementDTO;
   		
   	}
+    @Override
+  	public LuogoDTO getidAereoportiFromcitta(String citta) {
+    	Luogo ele=new Luogo();
+        ele=em.createNamedQuery(Luogo.FIND_ID, Luogo.class).setParameter("citta",citta).getSingleResult();
+        LuogoDTO elementDTO=new LuogoDTO();
+        
+        	elementDTO=convertToDTO(ele);
+        
+        return elementDTO;
+  		
+  	}
     
     private LuogoDTO convertToDTO(Luogo user) {
 		LuogoDTO userDTO = new LuogoDTO();

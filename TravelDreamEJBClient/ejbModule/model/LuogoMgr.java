@@ -13,4 +13,5 @@ public interface LuogoMgr {
 	public List<LuogoDTO> getLuoghiAl();
 	public void save(LuogoDTO luogo) ;
 	public LuogoDTO getCittaFromId(int id);
+	public LuogoDTO getidAereoportiFromcitta(String citta);
 }

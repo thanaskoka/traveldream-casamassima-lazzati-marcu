@@ -1,14 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
 
+
+<h:head>
+        <title>Aggiungi Nuovo Pacchetto</title>
+</h:head>
 <h:body>
 	<h1>Hello #{userBean.name}</h1>
 	<h:form>
 		<p:commandButton action="#{logoutBean.logout}" value="Logout" />
+	
+	
+	<p:panel header="Ricerca Pacchetto">
+			<h:panelGrid columns="3" id="regGrid">
+				<h:outputLabel for="location">Destinazione:</h:outputLabel>
+                <p:inputText id="location" value="#{indexBean.destinazione}" /><p:message for="location" />
+                 <h:outputText value="Quando vuoi partire?" /> 
+				<p:calendar value="#{indexBean.dataP}" id="popupCal1" />  
+                
+            	<h:outputText ></h:outputText>
+           		<p:commandButton value="Find" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.findPack()}"  />
+           		
+           		<p:dataTable id="pacchetti"  var="esc" value="#{indexBean.packLis}" rowKey="#{esc.idPacchetto}" selection="#{indexBean.selectPack}" selectionMode="single">
+                                        <p:column headerText="Luogo">  #{esc.idLuogo}  </p:column>
+
+                                        <p:column headerText="Mezzo Andata">  #{esc.idMezzoAndata}  </p:column>
+
+                                        <p:column headerText="Mezzo Ritorno">  #{esc.idMezzoRitorno}  </p:column>
+
+                                        <p:column headerText="Info">  #{esc.titolo}  </p:column>
+
+                                        <f:facet name="footer">
+                                              <p:commandButton value="Escursioni" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.showEscursioniPacc()}"  />
+                                              <p:commandButton value="Procedi" icon="ui-icon-search" update="regGrid" actionListener="#{indexBean.inizoPagamento()}"  />    
+                                        </f:facet>
+                </p:dataTable>
+				
+				
+		</h:panelGrid>
+		</p:panel>	
+		
 	</h:form>
 </h:body>
 </html>

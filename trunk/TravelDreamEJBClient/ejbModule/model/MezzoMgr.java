@@ -16,4 +16,5 @@ public interface MezzoMgr {
 	public void delete(MezzoDTO mezzo);
 	public List<MezzoDTO> getMezzoViaggioAndataA(int lp,int lr,Date data);
 	public List<MezzoDTO> getMezzoViaggioAndataR(int lp,int lr,Date data);
+	public MezzoDTO returnData(int id);
 }

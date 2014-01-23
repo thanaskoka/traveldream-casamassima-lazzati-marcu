@@ -64,6 +64,21 @@ public class AlbergoMgrBean implements AlbergoMgr {
         return elementDTO;
   		
   	}
+    @Override
+    public AlbergoDTO getNomeById(int id)
+    {String queryString = "SELECT e FROM Albergo e " +
+            "WHERE e.idAlbergo=:id";
+	Query query = em.createQuery(queryString);
+	query.setParameter("id", id);
+	Albergo ele=new Albergo();
+    ele=(Albergo) query.getSingleResult();
+    AlbergoDTO elementDTO=new AlbergoDTO();
+   
+       
+    
+    return convertToDTO(ele);
+		
+	}
     
 
     private AlbergoDTO convertToDTO(Albergo user) {

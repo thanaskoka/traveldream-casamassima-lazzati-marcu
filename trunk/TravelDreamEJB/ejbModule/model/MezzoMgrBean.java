@@ -116,5 +116,17 @@ public class MezzoMgrBean implements MezzoMgr {
     	q.executeUpdate();
 	}
     
+    @Override
+    public MezzoDTO returnData(int id){
+    	Mezzotrasporto ele=new Mezzotrasporto();
+    	ele=em.createNamedQuery(Mezzotrasporto.RETURN_DATA, Mezzotrasporto.class).setParameter("id",id).getSingleResult();
+        MezzoDTO eleDTO;
+        List<MezzoDTO> elementDTO=new ArrayList<MezzoDTO>();
+       
+        return convertToDTO(ele);
+    	
+    	
+    }
+    
 
 }

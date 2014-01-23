@@ -239,11 +239,7 @@ public class AddPacchettoBean {
 		return "index?faces-redirect=true";
 	}
 
-	public String modify(){
-		paccMgr.save(paccDTO,setPaccAndEsc());
-		return "index?faces-redirect=true";
-	}
-
+	
 	private ArrayList<Integer> setPaccAndEsc(){
 		ArrayList<Integer>esc=new ArrayList<Integer>();
 		paccDTO.setIdLuogo(dest);

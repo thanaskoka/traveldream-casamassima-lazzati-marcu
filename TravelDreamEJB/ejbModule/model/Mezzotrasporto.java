@@ -18,12 +18,14 @@ import java.util.Date;
 	@NamedQuery(name="Mezzotrasporto.findAll", query="SELECT m FROM Mezzotrasporto m"),
 	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataA", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio > :partenza  "),
 	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataR", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio < :partenza  "),
+	@NamedQuery(name="Mezzotrasporto.returnData", query="SELECT m FROM Mezzotrasporto m WHERE m.id= :id"),
 })
 public class Mezzotrasporto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Mezzotrasporto.findAll";
 	public static final String FIND_BY_LUOGOA = "Mezzotrasporto.findByLuogoAndataAndDataA";
 	public static final String FIND_BY_LUOGOR = "Mezzotrasporto.findByLuogoAndataAndDataR";
+	public static final String RETURN_DATA="Mezzotrasporto.returnData";
 
 	@Id
 	private int id;

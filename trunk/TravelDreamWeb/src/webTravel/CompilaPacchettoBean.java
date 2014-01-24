@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import model.AcquistapacchettoMgr;
@@ -40,7 +41,7 @@ public class CompilaPacchettoBean {
 	private CameraDTO c1;
 	private AcquistapacchettoDTO paccAcq;
 	private CamerapacchettoDTO camPackDTO;
-	
+	private String user;
 	
 	
 	public int getNumPers() {
@@ -96,12 +97,14 @@ public class CompilaPacchettoBean {
 		fermaCamere();
 		
 	
-		
+		FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        user = externalContext.getUserPrincipal().getName();
 		paccAcq=new AcquistapacchettoDTO();
 		
 		paccAcq.setIdPacchetto(idpacc);
 		
-		paccAcq.setIdUtente((String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("email"));
+		paccAcq.setIdUtente(user);
 		paccAcq.setNumPers(numPers);
 		acqPacMgr.save(paccAcq);
 		

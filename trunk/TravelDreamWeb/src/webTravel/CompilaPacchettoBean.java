@@ -100,7 +100,7 @@ public class CompilaPacchettoBean {
 		if((camMgr.getSingole(idAlb).getNrCamera()<n1)||(camMgr.getDoppie(idAlb).getNrCamera()<n2)||(camMgr.getTriple(idAlb).getNrCamera()<n3))	
 			FacesContext.getCurrentInstance().getExternalContext().redirect("noCamDisp.xhtml");
 		
-		
+		else{
 		//altrimenti aggiorno numero camere dell'albergo
 		c1=new CameraDTO();
 		c1.setCostoPersoneCam(camMgr.getSingole(idAlb).getCostoPersoneCam());
@@ -137,7 +137,7 @@ public class CompilaPacchettoBean {
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("acquistoOk.xhtml");
 		
-		
+		}
 		
 	
 	}

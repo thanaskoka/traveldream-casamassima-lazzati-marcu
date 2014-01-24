@@ -39,7 +39,7 @@
                 </p:dataTable>
                 <h:outputText  />
                  <p:commandButton value="Escursioni" icon="ui-icon-search" update="escu"   actionListener="#{indexBean.showEscursioniPacc()}"  />  
-               
+                <p:commandButton value="Procedi" icon="ui-icon-search" update="escu"   action="#{indexBean.procedi()}"  />
                 <h:outputText value="Escursioni associate al pacchetto selezionato" /> <h:outputText  /> <h:outputText  /> 
                  <p:dataTable id="escu"  var="selectedEsc" value="#{indexBean.escLis}" update="regGrid" rowKey="#{selectedEsc.id}" >
                                         <p:column headerText="id">  #{selectedEsc.id}  </p:column>

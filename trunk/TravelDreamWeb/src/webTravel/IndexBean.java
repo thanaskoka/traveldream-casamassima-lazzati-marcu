@@ -164,5 +164,11 @@ public class IndexBean {
 		
 		
 	}
+	
+	public String procedi(){
+		 int id=(selectPack.getId()+100)*2;
+		 
+		return "compilaPacchetto?faces-redirect=true&idP="+id;
+	}
 
 }

@@ -5,7 +5,14 @@ public class CameraDTO {
 	private int idAlbergo;
 	private int nrCamera;
 	private int numPersCam;
+	private int idCamera;
 	
+	public int getIdCamera() {
+		return idCamera;
+	}
+	public void setIdCamera(int idCamera) {
+		this.idCamera = idCamera;
+	}
 	public float getCostoPersoneCam() {
 		return costoPersoneCam;
 	}

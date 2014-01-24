@@ -63,4 +63,7 @@ public class AcquistapacchettoMgrBean implements AcquistapacchettoMgr {
 		em.persist(newpk);
 		em.flush();
 	}
+    
+    
+    
 }

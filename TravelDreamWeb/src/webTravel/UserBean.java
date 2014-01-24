@@ -16,4 +16,8 @@ public class UserBean {
 	public String getName() {
 		return userMgr.getUserDTO().getFirstName();
 	}
+	
+	public String getEmail() {
+		return userMgr.getUserDTO().getEmail();
+	}
 }

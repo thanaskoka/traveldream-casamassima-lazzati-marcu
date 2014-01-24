@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.CamerapacchettoDTO;
 
 
 /**
@@ -16,11 +19,22 @@ public class Camerepacchetto implements Serializable {
 	@Id
 	private int idCamerePacc;
 
-	private int idCamera;
-
 	private int idPacchetto;
 
+	private int numcamere;
+
+	private int numposticamera;
+
 	public Camerepacchetto() {
+	}
+	
+	public Camerepacchetto(CamerapacchettoDTO cam){
+		this.idCamerePacc=cam.getIdCamerePacc();
+		this.idPacchetto=cam.getIdPacchetto();
+		this.numcamere=cam.getNumcamere();
+		this.numposticamera=cam.getNumposticamera();
+		
+		
 	}
 
 	public int getIdCamerePacc() {
@@ -31,20 +45,28 @@ public class Camerepacchetto implements Serializable {
 		this.idCamerePacc = idCamerePacc;
 	}
 
-	public int getIdCamera() {
-		return this.idCamera;
-	}
-
-	public void setIdCamera(int idCamera) {
-		this.idCamera = idCamera;
-	}
-
 	public int getIdPacchetto() {
 		return this.idPacchetto;
 	}
 
 	public void setIdPacchetto(int idPacchetto) {
 		this.idPacchetto = idPacchetto;
+	}
+
+	public int getNumcamere() {
+		return this.numcamere;
+	}
+
+	public void setNumcamere(int numcamere) {
+		this.numcamere = numcamere;
+	}
+
+	public int getNumposticamera() {
+		return this.numposticamera;
+	}
+
+	public void setNumposticamera(int numposticamera) {
+		this.numposticamera = numposticamera;
 	}
 
 }

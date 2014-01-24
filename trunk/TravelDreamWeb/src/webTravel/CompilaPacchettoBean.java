@@ -15,6 +15,7 @@ import model.CamerePacchettoMgr;
 import model.PacchettoMgr;
 import model.dto.AcquistapacchettoDTO;
 import model.dto.CameraDTO;
+import model.dto.CamerapacchettoDTO;
 @ManagedBean(name="compilaBean")
 
 @ViewScoped
@@ -27,8 +28,8 @@ public class CompilaPacchettoBean {
 	private CameraMgr camMgr;
 	@EJB
 	private AcquistapacchettoMgr acqPacMgr;
-	
-	
+	@EJB
+	private CamerePacchettoMgr campackMgr;
         
 	private int n1=1;
 	private int n2;
@@ -38,6 +39,7 @@ public class CompilaPacchettoBean {
 	private int numPers=1;
 	private CameraDTO c1;
 	private AcquistapacchettoDTO paccAcq;
+	private CamerapacchettoDTO camPackDTO;
 	
 	
 	
@@ -87,45 +89,14 @@ public class CompilaPacchettoBean {
     }
 	
 	public void acqusita() throws IOException{
-		System.out.println("singolealbe:"+camMgr.getSingole(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getDoppie(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getTriple(idAlb).getNrCamera());
-		System.out.println("singolealbe:"+camMgr.getSingole(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getDoppie(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getTriple(idAlb).getNrCamera());
-		System.out.println("singolealbe:"+camMgr.getSingole(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getDoppie(idAlb).getNrCamera());
-		System.out.println("doppiealbe:"+camMgr.getTriple(idAlb).getNrCamera());
+		
 		//se i posti non sono sufficenti ritono errore
-		if((camMgr.getSingole(idAlb).getNrCamera()<n1)||(camMgr.getDoppie(idAlb).getNrCamera()<n2)||(camMgr.getTriple(idAlb).getNrCamera()<n3))	
-			FacesContext.getCurrentInstance().getExternalContext().redirect("noCamDisp.xhtml");
 		
-		else{
-		//altrimenti aggiorno numero camere dell'albergo
-		c1=new CameraDTO();
-		c1.setCostoPersoneCam(camMgr.getSingole(idAlb).getCostoPersoneCam());
-		c1.setIdAlbergo(camMgr.getSingole(idAlb).getIdAlbergo());
-		c1.setIdCamera(camMgr.getSingole(idAlb).getIdCamera());
-		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n1);
-		c1.setNumPersCam(1);
 		
-		camMgr.updateNrCamere(c1);	
-		if(n2>0){
-		c1=new CameraDTO();
-		c1.setCostoPersoneCam(camMgr.getDoppie(idAlb).getCostoPersoneCam());
-		c1.setIdAlbergo(camMgr.getDoppie(idAlb).getIdAlbergo());
-		c1.setIdCamera(camMgr.getDoppie(idAlb).getIdCamera());
-		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n2);
-		c1.setNumPersCam(2);
-		camMgr.updateNrCamere(c1);	}
-		if(n3>0){
-		c1=new CameraDTO();
-		c1.setCostoPersoneCam(camMgr.getTriple(idAlb).getCostoPersoneCam());
-		c1.setIdAlbergo(camMgr.getTriple(idAlb).getIdAlbergo());
-		c1.setIdCamera(camMgr.getTriple(idAlb).getIdCamera());
-		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n3);
-		c1.setNumPersCam(3);
-		camMgr.updateNrCamere(c1);	}
+		fermaCamere();
+		
+	
+		
 		paccAcq=new AcquistapacchettoDTO();
 		
 		paccAcq.setIdPacchetto(idpacc);
@@ -137,11 +108,71 @@ public class CompilaPacchettoBean {
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("acquistoOk.xhtml");
 		
-		}
+		
+		
+		
 		
 	
 	}
 	
+	public void fermaCamere() throws IOException{
+		if((camMgr.getSingole(idAlb).getNrCamera()<n1)||(camMgr.getDoppie(idAlb).getNrCamera()<n2)||(camMgr.getTriple(idAlb).getNrCamera()<n3))	
+			FacesContext.getCurrentInstance().getExternalContext().redirect("noCamDisp.xhtml");
+		
+		else{
+		//altrimenti aggiorno numero camere dell'albergo
+		c1=new CameraDTO();
+		camPackDTO=new CamerapacchettoDTO();
+		c1.setCostoPersoneCam(camMgr.getSingole(idAlb).getCostoPersoneCam());
+		c1.setIdAlbergo(camMgr.getSingole(idAlb).getIdAlbergo());
+		c1.setIdCamera(camMgr.getSingole(idAlb).getIdCamera());
+		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n1);
+		c1.setNumPersCam(1);
+		camPackDTO.setIdPacchetto(idpacc);
+		camPackDTO.setNumcamere(n1);
+		camPackDTO.setNumposticamera(1);
+		campackMgr.save(camPackDTO);
+		camMgr.updateNrCamere(c1);	
+		
+		if(n2>0){
+		c1=new CameraDTO();
+		camPackDTO=new CamerapacchettoDTO();
+		c1.setCostoPersoneCam(camMgr.getDoppie(idAlb).getCostoPersoneCam());
+		c1.setIdAlbergo(camMgr.getDoppie(idAlb).getIdAlbergo());
+		c1.setIdCamera(camMgr.getDoppie(idAlb).getIdCamera());
+		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n2);
+		c1.setNumPersCam(2);
+		camMgr.updateNrCamere(c1);
+		camPackDTO.setIdPacchetto(idpacc);
+		camPackDTO.setNumcamere(n2);
+		camPackDTO.setNumposticamera(2);
+		campackMgr.save(camPackDTO);
+		camMgr.updateNrCamere(c1);	}
+		if(n3>0){
+		camPackDTO=new CamerapacchettoDTO();	
+		c1=new CameraDTO();
+		c1.setCostoPersoneCam(camMgr.getTriple(idAlb).getCostoPersoneCam());
+		c1.setIdAlbergo(camMgr.getTriple(idAlb).getIdAlbergo());
+		c1.setIdCamera(camMgr.getTriple(idAlb).getIdCamera());
+		c1.setNrCamera(camMgr.getSingole(idAlb).getNrCamera()-n3);
+		c1.setNumPersCam(3);
+		camMgr.updateNrCamere(c1);
+		camPackDTO.setIdPacchetto(idpacc);
+		camPackDTO.setNumcamere(n3);
+		camPackDTO.setNumposticamera(3);
+		campackMgr.save(camPackDTO);}
+		
+		}
+		
+	}
+	
+	
+	public void modifica() throws IOException{
+		fermaCamere();
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("modifyPacchetto.xhtml?id="+idpacc);
+		
+	}
 	
 	
 	

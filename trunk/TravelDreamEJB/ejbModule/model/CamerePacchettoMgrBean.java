@@ -1,6 +1,10 @@
 package model;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import model.dto.CamerapacchettoDTO;
 
 /**
  * Session Bean implementation class CamerePacchettoMgrBean
@@ -8,11 +12,17 @@ import javax.ejb.Stateless;
 @Stateless
 public class CamerePacchettoMgrBean implements CamerePacchettoMgr {
 
-    /**
-     * Default constructor. 
-     */
+	@PersistenceContext
+    private EntityManager em;
     public CamerePacchettoMgrBean() {
-        // TODO Auto-generated constructor stub
+        
+    }
+    @Override
+    public void save(CamerapacchettoDTO cam){
+    	Camerepacchetto newCam = new Camerepacchetto(cam);
+		em.persist(newCam);
+    	
+    	
     }
 
 }

@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import model.AcquistapacchettoMgr;
 import model.AlbergoMgr;
@@ -31,8 +32,8 @@ public class ModifyAcquistoPacchettoBean {
     private int numMaxPosti;
     private int numMaxCamere;
     private float costoTotale;
-    private int luogoA=2;
-    private int luogoP=4;
+    private int luogoA=9;
+    private int luogoP=8;
     private int mezzoA=-1;
     private int mezzoB=-1;
     private int hotel=-1;
@@ -217,6 +218,7 @@ public class ModifyAcquistoPacchettoBean {
 		//dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
     	//par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
 		//System.out.println("entro");
+		idPacchettoAcquistato=Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
 		 setLuogoLis(luogoMgr.getLuoghi());
 		 findAll();
     }
@@ -234,6 +236,7 @@ public class ModifyAcquistoPacchettoBean {
     
 	public String modify() {
 		ArrayList<Integer>esc=new ArrayList<Integer>();
+		
 		acqpackDTO = acqpackMgr.getAcquistapacchettoById(idPacchettoAcquistato);
 		paccDTO = paccMgr.getPacchettoById(acqpackDTO.getIdPacchetto());
 		

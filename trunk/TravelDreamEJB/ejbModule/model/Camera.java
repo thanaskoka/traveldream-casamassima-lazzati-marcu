@@ -12,10 +12,13 @@ import model.dto.CameraDTO;
  * 
  */
 @Entity
-@NamedQuery(name="Camera.findAll", query="SELECT c FROM Camera c")
+@NamedQueries({@NamedQuery(name="Camera.findAll", query="SELECT c FROM Camera c"),
+	@NamedQuery(name="Camera.findbyid", query="SELECT c FROM Camera c WHERE c.idCamera= :id"),
+
+})
 public class Camera implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	public static final String FIND_BY_ID="Camera.findbyid";
 	@Id
 	private int idCamera;
 
@@ -35,6 +38,8 @@ public class Camera implements Serializable {
 	    this.idAlbergo = al.getIdAlbergo();
 	    this.nrCamera = al.getNrCamera();
 	    this.numPersCam = al.getNumPersCam();
+	    this.idCamera=al.getIdCamera();
+	    
 	}
 
 	public int getIdCamera() {

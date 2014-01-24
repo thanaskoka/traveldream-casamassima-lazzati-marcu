@@ -9,7 +9,16 @@ public class pacchettoConvert {
 	private Date VoloRitorno;
 	private String Luogo;
 	private int id;
+	private int idAlb;
 	
+	public int getIdAlb() {
+		return idAlb;
+	}
+
+	public void setIdAlb(int idAlb) {
+		this.idAlb = idAlb;
+	}
+
 	public int getId() {
 		return id;
 	}

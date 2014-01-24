@@ -150,7 +150,7 @@ public class IndexBean {
 			pacc.setAlbergo((albMgr.getNomeById(packLis.get(i).getIdAlbergo()).getNome()));
 			pacc.setVoloAndata((mezzoMgr.returnData(packLis.get(i).getIdMezzoAndata()).getDataInizio()));
 			pacc.setVoloRitorno((mezzoMgr.returnData(packLis.get(i).getIdMezzoRitorno()).getDataInizio()));
-			
+			pacc.setIdAlb(packLis.get(i).getIdAlbergo());
 			
 			pacc.setLuogo(destinazione);
 			pacchetticonv.add(pacc);
@@ -166,9 +166,13 @@ public class IndexBean {
 	}
 	
 	public String procedi(){
-		 int id=(selectPack.getId()+100)*2;
-		 
-		return "compilaPacchetto?faces-redirect=true&idP="+id;
+		System.out.println("selectPAcc id:"+selectPack.getId());
+		System.out.println("selectPAcc Alb:"+selectPack.getIdAlb());
+		 /*int id=(selectPack.getId()+100)*2;
+		 int idAl=(selectPack.getIdAlb()+100)*2;*/
+		int id=selectPack.getId();
+		int idAl=selectPack.getIdAlb();
+		return "compilaPacchetto?faces-redirect=true&idP="+id+"&idA="+idAl;
 	}
 
 }

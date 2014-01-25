@@ -89,11 +89,32 @@ public class InvitaAmicoBean {
 	
 	public void invita(){
 		PartecipaPacchettoDTO ppDto;
-		if(amico1!=null){
+		if(!(amico1.isEmpty())){
 			email=new Emailer(amico1,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
 			ppDto=new PartecipaPacchettoDTO();
 			ppDto.setIdPacchetto(idPacc);
 			ppDto.setIdUtente(amico1);
+			ppMgr.save(ppDto);
+		}
+		if(!(amico2.isEmpty())){
+			email=new Emailer(amico2,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
+			ppDto=new PartecipaPacchettoDTO();
+			ppDto.setIdPacchetto(idPacc);
+			ppDto.setIdUtente(amico2);
+			ppMgr.save(ppDto);
+		}
+		if(!(amico3.isEmpty())){
+			email=new Emailer(amico3,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
+			ppDto=new PartecipaPacchettoDTO();
+			ppDto.setIdPacchetto(idPacc);
+			ppDto.setIdUtente(amico3);
+			ppMgr.save(ppDto);
+		}
+		if(!(amico4.isEmpty())){
+			email=new Emailer(amico4,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
+			ppDto=new PartecipaPacchettoDTO();
+			ppDto.setIdPacchetto(idPacc);
+			ppDto.setIdUtente(amico4);
 			ppMgr.save(ppDto);
 		}
 			

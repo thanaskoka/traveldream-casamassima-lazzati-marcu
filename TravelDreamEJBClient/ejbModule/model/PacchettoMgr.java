@@ -18,7 +18,7 @@ public interface PacchettoMgr {
      public PacchettoDTO getPacchettoById(int id);
      public List<PacchettoDTO> getPacchettiLuogoData(int citta,Date ripartenza);
      public List<PacchettoDTO> getPacchetti();
-    
+     public List<PacchettoDTO> getPacchettiUser(String nome);
    
 
 }

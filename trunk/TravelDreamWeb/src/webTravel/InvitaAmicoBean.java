@@ -3,9 +3,13 @@ package webTravel;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import model.PartecipaPacchettoMgr;
+import model.dto.PartecipaPacchettoDTO;
 
 @ManagedBean(name="invitaAmicoBean")
 
@@ -21,7 +25,8 @@ public class InvitaAmicoBean {
 	private ArrayList<String> Amici;
 	private int idPacc;
 	private String url;
-	
+	 @EJB
+	 PartecipaPacchettoMgr ppMgr;
 	
 	public String getAmico1() {
 		return amico1;
@@ -83,15 +88,15 @@ public class InvitaAmicoBean {
 	
 	
 	public void invita(){
-		
-		if(amico1!=null)
+		PartecipaPacchettoDTO ppDto;
+		if(amico1!=null){
 			email=new Emailer(amico1,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
-		if(amico2!=null)
-			email=new Emailer(amico2,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
-		if(amico3!=null)
-			email=new Emailer(amico3,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
-		if(amico4!=null)	
-			email=new Emailer(amico1,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
+			ppDto=new PartecipaPacchettoDTO();
+			ppDto.setIdPacchetto(idPacc);
+			ppDto.setIdUtente(amico1);
+			ppMgr.save(ppDto);
+		}
+			
 		
 		
 		/*for(int i=0;i<Amici.size();i++)

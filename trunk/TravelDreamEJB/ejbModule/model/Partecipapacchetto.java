@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.PartecipaPacchettoDTO;
 
 
 /**
@@ -14,6 +17,7 @@ public class Partecipapacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPartecipaPacchetto;
 
 	private int idPacchetto;
@@ -21,6 +25,13 @@ public class Partecipapacchetto implements Serializable {
 	private String idUtente;
 
 	public Partecipapacchetto() {
+	}
+	
+	public Partecipapacchetto(PartecipaPacchettoDTO pp){
+		this.idPacchetto=pp.getIdPacchetto();
+		this.idUtente=pp.getIdUtente();
+		
+		
 	}
 
 	public int getIdPartecipaPacchetto() {

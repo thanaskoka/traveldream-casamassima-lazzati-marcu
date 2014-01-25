@@ -48,6 +48,8 @@
                 <h:outputText  />
                 <p:commandButton value="Acquista" icon="ui-icon-search" update="regGrid"   oncomplete="PF('confermaDialog').show()"   />  
                 <p:commandButton value="Modifica Pacchetto" icon="ui-icon-search" update="regGrid"   actionListener="#{compilaBean.modifica()}"  />
+                <p:commandButton value="Invita Amici" icon="ui-icon-search" update="regGrid"   actionListener="#{compilaBean.invita()}"  />
+                
                 <p:dialog header="conferma" widgetVar="confermaDialog" width="450" showEffect="explode" hideEffect="explode">
 								<h:outputLabel value="SEI SICURO DI VOLER ACQUISTARE? " />  
                                 <p:commandButton value="Acquista" update="regGrid"   actionListener="#{compilaBean.acqusita()}"  />  

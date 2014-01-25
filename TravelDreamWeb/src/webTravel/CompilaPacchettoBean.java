@@ -6,9 +6,11 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import model.AcquistapacchettoMgr;
 import model.CameraMgr;
@@ -72,10 +74,11 @@ public class CompilaPacchettoBean {
 	
 	@PostConstruct
     public void init()
-    {	
-		idpacc=Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
+    {	HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	
+		idpacc=Integer.parseInt(request.getParameter("idP"));
 		//idpacc=((idpacc-100)/2);
-		idAlb=Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idA"));
+		idAlb=Integer.parseInt(request.getParameter("idA"));
 		//idAlb=((idAlb-100)/2);
 		
 		/*System.out.println("singolealbe:"+camMgr.getSingole(idAlb).getNrCamera());

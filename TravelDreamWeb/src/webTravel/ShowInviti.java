@@ -1,4 +1,5 @@
 package webTravel;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -6,11 +7,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import model.AlbergoMgr;
 import model.EscursioneMgr;
@@ -23,12 +23,11 @@ import model.dto.EscursioneDTO;
 import model.dto.LuogoDTO;
 import model.dto.PacchettoDTO;
 
-@ManagedBean(name="showBean")
+@ManagedBean(name="invitiBean")
 
-@ViewScoped
-public class ShowPackBean {
+@RequestScoped
+public class ShowInviti {
 	
-	  private int id;
 	private int par;
 	@EJB
     private PacchettoMgr paccMgr;
@@ -54,7 +53,7 @@ public class ShowPackBean {
 	private String destinazione;
 	private Date dataP;
 	private String user;
-	public ShowPackBean() {
+	public ShowInviti() {
 		paccDTO = new PacchettoDTO();
 	}
 	
@@ -104,15 +103,11 @@ public class ShowPackBean {
 	}
 	@PostConstruct
     public void init()
-    {	HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    	id=Integer.parseInt(request.getParameter("id"));
-		
-	
-        
-		
-		packLis=new ArrayList<PacchettoDTO>();
-        pacchetticonv=new ArrayList<pacchettoConvert>();
-		packLis.add(paccMgr.getPacchettoById(id));
+    {	pacchetticonv=new ArrayList<pacchettoConvert>();
+		FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        user = externalContext.getUserPrincipal().getName();
+        setPackLis(paccMgr.getPacchettiUserInvitato(user));
         for(int i=0;i<packLis.size();i++)
 		{	
 			pacc=new pacchettoConvert();
@@ -158,20 +153,22 @@ public class ShowPackBean {
 	
 	public void showEscursioniPacc(){
 		escLis=new ArrayList<EscursioneDTO>();
-		setEscLis(escMgr.getEscursioniPacchetto(pacchetticonv.get(0).getId()));
+		setEscLis(escMgr.getEscursioniPacchetto(selectPack.getId()));
 		
 		
 	}
 	
 	public String procedi(){
-		
+		System.out.println("selectPAcc id:"+selectPack.getId());
+		System.out.println("selectPAcc Alb:"+selectPack.getIdAlb());
 		 /*int id=(selectPack.getId()+100)*2;
 		 int idAl=(selectPack.getIdAlb()+100)*2;*/
-		int id=pacchetticonv.get(0).getId();
-		int idAl=pacchetticonv.get(0).getIdAlb();
-		return "user/showInviti?faces-redirect=true&user=true";
+		int id=selectPack.getId();
+		int idAl=selectPack.getIdAlb();
+		return "compilaPacchetto?faces-redirect=true&idP="+id+"&idA="+idAl;
 	}
-	 
-
 
 }
+
+
+

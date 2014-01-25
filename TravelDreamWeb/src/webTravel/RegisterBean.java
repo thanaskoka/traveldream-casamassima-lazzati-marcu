@@ -31,6 +31,6 @@ public class RegisterBean {
 	
 	public String register() {
 		userMgr.save(user);
-		return "home?faces-redirect=true";
+		return "user/index?faces-redirect=true";
 	}
 }

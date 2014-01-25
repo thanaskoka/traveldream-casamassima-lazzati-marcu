@@ -177,6 +177,14 @@ public class CompilaPacchettoBean {
 		
 	}
 	
+	public void invita()throws IOException{
+		fermaCamere();
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("invitaAmico.xhtml?id="+idpacc);
+		
+	
+	}
+	
 	
 	
 }

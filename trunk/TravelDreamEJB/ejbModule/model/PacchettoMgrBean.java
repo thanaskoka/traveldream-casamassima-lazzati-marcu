@@ -112,6 +112,21 @@ public class PacchettoMgrBean implements PacchettoMgr {
         return elementDTO;
   		
   	}
+    @Override
+  	public List<PacchettoDTO> getPacchettiUser(String nome) {
+    	String queryString = "SELECT e FROM Pacchetto e INNER JOIN Acquistapacchetto a ON e.idPacchetto=a.idPacchetto AND a.idUtente= :nome ";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("nome", nome);
+    	List<Pacchetto> ele=new ArrayList<Pacchetto>();
+        ele=query.getResultList();
+        List<PacchettoDTO> elementDTO=new ArrayList<PacchettoDTO>();
+        for(Pacchetto e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
     
     public void elimina(Pacchetto pacc) {
         em.remove(pacc);

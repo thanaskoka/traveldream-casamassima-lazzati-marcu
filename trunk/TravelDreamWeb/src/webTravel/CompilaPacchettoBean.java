@@ -122,7 +122,7 @@ public class CompilaPacchettoBean {
 	}
 	
 	public void fermaCamere() throws IOException{
-		if((camMgr.getSingole(idAlb).getNrCamera()<n1)||(camMgr.getDoppie(idAlb).getNrCamera()<n2)||(camMgr.getTriple(idAlb).getNrCamera()<n3))	
+		if((camMgr.getSingole(idAlb).getNrCamera()-n1>=0)||(camMgr.getDoppie(idAlb).getNrCamera()-n2>=0)||(camMgr.getTriple(idAlb).getNrCamera()-n3>=0))	
 			FacesContext.getCurrentInstance().getExternalContext().redirect("noCamDisp.xhtml");
 		
 		else{

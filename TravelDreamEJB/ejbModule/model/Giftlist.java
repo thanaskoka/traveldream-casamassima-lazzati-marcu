@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.GiftlistDTO;
 
 
 /**
@@ -9,9 +12,13 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Giftlist.findAll", query="SELECT g FROM Giftlist g")
+@NamedQueries({@NamedQuery(name="Giftlist.findUtente", query="SELECT g FROM Giftlist g WHERE g.idUser= :idUser"),
+@NamedQuery(name="Giftlist.FindPorchiddii", query="SELECT g FROM Giftlist g")
+})
 public class Giftlist implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_UTENTE = "Giftlist.findUtente";
 
 	@Id
 	private int idGiftlist;
@@ -21,6 +28,11 @@ public class Giftlist implements Serializable {
 	private String idUser;
 
 	public Giftlist() {
+	}
+	
+	public Giftlist(GiftlistDTO g){
+		idPack = g.getIdPack();
+		idUser = g.getIdUser();
 	}
 
 	public int getIdGiftlist() {

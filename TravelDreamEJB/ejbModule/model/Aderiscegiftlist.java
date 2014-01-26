@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.AderiscegiftlistDTO;
 
 
 /**
@@ -9,9 +12,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Aderiscegiftlist.findAll", query="SELECT a FROM Aderiscegiftlist a")
+@NamedQuery(name="Aderiscegiftlist.findGift", query="SELECT a FROM Aderiscegiftlist a WHERE a.idGift= :idGift")
 public class Aderiscegiftlist implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_GIFT = "Aderiscegiftlist.findGift";
 
 	@Id
 	private int id;
@@ -24,7 +29,13 @@ public class Aderiscegiftlist implements Serializable {
 
 	public Aderiscegiftlist() {
 	}
-
+	
+	public Aderiscegiftlist(AderiscegiftlistDTO ad) {
+		idElementoPagato = ad.getIdElementoPagato();
+		idGift = ad.getIdGift();
+		idUtente = ad.getIdUtente();
+	}
+	
 	public int getId() {
 		return this.id;
 	}

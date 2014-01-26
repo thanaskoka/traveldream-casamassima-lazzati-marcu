@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:form id="form">  
+  
+    <p:growl id="messages" showDetail="true"/>  
+  
+    <p:dataTable var="car" value="#{showAlbergoModBean.carsSmall}"  id="carList" editable="true">  
+  
+        <f:facet name="header">  
+           Alberghi 
+        </f:facet>  
+  
+        <p:ajax event="rowEdit" listener="#{showEscursioneModBean.onEdit}" update=":form:messages"/>  
+        <p:ajax event="rowEditCancel" listener="#{showEscursioneModBean.onCancel}" update=":form:messages" />  
+ 
+        <p:column headerText="Id Albergo" style="width:30%">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{car.id}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{car.id}" style="width:100%"/>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column>
+        <p:column headerText="Id Luogo" style="width:24%">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{car.idLuogo}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <h:selectOneMenu value="#{showAlbergoModBean.idLuogo}" >  
+                        <f:selectItems value="#{showAlbergoModBean.elelis}"  
+                            var="man"   
+                            itemLabel="#{man.citta}"  
+                            itemValue="#{man.id}" />  
+                    </h:selectOneMenu>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column>  
+         <p:column headerText="Nome Albergo" style="width:20%">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{car.nome}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{car.nome}" style="width:100%" label="Year"/>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column>  
+        <p:column headerText="Numero Stelle" style="width:20%">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{car.numeroStelle}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{car.numeroStelle}" style="width:100%" label="Year"/>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column>  
+        
+            	
+  
+        <p:column style="width:6%">  
+            <p:rowEditor />  
+        </p:column>  
+  
+    </p:dataTable>  
+  
+</h:form>  
+
+<h:link value="Inserisci nuovo albergo" outcome="inserimentoAlbergo" />
+
+</html>

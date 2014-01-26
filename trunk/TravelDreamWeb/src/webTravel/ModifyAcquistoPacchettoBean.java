@@ -215,10 +215,7 @@ public class ModifyAcquistoPacchettoBean {
 	@PostConstruct
     public void init()
     {	
-		//dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
-    	//par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
-		//System.out.println("entro");
-		idPacchettoAcquistato=Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+		 idPacchettoAcquistato=Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
 		 setLuogoLis(luogoMgr.getLuoghi());
 		 findAll();
     }

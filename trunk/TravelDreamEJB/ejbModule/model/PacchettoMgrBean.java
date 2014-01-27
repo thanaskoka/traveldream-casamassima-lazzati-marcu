@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,7 +21,6 @@ import model.dto.PacchettoDTO;
 public class PacchettoMgrBean implements PacchettoMgr {
 
 	
-	
 	 
     @PersistenceContext
     private EntityManager em;
@@ -30,15 +30,21 @@ public class PacchettoMgrBean implements PacchettoMgr {
     
     @Override
     public void save(PacchettoDTO pk,List<Integer>esc) {
-    	EscursioniPacchettoMgrBean esM = new EscursioniPacchettoMgrBean();
     	Pacchetto pacc = new Pacchetto(pk);
     	em.persist(pacc);
-    	em.flush();
+
+		em.flush();
     	List <Pacchetto> idPac=em.createNamedQuery(Pacchetto.FIND_ALL, Pacchetto.class).getResultList();
     	int idPacc=idPac.get(0).getIdPacchetto();
-    			
-		for(int i=0;i<esc.size();i++)
-			esM.save(esc.get(i).intValue(), idPacc);
+		for(int i=0;i<esc.size();i++){
+			Escursionipacchetto escu=new Escursionipacchetto();
+	    	
+
+			em.flush();
+			escu.setIdEscursione(esc.get(i).intValue());
+			escu.setIdPacchetto(idPacc);
+			em.persist(escu);
+		}
     	    	
     }
     

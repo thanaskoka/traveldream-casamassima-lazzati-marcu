@@ -11,4 +11,5 @@ public interface GiftlistMgr {
 	public void save(GiftlistDTO gif);
     
     public List<GiftlistDTO> getGiftlistUser(int idUser);
+    public GiftlistDTO returnLast();
 }

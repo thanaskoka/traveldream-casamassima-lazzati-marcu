@@ -122,7 +122,7 @@ public class CompilaPacchettoBean {
 	}
 	
 	public void fermaCamere() throws IOException{
-		if((camMgr.getSingole(idAlb).getNrCamera()-n1>=0)||(camMgr.getDoppie(idAlb).getNrCamera()-n2>=0)||(camMgr.getTriple(idAlb).getNrCamera()-n3>=0))	
+		if((camMgr.getSingole(idAlb).getNrCamera()-n1<0)||(camMgr.getDoppie(idAlb).getNrCamera()-n2<0)||(camMgr.getTriple(idAlb).getNrCamera()-n3<0))	
 			FacesContext.getCurrentInstance().getExternalContext().redirect("noCamDisp.xhtml");
 		
 		else{
@@ -177,6 +177,12 @@ public class CompilaPacchettoBean {
 		fermaCamere();
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("modifyPacchetto.xhtml?id="+idpacc);
+		
+	}
+	public void gift() throws IOException{
+		fermaCamere();
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("giftList.xhtml?id="+idpacc);
 		
 	}
 	

@@ -9,7 +9,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import model.dto.EscursioneDTO;
 import model.dto.GiftlistDTO;
 
 /**
@@ -59,5 +61,21 @@ public class GiftlistMgrBean implements GiftlistMgr{
 		gifDTO.setIdUser(gif.getIdUser());
 		return gifDTO;
 	}
+    @Override
+    public GiftlistDTO returnLast(){
+    	String queryString = "SELECT p FROM Giftlist p ORDER BY p.idGiftlist DESC";
+    	Query query = em.createQuery(queryString);
+    	List<Giftlist> ele=new ArrayList<Giftlist>();
+        ele=query.getResultList();
+       
+        
+            
+        
+        return convertToDTO(ele.get(0));
+  		
+  	   	
+    	
+    	
+    }
 
 }

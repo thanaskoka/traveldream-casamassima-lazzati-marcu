@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+        <title>Crea GiftList</title>
+</h:head>
+<h:body>
+	<h1>Hello #{userBean.name}</h1>
+	<h:form>
+		<p:commandButton action="#{logoutBean.logout}" value="Logout" />
+	<h1>Amici alla quale vuoi scroccare soldi</h1>
+	
+	<p:panel header="Make Gift">
+			<h:panelGrid columns="3" id="regGrid">
+				<h:outputLabel for="a1" value="Amico1: " />  
+            	<p:inputText id="a1" value="#{giftBean.amico1}"/>  
+            	<h:outputLabel/> 
+            	<h:outputLabel for="a2" value="Amico2: " />  
+            	<p:inputText id="a2" value="#{giftBean.amico2}"/>  
+            	<h:outputLabel/> 
+            	<h:outputLabel for="a3" value="Amico3: " />  
+            	<p:inputText id="a3" value="#{giftBean.amico3}"/>  
+            	<h:outputLabel/> 
+            	<h:outputLabel for="a4" value="Amico4: " />  
+            	<p:inputText id="a4" value="#{giftBean.amico4}"/>  
+            	<h:outputLabel/>
+            	<h:outputText   /> <h:outputText  /><h:outputText  />
+                <h:outputText  />
+                <p:commandButton value="Ivia gli inviti" icon="ui-icon-search" update="regGrid"   actionListener="#{giftBean.invita()}"/>
+                
+		</h:panelGrid>
+		</p:panel>	
+		
+	</h:form>
+</h:body>
+</html>

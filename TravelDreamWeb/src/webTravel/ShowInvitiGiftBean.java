@@ -7,9 +7,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import model.AlbergoMgr;
 import model.EscursioneMgr;
@@ -20,29 +21,31 @@ import model.PacchettoMgr;
 import model.pacchettoConvert;
 import model.dto.AlbergoDTO;
 import model.dto.EscursioneDTO;
+import model.dto.GiftlistDTO;
 import model.dto.LuogoDTO;
 import model.dto.PacchettoDTO;
 
-@ManagedBean(name="showGifBean")
-@ViewScoped
-public class ShowGiftBean {
+@ManagedBean(name="invitiGifBean")
 
-	  private int id;
-	  private int idg;
+@RequestScoped
+public class ShowInvitiGiftBean {
+	
 	private int par;
 	@EJB
-	private PacchettoMgr paccMgr;
+    private PacchettoMgr paccMgr;
 	@EJB
-	private LuogoMgr luogoMgr;
+    private LuogoMgr luogoMgr;
 	@EJB
-	private EscursioneMgr escMgr;
+    private EscursioneMgr escMgr;
 	@EJB
-	private AlbergoMgr albMgr;	
+    private AlbergoMgr albMgr;	
 	@EJB
-	private MezzoMgr mezzoMgr;	
+    private MezzoMgr mezzoMgr;	
 	@EJB
-	  private GiftlistMgr gifMgr;
+    private GiftlistMgr giftMgr;	
 	
+	
+	private List<GiftlistDTO>giflis;
 	private PacchettoDTO paccDTO;
 	private LuogoDTO luoDTO;
 	private AlbergoDTO albDTO;
@@ -55,7 +58,7 @@ public class ShowGiftBean {
 	private String destinazione;
 	private Date dataP;
 	private String user;
-	public ShowGiftBean() {
+	public ShowInvitiGiftBean() {
 		paccDTO = new PacchettoDTO();
 	}
 	
@@ -104,17 +107,23 @@ public class ShowGiftBean {
 		this.escLis = escLis;
 	}
 	@PostConstruct
-  public void init()
-  {	HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-  	
-	idg=Integer.parseInt(request.getParameter("idG"));	
-	id=gifMgr.returnIdPacc(idg).getIdPack();
-      
-		
-		packLis=new ArrayList<PacchettoDTO>();
-      pacchetticonv=new ArrayList<pacchettoConvert>();
-		packLis.add(paccMgr.getPacchettoById(id));
-      for(int i=0;i<packLis.size();i++)
+    public void init()
+    {	pacchetticonv=new ArrayList<pacchettoConvert>();
+		FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        user = externalContext.getUserPrincipal().getName();
+        
+       
+        giflis=giftMgr.returnIdPaccs(user);
+        packLis=new ArrayList<PacchettoDTO>();
+        for(int i=0;i<giflis.size();i++)
+        {
+        	packLis.add(paccMgr.getPacchettoById((giflis.get(i).getIdPack())));
+        	
+        	
+        }
+        
+        for(int i=0;i<packLis.size();i++)
 		{	
 			pacc=new pacchettoConvert();
 			pacc.setId(packLis.get(i).getIdPacchetto());
@@ -122,12 +131,11 @@ public class ShowGiftBean {
 			pacc.setVoloAndata((mezzoMgr.returnData(packLis.get(i).getIdMezzoAndata()).getDataInizio()));
 			pacc.setVoloRitorno((mezzoMgr.returnData(packLis.get(i).getIdMezzoRitorno()).getDataInizio()));
 			pacc.setIdAlb(packLis.get(i).getIdAlbergo());
-			
 			pacc.setLuogo((luogoMgr.getCittaFromId(packLis.get(i).getIdLuogo()).getCitta()));
 			pacchetticonv.add(pacc);
 		}
 	
-  }
+    }
 	
 	
 	
@@ -159,20 +167,20 @@ public class ShowGiftBean {
 	
 	public void showEscursioniPacc(){
 		escLis=new ArrayList<EscursioneDTO>();
-		setEscLis(escMgr.getEscursioniPacchetto(pacchetticonv.get(0).getId()));
+		setEscLis(escMgr.getEscursioniPacchetto(selectPack.getId()));
 		
 		
 	}
 	
 	public String procedi(){
-		
+		System.out.println("selectPAcc id:"+selectPack.getId());
+		System.out.println("selectPAcc Alb:"+selectPack.getIdAlb());
 		 /*int id=(selectPack.getId()+100)*2;
 		 int idAl=(selectPack.getIdAlb()+100)*2;*/
-		
-		return "user/showInvitiGift?faces-redirect=true&user=true";
+		int id=selectPack.getId();
+		int idAl=selectPack.getIdAlb();
+		return "compilaPacchetto?faces-redirect=true&idP="+id+"&idA="+idAl;
 	}
-	 
-
 
 }
 

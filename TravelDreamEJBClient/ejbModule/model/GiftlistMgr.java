@@ -12,4 +12,6 @@ public interface GiftlistMgr {
     
     public List<GiftlistDTO> getGiftlistUser(int idUser);
     public GiftlistDTO returnLast();
+    public GiftlistDTO returnIdPacc(int p);
+    public List<GiftlistDTO> returnIdPaccs(String u);
 }

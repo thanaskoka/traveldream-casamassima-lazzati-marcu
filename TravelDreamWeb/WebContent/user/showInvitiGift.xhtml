@@ -7,7 +7,7 @@
 
 
 <h:head>
-        <title>Aggiungi Nuovo Pacchetto</title>
+        <title>Inviti alle giftlist</title>
 </h:head>
 <h:body>
 	<h1>Hello #{userBean.name}</h1>
@@ -27,13 +27,13 @@
         </p:submenu>  
 	</p:menu> 
 	
-	<p:panel header="Show Gift">
+	<p:panel header="Giftlist alla quale sono stato invitato">
 			<h:panelGrid columns="" id="regGrid">
 				
                 
             	<h:outputText  /> <h:outputText  /><h:outputText  />
            		           		
-           		<p:dataTable id="pacchetti"  var="esc" value="#{invitiBean.pacchetticonv}" update="regGrid" rowKey="#{esc.id}" selection="#{invitiBean.selectPack}" selectionMode="single">
+           		<p:dataTable id="pacchetti"  var="esc" value="#{invitiGifBean.pacchetticonv}" update="regGrid" rowKey="#{esc.id}" selection="#{invitiGifBean.selectPack}" selectionMode="single">
                                         <p:column headerText="id">  #{esc.id}  </p:column>
                                         <p:column headerText="Luogo">  #{esc.luogo}  </p:column>
 
@@ -46,19 +46,18 @@
                                         
                 </p:dataTable>
                 <h:outputText  />
-                 <p:commandButton value="Escursioni" icon="ui-icon-search" update="escu"   actionListener="#{invitiBean.showEscursioniPacc()}"  />  
+                <p:commandButton value="Escursioni" icon="ui-icon-search" update="escu"   actionListener="#{invitiGifBean.showEscursioniPacc()}"  />  
                
                 <h:outputText value="Escursioni associate al pacchetto selezionato" /> <h:outputText  /> <h:outputText  /> 
-                 <p:dataTable id="escu"  var="selectedEsc" value="#{invitiBean.escLis}" update="regGrid" rowKey="#{selectedEsc.id}" >
+                <p:dataTable id="escu"  var="selectedEsc" value="#{invitiGifBean.escLis}" update="regGrid" rowKey="#{selectedEsc.id}" >
                                         <p:column headerText="id">  #{selectedEsc.id}  </p:column>
                                         <p:column headerText="Descrizione">  #{selectedEsc.infoEsc}  </p:column>
 										<f:facet name="footer">
-                                           
-                                             
                                         </f:facet>
                 </p:dataTable>
-				 <p:commandButton value="Prosegui" icon="ui-icon-search" update="escu"   action="#{invitiBean.procedi()}"  />  
-				
+				 <p:commandButton value="Paga volo" icon="ui-icon-search" update="escu"   action="#{invitiGifBean.procedi()}"  />  
+				<p:commandButton value="Paga Albergo" icon="ui-icon-search" update="escu"   action="#{invitiGifBean.procedi()}"  />  
+				<p:commandButton value="Paga Escursione" icon="ui-icon-search" update="escu"   action="#{invitiGifBean.procedi()}"  />  
 		</h:panelGrid>
 		</p:panel>	
 		

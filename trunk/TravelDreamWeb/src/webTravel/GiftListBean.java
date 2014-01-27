@@ -102,7 +102,7 @@ public class GiftListBean {
 		gifDTO.setIdUser(user);
 		gifMgr.save(gifDTO);
 		idGift=gifMgr.returnLast().getIdGiftlist();
-		url="http://localhost:8080/TravelDreamWeb/showGift.xhtml?id="+idGift;
+		url="http://localhost:8080/TravelDreamWeb/showGift.xhtml?idG="+idGift;
 	
 	}
 	

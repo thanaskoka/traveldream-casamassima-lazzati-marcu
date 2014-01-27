@@ -4,10 +4,10 @@
 		<jta-data-source>jdbc/traveldreamdb</jta-data-source>
 		<class>model.Mezzotrasporto</class>
 		<class>model.Escursione</class>
-		<class>model.Albergo</class>
 		<class>model.Pacchetto</class>
 		<class>model.Camera</class>
 		<class>model.Camerepacchetto</class>
+		<class>model.Storicopagamenti</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>

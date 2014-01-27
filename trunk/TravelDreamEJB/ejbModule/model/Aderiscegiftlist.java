@@ -21,7 +21,7 @@ public class Aderiscegiftlist implements Serializable {
 	@Id
 	private int id;
 
-	private int idElementoPagato;
+	
 
 	private int idGift;
 
@@ -31,7 +31,7 @@ public class Aderiscegiftlist implements Serializable {
 	}
 	
 	public Aderiscegiftlist(AderiscegiftlistDTO ad) {
-		idElementoPagato = ad.getIdElementoPagato();
+		
 		idGift = ad.getIdGift();
 		idUtente = ad.getIdUtente();
 	}
@@ -44,13 +44,7 @@ public class Aderiscegiftlist implements Serializable {
 		this.id = id;
 	}
 
-	public int getIdElementoPagato() {
-		return this.idElementoPagato;
-	}
-
-	public void setIdElementoPagato(int idElementoPagato) {
-		this.idElementoPagato = idElementoPagato;
-	}
+	
 
 	public int getIdGift() {
 		return this.idGift;

@@ -77,5 +77,45 @@ public class GiftlistMgrBean implements GiftlistMgr{
     	
     	
     }
+    @Override
+    public GiftlistDTO returnIdPacc(int p){
+    	String queryString = "SELECT p FROM Giftlist p WHERE p.idGiftlist=:p";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("p",p);
+    	List<Giftlist> ele=new ArrayList<Giftlist>();
+        ele=query.getResultList();
+       
+        
+            
+        
+        return convertToDTO(ele.get(0));
+  		
+  	   	
+    	
+    	
+    }
+    @Override
+    public List<GiftlistDTO> returnIdPaccs(String u){
+    	String queryString = "SELECT p FROM Giftlist p INNER JOIN Aderiscegiftlist g ON p.idGiftlist=g.idGift WHERE g.idUtente= :g";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("g",u);
+    	List<Giftlist> ele=new ArrayList<Giftlist>();
+        ele=query.getResultList();
+        List<GiftlistDTO> elementDTO=new ArrayList<GiftlistDTO>();
+        for(Giftlist e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+       
+        
+            
+        
+       
+  		
+  	   	
+    	
+    	
+    }
 
 }

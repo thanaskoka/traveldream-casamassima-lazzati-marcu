@@ -53,7 +53,7 @@ public class AderiscegiftlistMgrBean implements AderiscegiftlistMgr {
     private AderiscegiftlistDTO convertToDTO(Aderiscegiftlist gif) {
 		AderiscegiftlistDTO gifDTO = new AderiscegiftlistDTO();
 		gifDTO.setId(gif.getId());
-		gifDTO.setIdElementoPagato(gif.getIdElementoPagato());
+		
 		gifDTO.setIdGift(gif.getIdGift());
 		gifDTO.setIdUtente(gif.getIdUtente());
 		return gifDTO;

@@ -10,7 +10,34 @@ public class pacchettoConvert {
 	private String Luogo;
 	private int id;
 	private int idAlb;
+	private int idvoloA;
+	private int idvolor;
+	private int idgif;
 	
+	public int getIdgif() {
+		return idgif;
+	}
+
+	public void setIdgif(int idgif) {
+		this.idgif = idgif;
+	}
+
+	public int getIdvoloA() {
+		return idvoloA;
+	}
+
+	public void setIdvoloA(int idvoloA) {
+		this.idvoloA = idvoloA;
+	}
+
+	public int getIdvolor() {
+		return idvolor;
+	}
+
+	public void setIdvolor(int idvolor) {
+		this.idvolor = idvolor;
+	}
+
 	public int getIdAlb() {
 		return idAlb;
 	}

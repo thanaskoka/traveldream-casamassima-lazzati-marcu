@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,12 +19,14 @@ import model.GiftlistMgr;
 import model.LuogoMgr;
 import model.MezzoMgr;
 import model.PacchettoMgr;
+import model.StoricopagamentiMgr;
 import model.pacchettoConvert;
 import model.dto.AlbergoDTO;
 import model.dto.EscursioneDTO;
 import model.dto.GiftlistDTO;
 import model.dto.LuogoDTO;
 import model.dto.PacchettoDTO;
+import model.dto.StoricoPagamentiDTO;
 
 @ManagedBean(name="invitiGifBean")
 
@@ -31,6 +34,7 @@ import model.dto.PacchettoDTO;
 public class ShowInvitiGiftBean {
 	
 	private int par;
+	private int idGif;
 	@EJB
     private PacchettoMgr paccMgr;
 	@EJB
@@ -43,7 +47,8 @@ public class ShowInvitiGiftBean {
     private MezzoMgr mezzoMgr;	
 	@EJB
     private GiftlistMgr giftMgr;	
-	
+	@EJB
+	private StoricopagamentiMgr stormgr;
 	
 	private List<GiftlistDTO>giflis;
 	private PacchettoDTO paccDTO;
@@ -53,7 +58,8 @@ public class ShowInvitiGiftBean {
 	private List<EscursioneDTO> escLis;
 	private ArrayList<pacchettoConvert>pacchetticonv;
 	private pacchettoConvert pacc;
-
+	private StoricoPagamentiDTO storicDto;
+	
 	private pacchettoConvert selectPack;
 	private String destinazione;
 	private Date dataP;
@@ -172,14 +178,60 @@ public class ShowInvitiGiftBean {
 		
 	}
 	
-	public String procedi(){
-		System.out.println("selectPAcc id:"+selectPack.getId());
-		System.out.println("selectPAcc Alb:"+selectPack.getIdAlb());
-		 /*int id=(selectPack.getId()+100)*2;
-		 int idAl=(selectPack.getIdAlb()+100)*2;*/
-		int id=selectPack.getId();
-		int idAl=selectPack.getIdAlb();
-		return "compilaPacchetto?faces-redirect=true&idP="+id+"&idA="+idAl;
+	public void pagavolo() throws IOException{
+		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
+		if( stormgr.findVoloPagato(giftid, 1)==0){
+			storicDto=new StoricoPagamentiDTO();
+			storicDto.setViaggio((byte) 1);
+			storicDto.setGiftId(giftid);
+			storicDto.setUserId(user);
+			stormgr.save(storicDto);
+			
+		}
+		else
+		{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			
+			
+		}
+	}
+	public void pagaalbergo() throws IOException{
+		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
+		if( stormgr.findAlbergoPagato(giftid)==0){
+			storicDto=new StoricoPagamentiDTO();
+			storicDto.setAlbergo((byte) 1);
+			storicDto.setGiftId(giftid);
+			storicDto.setUserId(user);
+			stormgr.save(storicDto);
+			
+		}
+		else
+		{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			
+			
+		}
+	}
+	public void pagaescursioni() throws IOException{
+		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
+		if((escMgr.getEscursioniPacchetto(selectPack.getId()).size()>0)){
+		if( stormgr.findEscursionePagata(giftid, 1)==0){
+			storicDto=new StoricoPagamentiDTO();
+			storicDto.setEscursione((byte) 1);
+			storicDto.setGiftId(giftid);
+			storicDto.setUserId(user);
+			stormgr.save(storicDto);
+			
+		}
+		else
+		{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			
+			
+		}
+		}
+		else 
+			FacesContext.getCurrentInstance().getExternalContext().redirect("noEscinPack");
 	}
 
 }

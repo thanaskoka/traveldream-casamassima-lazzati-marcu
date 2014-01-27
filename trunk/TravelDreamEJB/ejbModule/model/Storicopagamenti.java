@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import model.dto.StoricoPagamentiDTO;
 
 
 /**
@@ -16,9 +19,9 @@ public class Storicopagamenti implements Serializable {
 	@Id
 	private int idStorico;
 
-	private byte albergo;
+	private int albergo;
 
-	private byte escursione;
+	private int escursione;
 
 	private int giftId;
 
@@ -26,9 +29,17 @@ public class Storicopagamenti implements Serializable {
 
 	private String userId;
 
-	private byte viaggio;
+	private int viaggio;
 
 	public Storicopagamenti() {
+	}
+	public Storicopagamenti(StoricoPagamentiDTO stor) {
+		this.albergo=stor.getAlbergo();
+		this.escursione=stor.getEscursione();
+		this.giftId=stor.getGiftId();
+		this.idElemento=stor.getIdElemento();
+		this.userId=stor.getUserId();
+		this.viaggio=stor.getViaggio();
 	}
 
 	public int getIdStorico() {
@@ -39,19 +50,19 @@ public class Storicopagamenti implements Serializable {
 		this.idStorico = idStorico;
 	}
 
-	public byte getAlbergo() {
+	public int getAlbergo() {
 		return this.albergo;
 	}
 
-	public void setAlbergo(byte albergo) {
+	public void setAlbergo(int albergo) {
 		this.albergo = albergo;
 	}
 
-	public byte getEscursione() {
+	public int getEscursione() {
 		return this.escursione;
 	}
 
-	public void setEscursione(byte escursione) {
+	public void setEscursione(int escursione) {
 		this.escursione = escursione;
 	}
 
@@ -79,11 +90,11 @@ public class Storicopagamenti implements Serializable {
 		this.userId = userId;
 	}
 
-	public byte getViaggio() {
+	public int getViaggio() {
 		return this.viaggio;
 	}
 
-	public void setViaggio(byte viaggio) {
+	public void setViaggio(int viaggio) {
 		this.viaggio = viaggio;
 	}
 

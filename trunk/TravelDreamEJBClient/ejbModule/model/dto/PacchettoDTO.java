@@ -21,6 +21,16 @@ public class PacchettoDTO {
 
 	private int idMezzoRitorno;
 	
+	private int idGif;
+	
+
+	public int getIdGif() {
+		return idGif;
+	}
+
+	public void setIdGif(int idGif) {
+		this.idGif = idGif;
+	}
 
 	@Column(name="is_modify")
 	private byte isModify;

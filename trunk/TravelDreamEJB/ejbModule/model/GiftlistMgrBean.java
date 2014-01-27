@@ -107,11 +107,20 @@ public class GiftlistMgrBean implements GiftlistMgr{
             elementDTO.add(convertToDTO(e));
         }
         return elementDTO;
+     }
+    @Override
+    public GiftlistDTO returnIdGif(int p,String user){
+    	String queryString = "SELECT p FROM Giftlist p WHERE p.idUser=:u AND p.idPack=:p";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("p",p);
+    	query.setParameter("u",user);
+    	List<Giftlist> ele=new ArrayList<Giftlist>();
+        ele=query.getResultList();
        
         
             
         
-       
+        return convertToDTO(ele.get(0));
   		
   	   	
     	

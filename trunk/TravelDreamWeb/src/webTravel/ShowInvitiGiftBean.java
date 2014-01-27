@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -180,22 +181,27 @@ public class ShowInvitiGiftBean {
 	
 	public void pagavolo() throws IOException{
 		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
+		FacesMessage msg = null;  
 		if( stormgr.findVoloPagato(giftid, 1)==0){
 			storicDto=new StoricoPagamentiDTO();
 			storicDto.setViaggio((byte) 1);
 			storicDto.setGiftId(giftid);
 			storicDto.setUserId(user);
 			stormgr.save(storicDto);
+			msg = new FacesMessage("Hai appena Pagato il volo al tuo amico");  
 			
 		}
 		else
 		{
-			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			msg = new FacesMessage( "Il volo è gia stato pagato,cambia!");  
 			
 			
 		}
+		FacesContext.getCurrentInstance().addMessage(null, msg); 
+		
 	}
 	public void pagaalbergo() throws IOException{
+		FacesMessage msg = null; 
 		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
 		if( stormgr.findAlbergoPagato(giftid)==0){
 			storicDto=new StoricoPagamentiDTO();
@@ -203,16 +209,19 @@ public class ShowInvitiGiftBean {
 			storicDto.setGiftId(giftid);
 			storicDto.setUserId(user);
 			stormgr.save(storicDto);
-			
+			msg = new FacesMessage("Hai appena Pagato l'albergo al tuo amico");  
 		}
 		else
 		{
-			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			msg = new FacesMessage( "L'albergo è gia stato pagato,cambia!"); 
 			
 			
 		}
+		FacesContext.getCurrentInstance().addMessage(null, msg); 
+		
 	}
 	public void pagaescursioni() throws IOException{
+		FacesMessage msg = null;
 		int giftid=giftMgr.returnIdGif(selectPack.getId(), user).getIdGiftlist();
 		if((escMgr.getEscursioniPacchetto(selectPack.getId()).size()>0)){
 		if( stormgr.findEscursionePagata(giftid, 1)==0){
@@ -221,17 +230,20 @@ public class ShowInvitiGiftBean {
 			storicDto.setGiftId(giftid);
 			storicDto.setUserId(user);
 			stormgr.save(storicDto);
-			
+			msg = new FacesMessage("Hai appena Pagato le escursioni al tuo amico");  
 		}
 		else
 		{
-			FacesContext.getCurrentInstance().getExternalContext().redirect("elementoGiaPagato");
+			msg = new FacesMessage( "Escursioni sono gia state pagate,cambia!"); 
 			
 			
 		}
 		}
 		else 
-			FacesContext.getCurrentInstance().getExternalContext().redirect("noEscinPack");
+			msg = new FacesMessage( "Non ci sono escursioni associate a questo pacchetto!!"); 
+		
+		FacesContext.getCurrentInstance().addMessage(null, msg);  
+		
 	}
 
 }

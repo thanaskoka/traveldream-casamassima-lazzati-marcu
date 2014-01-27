@@ -28,6 +28,7 @@ public class InvitaAmicoBean {
 	 @EJB
 	 PartecipaPacchettoMgr ppMgr;
 	
+	
 	public String getAmico1() {
 		return amico1;
 	}

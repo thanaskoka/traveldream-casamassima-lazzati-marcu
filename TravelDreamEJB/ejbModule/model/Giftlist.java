@@ -21,6 +21,7 @@ public class Giftlist implements Serializable {
 	public static final String FIND_UTENTE = "Giftlist.findUtente";
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGiftlist;
 
 	private int idPack;

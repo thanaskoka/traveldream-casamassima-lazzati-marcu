@@ -20,6 +20,7 @@ public class Escursione implements Serializable {
 	public static final String FIND_ALL = "Escursione.findAll";
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private int costoPerEsc;

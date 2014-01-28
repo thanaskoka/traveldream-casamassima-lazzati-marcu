@@ -65,6 +65,21 @@ public class AlbergoMgrBean implements AlbergoMgr {
   		
   	}
     @Override
+  	public List<AlbergoDTO> getAlbergoLast() {
+    	String queryString = "SELECT e FROM Albergo e  ORDER BY e.idAlbergo DESC";
+    	Query query = em.createQuery(queryString);
+    	List<Albergo> ele=new ArrayList<Albergo>();
+        ele=query.getResultList();
+        List<AlbergoDTO> elementDTO=new ArrayList<AlbergoDTO>();
+        for(Albergo e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
+    
+    @Override
     public AlbergoDTO getNomeById(int id)
     {String queryString = "SELECT e FROM Albergo e " +
             "WHERE e.idAlbergo=:id";

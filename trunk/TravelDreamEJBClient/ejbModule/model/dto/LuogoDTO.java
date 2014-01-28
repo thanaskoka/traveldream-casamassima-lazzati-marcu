@@ -8,7 +8,7 @@ public class LuogoDTO {
     private String citta;
 	@NotEmpty
     private String stato;
-	
+	@NotEmpty
 	private String indirizzo;
 
 	private String descrizione;

@@ -12,4 +12,5 @@ public interface AlbergoMgr {
 	public List<AlbergoDTO> getAlbergoAl();
 	public List<AlbergoDTO> getAlbergoByLuogo(String citta);
 	public AlbergoDTO getNomeById(int id);
+	public List<AlbergoDTO> getAlbergoLast() ;
 }

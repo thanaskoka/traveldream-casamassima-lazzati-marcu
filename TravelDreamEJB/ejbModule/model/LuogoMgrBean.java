@@ -82,6 +82,18 @@ public class LuogoMgrBean implements LuogoMgr {
   		
   	}
     @Override
+  	public List<LuogoDTO> getTuttiLuoghi() {
+    	List<Luogo> ele=new ArrayList<Luogo>();
+        ele=em.createNamedQuery(Luogo.FIND_ALL, Luogo.class).getResultList();
+        List<LuogoDTO> elementDTO=new ArrayList<LuogoDTO>();
+        for(Luogo e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
+  		
+  	}
+    @Override
   	public LuogoDTO getidAereoportiFromcitta(String citta) {
     	Luogo ele=new Luogo();
         ele=em.createNamedQuery(Luogo.FIND_ID, Luogo.class).setParameter("citta",citta).getSingleResult();

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Inserisci Luogo</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Inserimento Escursione">
+			<h:panelGrid columns="3" id="regGrid">
+			
+				
+				<h:outputLabel for="citta">Citta:</h:outputLabel>
+				
+				<p:inputText id="citta" value="#{registerLuogoBean.luogoDto.citta}" /><p:message for="citta" />
+				<h:outputLabel for="nazione">Nazione:</h:outputLabel>
+				
+				<p:inputText id="nazione" value="#{registerLuogoBean.luogoDto.stato}" /><p:message for="nazione" />
+				<h:outputLabel for="nazione">Indirizzo:</h:outputLabel>
+				
+				<p:inputText id="indirizzo" value="#{registerLuogoBean.luogoDto.indirizzo}" /><p:message for="indirizzo" />
+				
+				<h:outputLabel for="location">Tipologia:</h:outputLabel>
+                <h:selectOneMenu value="#{registerLuogoBean.tipoogiascelta}">
+                <f:selectItems value="#{registerLuogoBean.tipologie}" var="LuogoDTO" itemValue="#{LuogoDTO.descrizione}" itemLabel="#{LuogoDTO.descrizione}"/>
+                </h:selectOneMenu> 
+				 <h:outputText/>
+				
+				 
+               
+				
+				
+				</h:panelGrid>
+				
+				
+			<p:commandButton value="Salva" update="regGrid"
+				action="#{registerLuogoBean.save()}" />
+	
+			<h:link value="Indietro" outcome="index" />
+	
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>

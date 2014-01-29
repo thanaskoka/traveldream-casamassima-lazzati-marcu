@@ -1,69 +1,102 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core"
-        xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <h:head>
-        <title>Inviti alle giftlist</title>
+	<title>Inviti alle giftlist</title>
 </h:head>
 <h:body>
-	<h1>Hello #{userBean.name}</h1>
-	
-	
-    
-    
-	<h:form>
-	<p:growl id="growl" showDetail="true" life="3000" />
-	
-		<p:menu>  
-        
-        <p:submenu label="Area Personale">  
-            <p:menuitem value="Home" outcome="index" icon="ui-icon-home"/>  
-            <p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi" icon="ui-icon-star"/>  
-            <p:menuitem value="Le Mie GiftList" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Invito Viaggi" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Invito Giftlist" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Logout" action="#{logoutBean.logout()}"  icon="ui-icon-close" /> 
-        </p:submenu>  
-	</p:menu> 
-	
-	<p:panel header="Giftlist alla quale sono stato invitato">
-			<h:panelGrid columns="" id="regGrid">
-				
-                
-            	<h:outputText  /> <h:outputText  /><h:outputText  />
-           		           		
-           		<p:dataTable id="pacchetti"  var="esc" value="#{invitiGifBean.pacchetticonv}" update="regGrid" rowKey="#{esc.id}" selection="#{invitiGifBean.selectPack}" selectionMode="single">
-                                        <p:column headerText="id">  #{esc.id}  </p:column>
-                                        <p:column headerText="Luogo">  #{esc.luogo}  </p:column>
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
 
-                                        <p:column headerText="Mezzo Andata">  #{esc.voloAndata}  </p:column>
 
-                                        <p:column headerText="Mezzo Ritorno">  #{esc.voloRitorno}  </p:column>
+			<h:form prependId="false">
+				<p:menu id="left">
 
-                                        <p:column headerText="Albergo">  #{esc.albergo}  </p:column>
+					<p:submenu label="Area Personale">
+						<p:menuitem value="Home" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi"
+							icon="ui-icon-star" />
+						<p:menuitem value="Le Mie GiftList" outcome="index"
+							icon="ui-icon-star" />
+						<p:menuitem value="Invito Viaggi" outcome="showInviti"
+							icon="ui-icon-star" />
+						<p:menuitem value="Invito Giftlist" outcome="index"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Hello #{userBean.name}</h1>
 
-                                        
-                </p:dataTable>
-                <h:outputText  />
-                <p:commandButton value="Escursioni" icon="ui-icon-search" update="escu"   actionListener="#{invitiGifBean.showEscursioniPacc()}"  />  
-               
-                <h:outputText value="Escursioni associate al pacchetto selezionato" /> <h:outputText  /> <h:outputText  /> 
-                <p:dataTable id="escu"  var="selectedEsc" value="#{invitiGifBean.escLis}" update="regGrid" rowKey="#{selectedEsc.id}" >
-                                        <p:column headerText="id">  #{selectedEsc.id}  </p:column>
-                                        <p:column headerText="Descrizione">  #{selectedEsc.infoEsc}  </p:column>
-										<f:facet name="footer">
-                                        </f:facet>
-                </p:dataTable>
-				 <p:commandButton value="Paga volo" icon="ui-icon-search" update="growl,escu"   actionListener="#{invitiGifBean.pagavolo()}"  />  
-				<p:commandButton value="Paga Albergo" icon="ui-icon-search" update="growl,escu"   actionListener="#{invitiGifBean.pagaalbergo()}" />  
-				<p:commandButton value="Paga Escursione" icon="ui-icon-search" update="growl,escu"   actionListener="#{invitiGifBean.pagaescursioni()}"  />  
-		</h:panelGrid>
-		</p:panel>	
-		
-	</h:form>
+
+
+
+			<h:form>
+				<p:growl id="growl" showDetail="true" life="3000" />
+
+
+				<p:panel header="Giftlist alla quale sono stato invitato">
+					<h:panelGrid columns="" id="regGrid">
+
+
+						<h:outputText />
+						<h:outputText />
+						<h:outputText />
+
+						<p:dataTable id="pacchetti" var="esc"
+							value="#{invitiGifBean.pacchetticonv}" update="regGrid"
+							rowKey="#{esc.id}" selection="#{invitiGifBean.selectPack}"
+							selectionMode="single">
+							<p:column headerText="id">  #{esc.id}  </p:column>
+							<p:column headerText="Luogo">  #{esc.luogo}  </p:column>
+
+							<p:column headerText="Mezzo Andata">  #{esc.voloAndata}  </p:column>
+
+							<p:column headerText="Mezzo Ritorno">  #{esc.voloRitorno}  </p:column>
+
+							<p:column headerText="Albergo">  #{esc.albergo}  </p:column>
+
+
+						</p:dataTable>
+						<h:outputText />
+						<p:commandButton value="Escursioni" icon="ui-icon-search"
+							update="escu"
+							actionListener="#{invitiGifBean.showEscursioniPacc()}" />
+
+						<h:outputText
+							value="Escursioni associate al pacchetto selezionato" />
+						<h:outputText />
+						<h:outputText />
+						<p:dataTable id="escu" var="selectedEsc"
+							value="#{invitiGifBean.escLis}" update="regGrid"
+							rowKey="#{selectedEsc.id}">
+							<p:column headerText="id">  #{selectedEsc.id}  </p:column>
+							<p:column headerText="Descrizione">  #{selectedEsc.infoEsc}  </p:column>
+							<f:facet name="footer">
+							</f:facet>
+						</p:dataTable>
+						<p:commandButton value="Paga volo" icon="ui-icon-search"
+							update="growl,escu" actionListener="#{invitiGifBean.pagavolo()}" />
+						<p:commandButton value="Paga Albergo" icon="ui-icon-search"
+							update="growl,escu"
+							actionListener="#{invitiGifBean.pagaalbergo()}" />
+						<p:commandButton value="Paga Escursione" icon="ui-icon-search"
+							update="growl,escu"
+							actionListener="#{invitiGifBean.pagaescursioni()}" />
+					</h:panelGrid>
+				</p:panel>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>

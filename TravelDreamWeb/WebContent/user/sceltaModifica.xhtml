@@ -10,22 +10,36 @@
         <title>Aggiungi Nuovo Pacchetto</title>
 </h:head>
 <h:body>
+<ui:composition template="../template.xhtml">
+<ui:define name="menu">
+
+
+			<h:form prependId="false">
+			<p:menu id="left">
+
+				<p:submenu label="Area Personale">
+					<p:menuitem value="Home" outcome="index" icon="ui-icon-home" />
+					<p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi"
+						icon="ui-icon-star" />
+					<p:menuitem value="Le Mie GiftList" outcome="index"
+						icon="ui-icon-star" />
+					<p:menuitem value="Invito Viaggi" outcome="showInviti"
+						icon="ui-icon-star" />
+					<p:menuitem value="Invito Giftlist" outcome="index"
+						icon="ui-icon-star" />
+					<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+						icon="ui-icon-close" />
+				</p:submenu>
+			</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
 	<h1>Hello #{userBean.name}</h1>
 	
     
     
 	<h:form>
-		<p:menu>  
-        
-        <p:submenu label="Area Personale">  
-            <p:menuitem value="Home" outcome="index" icon="ui-icon-home"/>  
-            <p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi" icon="ui-icon-star"/>  
-            <p:menuitem value="Le Mie GiftList" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Invito Viaggi" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Invito Giftlist" outcome="index" icon="ui-icon-star"/>  
-            <p:menuitem value="Logout" action="#{logoutBean.logout()}"  icon="ui-icon-close" /> 
-        </p:submenu>  
-	</p:menu> 
+		
 	
 	<p:panel header="Ricerca Pacchetto">
 			<h:panelGrid columns="" id="regGrid">
@@ -37,5 +51,8 @@
 		</p:panel>	
 		
 	</h:form>
+	</ui:define>
+			
+		</ui:composition>
 </h:body>
 </html>

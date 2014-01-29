@@ -5,25 +5,41 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<!--  <img src="img/dreams.jpg" />-->
-<h:outputStylesheet library="css" name="main.css"  />
+	<!--  <img src="img/dreams.jpg" />-->
+	<h:outputStylesheet library="css" name="main.css" />
 </h:head>
 <h:body>
-	<h1>Hello #{userBean.name}</h1>
-	<p:breadCrumb>
-        <p:menuitem value="Admin"  outcome="index" />
-		<p:menuitem value="Mezzo"  outcome="showEditMezzo" />
-		<p:menuitem value="Escursione" outcome="showEditEscursione" />
-		<p:menuitem value="Albergo" outcome="showEditAlbergo" />
-		<p:menuitem value="Luoghi" outcome="luoghiLis" />
-		<p:menuitem value="New Pacchetto"  outcome="AddPacchetto" />
-	</p:breadCrumb>
-	<h:form>
-		
-		<p:commandButton action="#{logoutBean.logout}" value="Logout" />
-	</h:form>
-	
+	<ui:composition template="../template.xhtml">
+
+		<ui:define name="content">
+			<h1>Hello #{userBean.name}</h1>
+
+		</ui:define>
+
+		<ui:define name="menu">
+
+			<h:form prependId="false">
+				<p:menu id="leftIm">
+
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

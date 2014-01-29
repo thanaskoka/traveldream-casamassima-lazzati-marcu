@@ -5,113 +5,151 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 </h:head>
-<h:form id="form">  
-  
-    <p:growl id="messages" showDetail="true"/>  
-  
-    <p:dataTable var="car" value="#{showEscursioneModBean.carsSmall}"  id="carList" editable="true">  
-  
-        <f:facet name="header">  
-           Escursioni  
-        </f:facet>  
-  
-        <p:ajax event="rowEdit" listener="#{showEscursioneModBean.onEdit}" update=":form:messages"/>  
-        <p:ajax event="rowEditCancel" listener="#{showEscursioneModBean.onCancel}" update=":form:messages" />  
- 
-        <p:column headerText="Id Escursione" style="width:30%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.id}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:inputText value="#{car.id}" style="width:100%"/>  
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column>  
-  
-        <p:column headerText="Posti Disponibili" style="width:20%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.postiDisponibili}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:inputText value="#{car.postiDisponibili}" style="width:100%" label="Year"/>  
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column>  
-  	<p:column headerText="Costo Persona" style="width:30%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.costoPerEsc}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:inputText value="#{showEscursioneModBean.costoPerEsc}" style="width:100%"/>  
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column> 
-        <p:column headerText="Id Luogo" style="width:24%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.idLuogo}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <h:selectOneMenu value="#{showEscursioneModBean.idLuogo}" >  
-                        <f:selectItems value="#{showEscursioneModBean.elelis}"  
-                            var="man"   
-                            itemLabel="#{man.citta}"  
-                            itemValue="#{man.id}" />  
-                    </h:selectOneMenu>  
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column>  
-        <p:column headerText="Data Partenza" style="width:20%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.dataInizio}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:calendar value="#{car.dataInizio}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{car.dataInizio}">  
-                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  </h:outputText>
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column>  
-        <p:column headerText="Data Arrivo" style="width:20%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.dataFine}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:calendar value="#{car.dataFine}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{car.dataFine}">  
-                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  </h:outputText>
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column> 
-         <p:column headerText="Descrizione" style="width:20%">  
-            <p:cellEditor>  
-                <f:facet name="output">  
-                    <h:outputText value="#{car.infoEsc}" />  
-                </f:facet>  
-                <f:facet name="input">  
-                    <p:inputText value="#{car.infoEsc}" style="width:100%" label="Year"/>  
-                </f:facet>  
-            </p:cellEditor>  
-        </p:column>  
-        
-        
-            	
-  
-        <p:column style="width:6%">  
-            <p:rowEditor />  
-        </p:column>  
-  
-    </p:dataTable>  
-  
-</h:form>  
+<h:body>
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
 
-<h:link value="Inserisci nuova escursione" outcome="inserimentoEscursione" />
-<h:link outcome="index" value="Home" />
+			<h:form prependId="false">
+				<p:menu id="leftIm">
+
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h:form id="form">
+
+				<p:growl id="messages" showDetail="true" />
+
+				<p:dataTable var="car" value="#{showEscursioneModBean.carsSmall}"
+					id="carList" editable="true">
+
+					<f:facet name="header">  
+           Escursioni  
+        </f:facet>
+
+					<p:ajax event="rowEdit" listener="#{showEscursioneModBean.onEdit}"
+						update=":form:messages" />
+					<p:ajax event="rowEditCancel"
+						listener="#{showEscursioneModBean.onCancel}"
+						update=":form:messages" />
+
+					<p:column headerText="Id Escursione" style="width:30%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.id}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{car.id}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Posti Disponibili" style="width:20%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.postiDisponibili}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{car.postiDisponibili}" style="width:100%"
+									label="Year" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Costo Persona" style="width:30%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.costoPerEsc}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{showEscursioneModBean.costoPerEsc}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Id Luogo" style="width:24%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.idLuogo}" />
+							</f:facet>
+							<f:facet name="input">
+								<h:selectOneMenu value="#{showEscursioneModBean.idLuogo}">
+									<f:selectItems value="#{showEscursioneModBean.elelis}"
+										var="man" itemLabel="#{man.citta}" itemValue="#{man.id}" />
+								</h:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Data Partenza" style="width:20%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.dataInizio}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{car.dataInizio}" pattern="MM/dd/yyyy HH:mm" />
+								<h:outputText value="#{car.dataInizio}">
+									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+								</h:outputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Data Arrivo" style="width:20%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.dataFine}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{car.dataFine}" pattern="MM/dd/yyyy HH:mm" />
+								<h:outputText value="#{car.dataFine}">
+									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+								</h:outputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Descrizione" style="width:20%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.infoEsc}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{car.infoEsc}" style="width:100%"
+									label="Year" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+
+
+
+					<p:column style="width:6%">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</ui:define>
+		<h:link value="Inserisci nuova escursione"
+			outcome="inserimentoEscursione" />
+
+
+	</ui:composition>
+</h:body>
 </html>

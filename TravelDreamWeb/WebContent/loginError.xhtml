@@ -7,9 +7,16 @@
 
 <h:head></h:head>
 <h:body>
-	<p:panel header="Login Error">
-            Sorry, you made an Error. Please try again: <h:link
-			outcome="home" value="Login" />
-	</p:panel>
+	<ui:composition template="template.xhtml">
+		
+		<ui:define name="content">
+			<p:panel header="Login Error">
+		            Sorry, you made an Error. Please try again: <h:link
+					outcome="home" value="Login" />
+			</p:panel>
+			
+		</ui:define>
+			
+	</ui:composition>
 </h:body>
 </html>

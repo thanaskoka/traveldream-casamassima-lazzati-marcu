@@ -11,57 +11,93 @@
 	<title>Inserimento albergo</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel header="Inserimento Albergo">
-			<h:panelGrid columns="3" id="regGrid">
-				<h:outputLabel for="location">Location:</h:outputLabel>
-                <h:selectOneMenu value="#{registerAlbergoBean.luogo}">
-                	<f:selectItems value="#{registerAlbergoBean.elelis}" var="ElementDTO" itemValue="#{ElementDTO.id}" itemLabel="#{ElementDTO.citta}(#{ElementDTO.stato})-#{ElementDTO.indirizzo}"/>
-                </h:selectOneMenu><br />
-				
-				
-				<h:outputLabel for="nome">Nome albergo:</h:outputLabel>
-				
-				<p:inputText id="nome" value="#{registerAlbergoBean.al.nome}" /><p:message for="nome" />
-				
-				<h:outputText value="Numero stelle:" />  
-       			<p:rating value="#{registerAlbergoBean.al.numeroStelle}" stars="5" cancel="false"/>
-       		</h:panelGrid>
-       			<br />
-       			<h:outputText value="Camere: " /><br />
-       			<h:panelGroup id="rooms" layout="block">
-	       			<h:outputText value="Singole: " /> 
-		            <p:inplace id="singole">  
-		                <p:inputText value="#{registerAlbergoBean.opt1}" />
-		            </p:inplace>
-		            <h:outputText value="Costo a persona: " />
-		            <p:inplace id="costo1">  
-		                <p:inputText value="#{registerAlbergoBean.costo1}" />
-		            </p:inplace><br />
-		            <h:outputText value="Doppie: " />
-		            <p:inplace id="doppie">  
-		                <p:inputText value="#{registerAlbergoBean.opt2}" />
-		            </p:inplace>
-		            <h:outputText value="Costo a persona: " />
-		            <p:inplace id="costo2">  
-		                <p:inputText value="#{registerAlbergoBean.costo2}" />
-		            </p:inplace><br />
-		            <h:outputText value="Triple: " />
-		            <p:inplace id="triple">  
-		                <p:inputText value="#{registerAlbergoBean.opt3}" />
-		            </p:inplace>
-		            <h:outputText value="Costo a persona: " />
-		            <p:inplace id="costo3">  
-		                <p:inputText value="#{registerAlbergoBean.costo3}" />
-		            </p:inplace><br />
-				</h:panelGroup>
-			
-			<p:commandButton value="Salva"  action="#{registerAlbergoBean.register()}" />
-	
-			<h:link value="Indietro" outcome="index" />
-	
-		</p:panel>
-	</h:form>
-	
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
+
+			<h:form prependId="false">
+				<p:menu id="leftIm">
+
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<p:panel header="Inserimento Albergo">
+					<h:panelGrid columns="3" id="regGrid">
+						<h:outputLabel for="location">Location:</h:outputLabel>
+						<h:selectOneMenu value="#{registerAlbergoBean.luogo}">
+							<f:selectItems value="#{registerAlbergoBean.elelis}"
+								var="ElementDTO" itemValue="#{ElementDTO.id}"
+								itemLabel="#{ElementDTO.citta}(#{ElementDTO.stato})-#{ElementDTO.indirizzo}" />
+						</h:selectOneMenu>
+						<br />
+
+
+						<h:outputLabel for="nome">Nome albergo:</h:outputLabel>
+
+						<p:inputText id="nome" value="#{registerAlbergoBean.al.nome}" />
+						<p:message for="nome" />
+
+						<h:outputText value="Numero stelle:" />
+						<p:rating value="#{registerAlbergoBean.al.numeroStelle}" stars="5"
+							cancel="false" />
+					</h:panelGrid>
+					<br />
+					<h:outputText value="Camere: " />
+					<br />
+					<h:panelGroup id="rooms" layout="block">
+						<h:outputText value="Singole: " />
+						<p:inplace id="singole">
+							<p:inputText value="#{registerAlbergoBean.opt1}" />
+						</p:inplace>
+						<h:outputText value="Costo a persona: " />
+						<p:inplace id="costo1">
+							<p:inputText value="#{registerAlbergoBean.costo1}" />
+						</p:inplace>
+						<br />
+						<h:outputText value="Doppie: " />
+						<p:inplace id="doppie">
+							<p:inputText value="#{registerAlbergoBean.opt2}" />
+						</p:inplace>
+						<h:outputText value="Costo a persona: " />
+						<p:inplace id="costo2">
+							<p:inputText value="#{registerAlbergoBean.costo2}" />
+						</p:inplace>
+						<br />
+						<h:outputText value="Triple: " />
+						<p:inplace id="triple">
+							<p:inputText value="#{registerAlbergoBean.opt3}" />
+						</p:inplace>
+						<h:outputText value="Costo a persona: " />
+						<p:inplace id="costo3">
+							<p:inputText value="#{registerAlbergoBean.costo3}" />
+						</p:inplace>
+						<br />
+					</h:panelGroup>
+
+					<p:commandButton value="Salva"
+						action="#{registerAlbergoBean.register()}" />
+
+					<h:link value="Indietro" outcome="index" />
+
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>

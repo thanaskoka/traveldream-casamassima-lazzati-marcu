@@ -5,25 +5,25 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<!--  <img src="img/dreams.jpg" />-->
-<h:outputStylesheet library="css" name="main.css"  />
+	<!--  <img src="img/dreams.jpg" />-->
+	<h:outputStylesheet library="css" name="main.css" />
 
 </h:head>
 <h:body>
-		<ui:composition template="template.xhtml">
-		
-			<ui:define name="content">
-		        <h:panelGroup layout="block"/>
-		        <p:breadCrumb id="login" >
-				<p:menuitem value="Admin"  outcome="home" />
-				<p:menuitem value="Admin"  outcome="admin/index.xhtml" />
+	<ui:composition template="template.xhtml">
+
+		<ui:define name="content">
+			<h:panelGroup layout="block" />
+			<p:breadCrumb>
+				<p:menuitem value="Admin" outcome="home" />
+				<p:menuitem value="Admin" outcome="admin/index.xhtml" />
 				<p:menuitem value="User" outcome="user/index?user=true" />
-				</p:breadCrumb>
-			</ui:define>
-			
-		</ui:composition>
+			</p:breadCrumb>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
-         
+
 </html>

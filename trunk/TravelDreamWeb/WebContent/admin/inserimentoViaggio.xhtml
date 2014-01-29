@@ -9,56 +9,93 @@
 	<title>Register Viaggio</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel header="Inserimento mezzo di trasporto">
-			<h:panelGrid columns="3" id="regGrid">
-				<h:outputLabel for="idMezzo">Identificativo Mezzo</h:outputLabel>
-				<p:inputText id="idMezzo" value="#{registerMezzoBean.user.idMezzoTrasporto}" />
-			    <p:message for="idMezzo" />
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
 
-				<h:outputLabel >Identificativo Luogo Partenza:</h:outputLabel>
-				
-				<p:selectOneMenu value="#{registerMezzoBean.luogoPartenza}">
-                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
-                
-                </p:selectOneMenu>
-				 
-               <h:outputLabel ></h:outputLabel>
-				<h:outputLabel>Identificativo Luogo Arrivo:</h:outputLabel>
-				<p:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
-                <f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO" itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
-                </p:selectOneMenu>
-				
-				 
-                <h:outputLabel ></h:outputLabel> 
-				
-                <h:outputText value="Data e Ora Partenza " />  
-            	<p:calendar value="#{registerMezzoBean.dateP}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateP}">  
-                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
-            	</h:outputText>
-            	   
-           		  
-				<h:outputText value="Data e Ora Arrivo " /><p:calendar value="#{registerMezzoBean.dateA}" pattern="MM/dd/yyyy HH:mm" /><h:outputText value="#{registerMezzoBean.dateA}">  
-                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
-            	</h:outputText>
-                 
-            	
-            	 
-				<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
-				
-				<p:inputText id="numPostiDisp" value="#{registerMezzoBean.user.postiDisponibili}" /><p:message for="numPostiDisp" />
-				
-				<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
-				<p:inputText id="costoPersona" value="#{registerMezzoBean.user.costoPers}"/>
-				<p:message for="costoPersona" />
-				</h:panelGrid>
-				<p:commandButton value="Salva" update="regGrid"
-				action="#{registerMezzoBean.register()}" />
-	
-			<h:link value="Indietro" outcome="index" />
-	
-		</p:panel>
-	</h:form>
-	
+			<h:form prependId="false">
+				<p:menu id="leftIm">
+
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<p:panel header="Inserimento mezzo di trasporto">
+					<h:panelGrid columns="3" id="regGrid">
+						<h:outputLabel for="idMezzo">Identificativo Mezzo</h:outputLabel>
+						<p:inputText id="idMezzo"
+							value="#{registerMezzoBean.user.idMezzoTrasporto}" />
+						<p:message for="idMezzo" />
+
+						<h:outputLabel>Identificativo Luogo Partenza:</h:outputLabel>
+
+						<p:selectOneMenu value="#{registerMezzoBean.luogoPartenza}">
+							<f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO"
+								itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+
+						</p:selectOneMenu>
+
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel>Identificativo Luogo Arrivo:</h:outputLabel>
+						<p:selectOneMenu value="#{registerMezzoBean.luogoArrivo}">
+							<f:selectItems value="#{registerMezzoBean.elelis}" var="LuogoDTO"
+								itemValue="#{LuogoDTO.id}" itemLabel="#{LuogoDTO.citta}" />
+						</p:selectOneMenu>
+
+
+						<h:outputLabel></h:outputLabel>
+
+						<h:outputText value="Data e Ora Partenza " />
+						<p:calendar value="#{registerMezzoBean.dateP}"
+							pattern="MM/dd/yyyy HH:mm" />
+						<h:outputText value="#{registerMezzoBean.dateP}">
+							<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+						</h:outputText>
+
+
+						<h:outputText value="Data e Ora Arrivo " />
+						<p:calendar value="#{registerMezzoBean.dateA}"
+							pattern="MM/dd/yyyy HH:mm" />
+						<h:outputText value="#{registerMezzoBean.dateA}">
+							<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+						</h:outputText>
+
+
+
+						<h:outputLabel for="numPostiDisp">Posti Disponibili:</h:outputLabel>
+
+						<p:inputText id="numPostiDisp"
+							value="#{registerMezzoBean.user.postiDisponibili}" />
+						<p:message for="numPostiDisp" />
+
+						<h:outputLabel for="costoPersona">Costo Posto:</h:outputLabel>
+						<p:inputText id="costoPersona"
+							value="#{registerMezzoBean.user.costoPers}" />
+						<p:message for="costoPersona" />
+					</h:panelGrid>
+					<p:commandButton value="Salva" update="regGrid"
+						action="#{registerMezzoBean.register()}" />
+
+					<h:link value="Indietro" outcome="index" />
+
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>

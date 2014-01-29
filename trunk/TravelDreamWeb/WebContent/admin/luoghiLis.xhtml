@@ -1,48 +1,75 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core"
-        xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <h:head>
-        <title>Show Luoghi</title>
+	<title>Show Luoghi</title>
 </h:head>
 <h:body>
-	
-	
-    
-    
-	<h:form>
-		
-	
-	<p:panel header="Ricerca Pacchetto">
-			<h:panelGrid columns="" id="regGrid">
-				
-                
-            	<h:outputText  /> <h:outputText  /><h:outputText  />
-           		           		
-           		<p:dataTable id="pacchetti"  var="esc" value="#{showLuoghi.luoghilis}" update="regGrid" rowKey="#{esc.id}" >
-                                        <p:column headerText="id">  #{esc.id}  </p:column>
-                                        <p:column headerText="Citta">  #{esc.citta}  </p:column>
 
-                                        <p:column headerText="Nazione">  #{esc.stato}  </p:column>
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
 
-                                        <p:column headerText="Indirizzo">  #{esc.indirizzo}  </p:column>
+			<h:form prependId="false">
+				<p:menu id="leftIm">
 
-                                        <p:column headerText="Tipologia">  #{esc.descrizione}  </p:column>
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
 
-                                        
-                </p:dataTable>
-                <h:outputText  />
-                <h:link outcome="inserisciLuogo" value="Inserisci Luogo" />
-                <h:link outcome="index" value="Home" />
-				
-				
-		</h:panelGrid>
-		</p:panel>	
-		
-	</h:form>
+		<ui:define name="content">
+			<h:form>
+
+
+				<p:panel header="Ricerca Pacchetto">
+
+					<h:outputText />
+					<h:outputText />
+					<h:outputText />
+
+					<p:dataTable id="pacchetti" var="esc"
+						value="#{showLuoghi.luoghilis}" update="regGrid"
+						rowKey="#{esc.id}">
+						<p:column headerText="id">  #{esc.id}  </p:column>
+						<p:column headerText="Citta">  #{esc.citta}  </p:column>
+
+						<p:column headerText="Nazione">  #{esc.stato}  </p:column>
+
+						<p:column headerText="Indirizzo">  #{esc.indirizzo}  </p:column>
+
+						<p:column headerText="Tipologia">  #{esc.descrizione}  </p:column>
+
+
+					</p:dataTable>
+					<h:outputText />
+					<h:link outcome="inserisciLuogo" value="Inserisci Luogo" />
+					<h:link outcome="index" value="Home" />
+
+
+
+				</p:panel>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>

@@ -39,26 +39,26 @@
 			<h:panelGrid columns="3" id="regGrid">
 
 				<p>Luogo Partenza:</p>
-				<h:outputText value="#{modifyPackBean.getLuogoP()}" />
+				<h:outputText value="#{modifyPackBean.getCittaP()}" />
 
 				<p>Luogo Destinazione:</p>
-				<h:outputText value="#{modifyPackBean.getLuogoA()}" />
+				<h:outputText value="#{modifyPackBean.getCittaA()}" />
 
 				<p>Data partenza:</p>
-				<h:outputText value="#{addPackBean.dataA}" id="popupDate1">
+				<h:outputText value="#{modifyPackBean.dataA}" id="popupDate1">
 					<f:convertDateTime pattern="d/M/yyyy" />
 				</h:outputText>
 
 				<p>Data ritorno:</p>
-				<h:outputText value="#{addPackBean.dataP}" id="popupDate">
+				<h:outputText value="#{modifyPackBean.dataP}" id="popupDate">
 					<f:convertDateTime pattern="d/M/yyyy" />
 				</h:outputText>
 
 
 				<p>Mezzo andata:</p>
 
-				<p:selectOneMenu value="#{addPackBean.mezzoA}">
-					<f:selectItems value="#{addPackBean.mezziLisAnd}" var="MezzoDTO"
+				<p:selectOneMenu value="#{modifyPackBean.mezzoA}">
+					<f:selectItems value="#{modifyPackBean.mezziLisAnd}" var="MezzoDTO"
 						itemValue="#{MezzoDTO.id}" itemLabel="#{MezzoDTO.dataInizio}" />
 
 				</p:selectOneMenu>
@@ -66,9 +66,9 @@
 
 				<p>Mezzo ritorno:</p>
 
-				<p:selectOneMenu value="#{addPackBean.mezzoB}">
-					<f:selectItems value="#{addPackBean.mezziLisRit}" var="MezzoDTO1"
-						itemValue="#{MezzoDTO1.idMezzoTrasporto}"
+				<p:selectOneMenu value="#{modifyPackBean.mezzoB}">
+					<f:selectItems value="#{modifyPackBean.mezziLisRit}" var="MezzoDTO1"
+						itemValue="#{MezzoDTO1.id}"
 						itemLabel="#{MezzoDTO1.dataInizio}" />
 
 				</p:selectOneMenu>
@@ -77,8 +77,8 @@
 
 
 				<h:outputLabel for="Hotel">Hotel:</h:outputLabel>
-				<h:selectOneMenu for="Hotel" value="#{addPackBean.hotel}">
-					<f:selectItems id="Hotel" value="#{addPackBean.albergoLis}"
+				<h:selectOneMenu for="Hotel" value="#{modifyPackBean.hotel}">
+					<f:selectItems id="Hotel" value="#{modifyPackBean.albergoLis}"
 						var="AlbergoDTO" itemValue="#{AlbergoDTO.id}"
 						itemLabel="#{AlbergoDTO.nome}" />
 				</h:selectOneMenu>
@@ -86,8 +86,8 @@
 
 				<h:outputLabel for="Escursion">Escursioni:</h:outputLabel>
 				<f:facet name="header">Clicca su view per vedere i dettagli</f:facet>
-				<p:dataTable id="Escursion" var="esc" value="#{addPackBean.esclis}"
-					rowKey="#{esc.id}" selection="#{addPackBean.escScelte}"
+				<p:dataTable id="Escursion" var="esc" value="#{modifyPackBean.esclis}"
+					rowKey="#{esc.id}" selection="#{modifyPackBean.escScelte}"
 					selectionMode="multiple">
 					<p:column headerText="Id">  #{esc.id}  </p:column>
 
@@ -105,7 +105,7 @@
 				<p:dialog header="Escursion Detail" widgetVar="escursionDialog"
 					width="250" showEffect="explode" hideEffect="explode">
 
-					<p:dataList id="display" value="#{addPackBean.escScelte}"
+					<p:dataList id="display" value="#{modifyPackBean.escScelte}"
 						var="selectedEsc" type="definition">  
   
             										ID: #{selectedEsc.id}, Descrizione: #{selectedEsc.infoEsc}   
@@ -114,10 +114,8 @@
 				</p:dialog>
 			</h:panelGrid>
 			
-			<p id="cost">Costo totale pacchetto:</p>
-			<h:outputText value="#{modifyPackBean.costoTotale}" />
-
-			<p:commandButton value="Add" action="#{addPackBean.add()}" />
+			
+			<p:commandButton value="Modifica" action="#{modifyPackBean.modify()}" />
 		</p:panel>
 
 	</h:form>

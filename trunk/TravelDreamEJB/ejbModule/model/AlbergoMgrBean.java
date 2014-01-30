@@ -104,5 +104,20 @@ public class AlbergoMgrBean implements AlbergoMgr {
 		userDTO.setNumeroStelle(user.getNumeroStelle());
 		return userDTO;
 	}
-
+    
+    @Override
+    public void updateAlbergo(AlbergoDTO albergonew){
+    	Albergo cam= new Albergo(albergonew);
+    	cam.setIdAlbergo(albergonew.getId());
+    	em.merge(cam);
+    	em.flush();
+    	
+    }
+    @Override
+    public void cancellaAlbergo(int id){
+    	String queryString = "DELETE FROM Albergo e WHERE e.idAlbergo= ?1";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("1", id);
+    	query.executeUpdate();
+    }
 }

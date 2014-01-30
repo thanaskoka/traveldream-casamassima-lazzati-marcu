@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,14 @@ public class ShowModEscursioneBean {
 	private Date dataInizio;
 	private int idLuogo=-1;
 	private int postiDisponibili;
-	
+	private EscursioneDTO selectesc;
+	public EscursioneDTO getSelectesc() {
+		return selectesc;
+	}
+	public void setSelectesc(EscursioneDTO selectesc) {
+		this.selectesc = selectesc;
+	}
+
 	private List<LuogoDTO> elelis;
 	private List<EscursioneDTO> carsSmall;
 	
@@ -121,7 +129,22 @@ public class ShowModEscursioneBean {
         setElelis(luogoMgr.getLuoghiEsc());
     }
 	
+	public void modify() throws IOException{
+		int idalb=selectesc.getId();
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("modEsc.xhtml?id="+idalb);
+		
+	}
+public void delete() throws IOException{
+	int idesc=selectesc.getId();
+	escursioneMgr.cancellaEscursione(idesc);
+	FacesContext.getCurrentInstance().getExternalContext().redirect("showEditEscursione.xhtml");
+		
+		
+	}
+	
+	
 	
 }
 		
-		
+	

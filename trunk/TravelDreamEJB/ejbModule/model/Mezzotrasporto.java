@@ -16,8 +16,8 @@ import java.util.Date;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Mezzotrasporto.findAll", query="SELECT m FROM Mezzotrasporto m"),
-	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataA", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio > :partenza  "),
-	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataR", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio < :partenza  "),
+	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataA", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio >= :partenza  "),
+	@NamedQuery(name="Mezzotrasporto.findByLuogoAndataAndDataR", query="SELECT m FROM Mezzotrasporto m WHERE m.idLuogoArrivo= :luogoA AND m.idLuogoPartenza= :luogoP AND m.dataInizio <= :partenza  "),
 	@NamedQuery(name="Mezzotrasporto.returnData", query="SELECT m FROM Mezzotrasporto m WHERE m.id= :id"),
 })
 public class Mezzotrasporto implements Serializable {

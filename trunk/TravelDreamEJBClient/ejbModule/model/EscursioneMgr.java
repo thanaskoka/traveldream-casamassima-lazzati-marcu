@@ -13,4 +13,7 @@ public interface EscursioneMgr {
 	public List<EscursioneDTO> getEscursioniAl();
 	public List<EscursioneDTO> getEscursioniLuogo(String citta,Date a,Date b) ;
 	public List<EscursioneDTO> getEscursioniPacchetto(int id);
+	public EscursioneDTO getEscId(int id);
+	public void updateEscursione(EscursioneDTO esc);
+	public void cancellaEscursione(int id);
 }

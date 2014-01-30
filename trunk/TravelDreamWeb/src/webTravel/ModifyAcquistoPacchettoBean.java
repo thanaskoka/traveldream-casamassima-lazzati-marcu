@@ -31,9 +31,8 @@ public class ModifyAcquistoPacchettoBean {
 	private int numPartecipanti;
     private int numMaxPosti;
     private int numMaxCamere;
-    private float costoTotale;
-    private int luogoA=9;
-    private int luogoP=8;
+    private int luogoA;
+    private int luogoP;
     private int mezzoA=-1;
     private int mezzoB=-1;
     private int hotel=-1;
@@ -41,6 +40,7 @@ public class ModifyAcquistoPacchettoBean {
     private Date dataP;
     private LuogoDTO luogoAppoggio;
     private int idPacchettoAcquistato;
+    private List<PacchettoDTO> packLis;
     
     @EJB
     private MezzoMgr mezzoMgr;
@@ -90,6 +90,16 @@ public class ModifyAcquistoPacchettoBean {
 		this.acqpackDTO = acqpackDTO;
 	}
 
+	
+	public List<PacchettoDTO> getPackLis() {
+		return packLis;
+	}
+
+
+	public void setPackLis(List<PacchettoDTO> packLis) {
+		this.packLis = packLis;
+	}
+
 
 	public int getNumPartecipanti() {
 		return numPartecipanti;
@@ -108,12 +118,6 @@ public class ModifyAcquistoPacchettoBean {
 	}
 	public void setNumMaxCamere(int numMaxCamere) {
 		this.numMaxCamere = numMaxCamere;
-	}
-	public float getCostoTotale() {
-		return costoTotale;
-	}
-	public void setCostoTotale(float costoTotale) {
-		this.costoTotale = costoTotale;
 	}
 	public int getLuogoA() {
 		return luogoA;
@@ -206,17 +210,24 @@ public class ModifyAcquistoPacchettoBean {
 		this.luogoAppoggio = luogoAppoggio;
 	}
 	
+	public String getCittaA(){
+		return luogoMgr.getCittaFromId(luogoA).getCitta();
+	}
 	
 	
-	
-	
+	public String getCittaP(){
+		return luogoMgr.getCittaFromId(luogoP).getCitta();
+	}
 	
 	
 	@PostConstruct
     public void init()
     {	
 		 idPacchettoAcquistato=Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
-		 setLuogoLis(luogoMgr.getLuoghi());
+		 luogoA = mezzoMgr.returnData(paccMgr.getPacchettoById(idPacchettoAcquistato).getIdMezzoAndata()).getIdLuogoArrivo();
+		 luogoP = mezzoMgr.returnData(paccMgr.getPacchettoById(idPacchettoAcquistato).getIdMezzoAndata()).getIdLuogoPartenza();
+		 dataA = mezzoMgr.returnData(paccMgr.getPacchettoById(idPacchettoAcquistato).getIdMezzoAndata()).getDataInizio();
+		 dataP = mezzoMgr.returnData(paccMgr.getPacchettoById(idPacchettoAcquistato).getIdMezzoRitorno()).getDataInizio();
 		 findAll();
     }
 	private void findAll(){
@@ -224,8 +235,6 @@ public class ModifyAcquistoPacchettoBean {
 	        setAlbergoLis(albMgr.getAlbergoByLuogo(luogoAppoggio.getCitta()));		 
 			setMezziLisAnd(mezzoMgr.getMezzoViaggioAndataR(luogoA, luogoP,dataP));
 			setMezziLisRit(mezzoMgr.getMezzoViaggioAndataA(luogoP, luogoA,dataA));
-			
-	       // System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
 			setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta(),dataA,dataP));
 	}
 	
@@ -234,8 +243,7 @@ public class ModifyAcquistoPacchettoBean {
 	public String modify() {
 		ArrayList<Integer>esc=new ArrayList<Integer>();
 		
-		acqpackDTO = acqpackMgr.getAcquistapacchettoById(idPacchettoAcquistato);
-		paccDTO = paccMgr.getPacchettoById(acqpackDTO.getIdPacchetto());
+		paccDTO = paccMgr.getPacchettoById(idPacchettoAcquistato);
 		
 		for(int i=0;i<escScelte.length;i++)
 			esc.add(escScelte[i].getId());
@@ -248,9 +256,12 @@ public class ModifyAcquistoPacchettoBean {
 			newpaccDTO.setIdAlbergo(hotel);
 			newpaccDTO.setIdMezzoAndata(mezzoA);
 			newpaccDTO.setIdMezzoRitorno(mezzoB);
-			newpaccDTO.setIsModify((byte)1);
+			newpaccDTO.setIsModify(1);
 					
 			paccMgr.save(newpaccDTO,esc);
+			//prendo l'id del nuovo pacchetto
+			setPackLis(paccMgr.getPacchetti());
+			idPacchettoAcquistato = packLis.get(packLis.size()-1).getIdPacchetto();
 		}
 		//altrimenti modifico il record esistente
 		else{
@@ -260,7 +271,7 @@ public class ModifyAcquistoPacchettoBean {
 						
 			paccMgr.update(paccDTO, esc);
 		}
-		return "index?faces-redirect=true";
+		return "compilaPacchetto?faces-redirect=true&idP="+idPacchettoAcquistato+"&idA="+hotel;
 	}
 	
 }

@@ -39,10 +39,11 @@
 
 			<h:form>
 				<p:panel header="Ricerca Pacchetto">
-					<h:panelGrid columns="" id="regGrid">
+					<h:panelGrid columns="2" id="regGrid">
+						<h:outputLabel for="location2">Partenza:</h:outputLabel>
+						<p:inputText id="location2" value="#{indexBean.partenza}" />
 						<h:outputLabel for="location">Destinazione:</h:outputLabel>
 						<p:inputText id="location" value="#{indexBean.destinazione}" />
-						<p:message for="location" />
 						<h:outputText value="Quando vuoi partire?" />
 						<p:calendar value="#{indexBean.dataP}" id="popupCal1" />
 
@@ -70,8 +71,10 @@
 						<h:outputText />
 						<p:commandButton value="Escursioni" icon="ui-icon-search"
 							update="escu" actionListener="#{indexBean.showEscursioniPacc()}" />
-						<p:commandButton value="Procedi" icon="ui-icon-search"
+						<p:commandButton value="Procedi con l'Aquisto" icon="ui-icon-search"
 							update="escu" action="#{indexBean.procedi()}" />
+						<p:commandButton value="Modifica Pacchetto" icon="ui-icon-search"
+							update="regGrid" actionListener="#{indexBean.modifica()}" />
 						<h:outputText
 							value="Escursioni associate al pacchetto selezionato" />
 						<h:outputText />

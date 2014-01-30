@@ -36,120 +36,58 @@
 		<ui:define name="content">
 			<h:form id="form">
 
-				<p:growl id="messages" showDetail="true" />
+				
 
-				<p:dataTable var="car" value="#{showMezzoModBean.carsSmall}"
-					id="carList" editable="true">
+				<p:panel header="Lista Escursioni">
+					<h:panelGrid columns="" id="regGrid">
+				
+				<p:dataTable id="pacchetti" var="car" value="#{showMezzoModBean.carsSmall}" update="regGrid" rowKey="#{car.id}" selection="#{showMezzoModBean.mezzoselect}" selectionMode="single">
 
-					<f:facet name="header">  
-           Mezzi Di Trasporto  
-        </f:facet>
 
-					<p:ajax event="rowEdit" listener="#{showMezzoModBean.onEdit}"
-						update=":form:messages" />
-					<p:ajax event="rowEditCancel"
-						listener="#{showMezzoModBean.onCancel}" update=":form:messages" />
+					
 
-					<p:column headerText="Id Mezzo" style="width:30%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.idMezzoTrasporto}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.idMezzoTrasporto}" style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Id Mezzo" >
+						
+							#{car.idMezzoTrasporto}
+							
 					</p:column>
 
-					<p:column headerText="Posti Disponibili" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.postiDisponibili}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.postiDisponibili}" style="width:100%"
-									label="Year" />
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Posti Disponibili" >
+						#{car.postiDisponibili}
 					</p:column>
-					<p:column headerText="Costo Persona" style="width:30%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.costoPers}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{showMezzoModBean.mezzo.costoPers}"
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Costo Persona" >
+						#{car.costoPers}
 					</p:column>
-					<p:column headerText="Id Partenza" style="width:24%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.idLuogoPartenza}" />
-							</f:facet>
-							<f:facet name="input">
-								<h:selectOneMenu value="#{showMezzoModBean.luogoPartenza}">
-									<f:selectItems value="#{showMezzoModBean.elelis}" var="man"
-										itemLabel="#{man.citta}" itemValue="#{man.id}" />
-								</h:selectOneMenu>
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Id Partenza" >
+						#{car.idLuogoPartenza}
+							
 					</p:column>
 
-					<p:column headerText="Id Destinazione" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.idLuogoArrivo}" />
-							</f:facet>
-							<f:facet name="input">
-								<h:selectOneMenu value="#{showMezzoModBean.luogoArrivo}">
-									<f:selectItems value="#{showMezzoModBean.elelis}" var="color"
-										itemLabel="#{color.citta}" itemValue="#{color.id}" />
-								</h:selectOneMenu>
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Id Destinazione">
+						#{car.idLuogoArrivo}
+							
 					</p:column>
 
 
 
-					<p:column headerText="Data Partenza" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.dataInizio}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:calendar value="#{showMezzoModBean.dateP}"
-									pattern="MM/dd/yyyy HH:mm" />
-								<h:outputText value="#{car.dataInizio}">
-									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
-								</h:outputText>
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Data Partenza" >
+						#{car.dataInizio}
+						
 					</p:column>
-					<p:column headerText="Data Arrivo" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.dataFine}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:calendar value="#{showMezzoModBean.dateA}"
-									pattern="MM/dd/yyyy HH:mm" />
-								<h:outputText value="#{car.dataFine}">
-									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
-								</h:outputText>
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Data Arrivo" >
+					#{car.dataFine}
 					</p:column>
 
 
 
 
-					<p:column style="width:6%">
-						<p:rowEditor />
-					</p:column>
+					
 
 				</p:dataTable>
+				<p:commandButton value="Modifica Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showMezzoModBean.modify()}" />	
+			<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showMezzoModBean.delete()}" />	
+				</h:panelGrid>
+				</p:panel>
 
 			</h:form>
 		</ui:define>

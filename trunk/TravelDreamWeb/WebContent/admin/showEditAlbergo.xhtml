@@ -12,7 +12,7 @@
 <h:body>
 	<ui:composition template="../template.xhtml">
 		<ui:define name="menu">
-
+	
 			<h:form prependId="false">
 				<p:menu id="leftIm">
 
@@ -33,82 +33,34 @@
 				</p:menu>
 			</h:form>
 		</ui:define>
+		
 		<ui:define name="content">
+		
 			<h:form id="form">
+	<p:panel header="Ricerca Pacchetto">
+					<h:panelGrid columns="" id="regGrid">
+				
+				<p:dataTable id="pacchetti" var="esc" value="#{showAlbergoModBean.carsSmall}" update="regGrid" rowKey="#{esc.id}" selection="#{showAlbergoModBean.selectalb}" selectionMode="single">
+				
 
-				<p:growl id="messages" showDetail="true" />
-
-				<p:dataTable var="car" value="#{showAlbergoModBean.carsSmall}"
-					id="carList" editable="true">
-
-					<f:facet name="header">  
-           Alberghi 
-        </f:facet>
-
-					<p:ajax event="rowEdit" listener="#{showEscursioneModBean.onEdit}"
-						update=":form:messages" />
-					<p:ajax event="rowEditCancel"
-						listener="#{showEscursioneModBean.onCancel}"
-						update=":form:messages" />
-
-					<p:column headerText="Id Albergo" style="width:30%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.id}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.id}" style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Id Luogo" style="width:24%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.idLuogo}" />
-							</f:facet>
-							<f:facet name="input">
-								<h:selectOneMenu value="#{showAlbergoModBean.idLuogo}">
-									<f:selectItems value="#{showAlbergoModBean.elelis}" var="man"
-										itemLabel="#{man.citta}" itemValue="#{man.id}" />
-								</h:selectOneMenu>
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Nome Albergo" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.nome}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.nome}" style="width:100%" label="Year" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Numero Stelle" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.numeroStelle}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.numeroStelle}" style="width:100%"
-									label="Year" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-
-
-					<p:column style="width:6%">
-						<p:rowEditor />
-					</p:column>
-
+					<p:column headerText="Id Albergo" > #{esc.id}</p:column>
+					<p:column headerText="Id Luogo" >#{esc.idLuogo}</p:column>
+					<p:column headerText="Nome Albergo">#{esc.nome}</p:column>
+					<p:column headerText="Numero Stelle">#{esc.numeroStelle}</p:column>
 				</p:dataTable>
-
-			</h:form>
-		</ui:define>
-		<h:link value="Inserisci nuovo albergo" outcome="inserimentoAlbergo" />
+			<h:link value="Inserisci nuovo albergo" outcome="inserimentoAlbergo" />
+			<p:commandButton value="Modifica Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showAlbergoModBean.modify()}" />	
+			<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showAlbergoModBean.delete()}" />	
+			</h:panelGrid>
 			
-
+			</p:panel>
+			
+			</h:form>
+			
+			
+		
+		</ui:define>
+		
 	</ui:composition>
 </h:body>
 </html>

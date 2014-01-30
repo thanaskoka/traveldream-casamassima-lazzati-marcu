@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,7 +50,7 @@ public class PacchettoMgrBean implements PacchettoMgr {
     @Override
 	public void update(PacchettoDTO defpack, List<Integer>esc) {
     	Pacchetto newpk = new Pacchetto();
-    	newpk = em.find(Pacchetto.class, defpack.getIdPacchetto());
+    	newpk = em.createNamedQuery(Pacchetto.FIND_ID, Pacchetto.class).setParameter("id",defpack.getIdPacchetto()).getSingleResult();
     	newpk.setIdAlbergo(defpack.getIdAlbergo());
     	newpk.setIdLuogo(defpack.getIdLuogo());
     	newpk.setIdMezzoAndata(defpack.getIdMezzoAndata());
@@ -67,7 +66,7 @@ public class PacchettoMgrBean implements PacchettoMgr {
     @Override
     public PacchettoDTO getPacchettoById(int id) {
     	Pacchetto ele=new Pacchetto();
-        ele=em.find(Pacchetto.class, id);
+    	ele=em.createNamedQuery(Pacchetto.FIND_ID, Pacchetto.class).setParameter("id",id).getSingleResult();
         PacchettoDTO elementDTO = convertToDTO(ele);
         return elementDTO;
     }
@@ -83,6 +82,24 @@ public class PacchettoMgrBean implements PacchettoMgr {
     	newp.setTitolo(p.getTitolo());
     	
     	return newp;
+    }
+    
+    @Override
+    public List<PacchettoDTO> getPacchettiLuoghiData(String destinazione,String partenza, Date ripartenza){
+    	String queryString = "SELECT e FROM Pacchetto e " +
+                "LEFT JOIN Mezzotrasporto m INNER JOIN Luogo l1 ON (m.idLuogoPartenza = l1.id) INNER JOIN Luogo l2 ON (m.idLuogoArrivo = l2.id) WHERE l1.citta= :partenza AND l2.citta= :destinazione AND m.dataInizio >= :ripartenza AND e.idMezzoAndata = m.id AND e.isModify = 0";
+    	Query query = em.createQuery(queryString);
+    	query.setParameter("partenza", partenza);
+    	query.setParameter("destinazione", destinazione);
+    	query.setParameter("ripartenza", ripartenza);
+    	List<Pacchetto> ele=new ArrayList<Pacchetto>();
+        ele=query.getResultList();
+        List<PacchettoDTO> elementDTO=new ArrayList<PacchettoDTO>();
+        for(Pacchetto e:ele)
+        {
+            elementDTO.add(convertToDTO(e));
+        }
+        return elementDTO;
     }
     
     @Override

@@ -1,4 +1,5 @@
 package webTravel;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,13 @@ public class showModAlbergoBean {
 	
 	private List<LuogoDTO> elelis;
 	private List<AlbergoDTO> carsSmall;
+	private AlbergoDTO selectalb;
+	public AlbergoDTO getSelectalb() {
+		return selectalb;
+	}
+	public void setSelectalb(AlbergoDTO selectalb) {
+		this.selectalb = selectalb;
+	}
 	public AlbergoMgr getAlbergoMgr() {
 		return albergoMgr;
 	}
@@ -99,6 +107,19 @@ public class showModAlbergoBean {
         setCarsSmall(albergoMgr.getAlbergoAl());
         setElelis(luogoMgr.getLuoghiAl());
     }
+	
+	public void modify() throws IOException{
+		
+		int idalb=selectalb.getId();
+	
+		FacesContext.getCurrentInstance().getExternalContext().redirect("modAl.xhtml?id="+idalb);
+	}
+	
+	public void delete() throws IOException{
+		int idalb=selectalb.getId();
+		albergoMgr.cancellaAlbergo(idalb);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("showEditAlbergo.xhtml");
+	}
 	
 	
 }

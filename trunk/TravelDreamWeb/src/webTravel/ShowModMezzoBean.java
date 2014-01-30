@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -34,6 +36,21 @@ public class ShowModMezzoBean {
 	private List<MezzoDTO> carsSmall; 
 	private int idmezzo=-1;
 	
+	private MezzoDTO mezzoselect;
+	public MezzoDTO getMezzoselect() {
+		return mezzoselect;
+	}
+
+
+
+
+	public void setMezzoselect(MezzoDTO mezzoselect) {
+		this.mezzoselect = mezzoselect;
+	}
+
+
+
+
 	public int getIdmezzo() {
 		return idmezzo;
 	}
@@ -59,13 +76,7 @@ public class ShowModMezzoBean {
 		this.elelis = elelis;
 	}
 	
-	@PostConstruct
-    public void init()
-    {
-        setCarsSmall(mezzoMgr.getMezzo());
-        setElelis(luogoMgr.getLuoghi());
-    }
-
+	
 
 
 
@@ -163,33 +174,5 @@ public class ShowModMezzoBean {
 	public void setDateA(Date dateA) {
 		this.dateA = dateA;
 	}
-
-
-
-
-	public List<MezzoDTO> getCarsSmall() {
-		return carsSmall;
-	}
-
-
-
-
-	public void setCarsSmall(List<MezzoDTO> carsSmall) {
-		this.carsSmall = carsSmall;
-	}
-	
-	public void onEdit(RowEditEvent event) {  
-		
-		mezzoMgr.update(mezzo);
-        
-    }  
-      
-    public void onCancel(RowEditEvent event) {  
-    	
-    	mezzoMgr.delete(mezzo);
-       
-    }  
-	
-	
 
 }

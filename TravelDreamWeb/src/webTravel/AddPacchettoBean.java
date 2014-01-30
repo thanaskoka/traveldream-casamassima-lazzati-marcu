@@ -217,10 +217,7 @@ public class AddPacchettoBean {
 	@PostConstruct
     public void init()
     {	
-		//dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
-    	//par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
-		//System.out.println("entro");
-		 setLuogoLis(luogoMgr.getLuoghi());
+		setLuogoLis(luogoMgr.getLuoghi());
     }
 	public void findAll(){
 		    setLuogoAppoggio(luogoMgr.getCittaFromId(dest));
@@ -228,7 +225,7 @@ public class AddPacchettoBean {
 			setMezziLisAnd(mezzoMgr.getMezzoViaggioAndataR(dest, par,dataP));
 			setMezziLisRit(mezzoMgr.getMezzoViaggioAndataA(par, dest,dataA));
 			
-	       // System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
+	       //System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);System.out.println("dest"+dest);
 			setEsclis(escMgr.getEscursioniLuogo(luogoAppoggio.getCitta(),dataA,dataP));
 	}
 	
@@ -245,6 +242,7 @@ public class AddPacchettoBean {
 		paccDTO.setIdLuogo(dest);
 		paccDTO.setIdMezzoAndata(mezzoA);
 		paccDTO.setIdMezzoRitorno(mezzoB);
+		paccDTO.setIdAlbergo(hotel);
 		
 		for(int i=0;i<escScelte.length;i++)
 		{	

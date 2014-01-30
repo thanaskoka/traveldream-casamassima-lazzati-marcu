@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Inserimento albergo</title>
+</h:head>
+<h:body>
+	<ui:composition template="../template.xhtml">
+		<ui:define name="menu">
+
+			<h:form prependId="false">
+				<p:menu id="leftIm">
+
+					<p:submenu label="Area Impiegato">
+						<p:menuitem value="Admin" outcome="index" icon="ui-icon-home" />
+						<p:menuitem value="Mezzi" outcome="showEditMezzo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Escursioni" outcome="showEditEscursione"
+							icon="ui-icon-star" />
+						<p:menuitem value="Alberghi" outcome="showEditAlbergo"
+							icon="ui-icon-star" />
+						<p:menuitem value="Luoghi" outcome="luoghiLis" icon="ui-icon-star" />
+						<p:menuitem value="New Pacchetto" outcome="AddPacchetto"
+							icon="ui-icon-star" />
+						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
+							icon="ui-icon-close" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<p:panel header="Inserimento Albergo">
+					<h:panelGrid columns="3" id="regGrid">
+						<h:outputLabel for="location">Location:</h:outputLabel>
+						<h:selectOneMenu value="#{modAlb.luogo}">
+							<f:selectItems value="#{modAlb.elelis}"
+								var="ElementDTO" itemValue="#{ElementDTO.id}"
+								itemLabel="#{ElementDTO.citta}(#{ElementDTO.stato})-#{ElementDTO.indirizzo}" />
+						</h:selectOneMenu>
+						<br />
+
+
+						<h:outputLabel for="nome">Nome albergo:</h:outputLabel>
+
+						<p:inputText id="nome" value="#{modAlb.al.nome}" />
+						<p:message for="nome" />
+
+						<h:outputText value="Numero stelle:" />
+						<p:rating value="#{modAlb.al.numeroStelle}" stars="5"
+							cancel="false" />
+					</h:panelGrid>
+					<br />
+					<h:outputText value="Camere: " />
+					<br />
+					
+
+					<p:commandButton value="Salva" action="#{modAlb.update()}" />
+
+					<h:link value="Indietro" outcome="index" />
+
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

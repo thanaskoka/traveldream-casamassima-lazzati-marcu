@@ -32,8 +32,7 @@ public class PacchettoDTO {
 		this.idGif = idGif;
 	}
 
-	@Column(name="is_modify")
-	private byte isModify;
+	private int isModify;
 
 	public int getIdPacchetto() {
 		return idPacchetto;
@@ -68,11 +67,11 @@ public class PacchettoDTO {
 	}
 
 	
-	public byte getIsModify() {
+	public int getIsModify() {
 		return isModify;
 	}
 
-	public void setIsModify(byte isModify) {
+	public void setIsModify(int isModify) {
 		this.isModify = isModify;
 	}
 

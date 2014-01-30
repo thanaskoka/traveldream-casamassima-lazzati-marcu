@@ -13,4 +13,6 @@ public interface AlbergoMgr {
 	public List<AlbergoDTO> getAlbergoByLuogo(String citta);
 	public AlbergoDTO getNomeById(int id);
 	public List<AlbergoDTO> getAlbergoLast() ;
+	public void updateAlbergo(AlbergoDTO albergonew);
+	public void cancellaAlbergo(int id);
 }

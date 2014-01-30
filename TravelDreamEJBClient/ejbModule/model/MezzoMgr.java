@@ -13,7 +13,7 @@ public interface MezzoMgr {
 	public void save(MezzoDTO mezzo);
 	public void update(MezzoDTO mezzo);
 	public List<MezzoDTO> getMezzo() ;
-	public void delete(MezzoDTO mezzo);
+	public void delete(int id);
 	public List<MezzoDTO> getMezzoViaggioAndataA(int lp,int lr,Date data);
 	public List<MezzoDTO> getMezzoViaggioAndataR(int lp,int lr,Date data);
 	public MezzoDTO returnData(int id);

@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,18 +9,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import model.AlbergoMgr;
 import model.EscursioneMgr;
-import model.EscursioniPacchettoMgr;
 import model.LuogoMgr;
 import model.MezzoMgr;
 import model.PacchettoMgr;
 import model.pacchettoConvert;
-import model.dto.AlbergoDTO;
 import model.dto.EscursioneDTO;
-import model.dto.LuogoDTO;
-import model.dto.MezzoDTO;
 import model.dto.PacchettoDTO;
 
 
@@ -43,8 +41,6 @@ public class IndexBean {
 	
 	
 	private PacchettoDTO paccDTO;
-	private LuogoDTO luoDTO;
-	private AlbergoDTO albDTO;
 	private List<PacchettoDTO> packLis;
 	private List<EscursioneDTO> escLis;
 	private ArrayList<pacchettoConvert>pacchetticonv;
@@ -52,12 +48,24 @@ public class IndexBean {
 
 	private pacchettoConvert selectPack;
 	private String destinazione;
+	private String partenza;
 	private Date dataP;
 	
 	public IndexBean() {
 		paccDTO = new PacchettoDTO();
 	}
 	
+	
+	public String getPartenza() {
+		return partenza;
+	}
+
+
+	public void setPartenza(String partenza) {
+		this.partenza = partenza;
+	}
+
+
 	public int getPar() {
 		return par;
 	}
@@ -105,11 +113,7 @@ public class IndexBean {
 	@PostConstruct
     public void init()
     {	
-		//dest =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idD"));
-    	//par =Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idP"));
-		//System.out.println("entro");
-		//int idluogo=luogoMgr.getidAereoportiFromcitta("roma").getId();
-		//setPackLis(paccMgr.getPacchettiLuogoData(idluogo, dataP));
+		
     }
 	
 	
@@ -141,8 +145,8 @@ public class IndexBean {
 	public void findPack(){
 	
 		pacchetticonv=new ArrayList<pacchettoConvert>();
-		int idluogo=luogoMgr.getidAereoportiFromcitta(destinazione).getId();
-		setPackLis(paccMgr.getPacchettiLuogoData(idluogo, dataP));
+		//int idluogo=luogoMgr.getidAereoportiFromcitta(destinazione).getId();
+		setPackLis(paccMgr.getPacchettiLuoghiData(destinazione,partenza, dataP));
 		for(int i=0;i<packLis.size();i++)
 		{	
 			pacc=new pacchettoConvert();
@@ -166,13 +170,14 @@ public class IndexBean {
 	}
 	
 	public String procedi(){
-		System.out.println("selectPAcc id:"+selectPack.getId());
-		System.out.println("selectPAcc Alb:"+selectPack.getIdAlb());
-		 /*int id=(selectPack.getId()+100)*2;
-		 int idAl=(selectPack.getIdAlb()+100)*2;*/
 		int id=selectPack.getId();
 		int idAl=selectPack.getIdAlb();
 		return "compilaPacchetto?faces-redirect=true&idP="+id+"&idA="+idAl;
 	}
 
+	public void modifica() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("modifyPacchetto.xhtml?id=" + selectPack.getId());
+
+	}
 }

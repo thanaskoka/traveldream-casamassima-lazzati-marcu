@@ -15,6 +15,8 @@ import javax.persistence.Query;
 
 
 
+
+
 import com.sun.xml.internal.ws.util.StringUtils;
 
 import model.dto.EscursioneDTO;
@@ -99,5 +101,36 @@ public class EscursioneMgrBean implements EscursioneMgr {
 		userDTO.setId(user.getId());
 		userDTO.setInfoEsc(user.getInfo_escursione());
 		return userDTO;
+	}
+    
+    @Override
+    public void updateEscursione(EscursioneDTO esc){
+    	Escursione cam= new Escursione(esc);
+    	cam.setId(esc.getId());
+    	em.merge(cam);
+    	em.flush();
+    }
+  @Override
+  public void cancellaEscursione(int id){
+    	    	String queryString = "DELETE FROM Escursione e WHERE e.id= ?1";
+    	    	Query query = em.createQuery(queryString);
+    	    	query.setParameter("1", id);
+    	    	query.executeUpdate();
+   }
+  
+  @Override
+  public EscursioneDTO getEscId(int id){String queryString = "SELECT e FROM Escursione e " +
+          "WHERE e.id= :id";
+	Query query = em.createQuery(queryString);
+	query.setParameter("id", id);
+	List<Escursione> ele=new ArrayList<Escursione>();
+  ele=query.getResultList();
+  List<EscursioneDTO> elementDTO=new ArrayList<EscursioneDTO>();
+  for(Escursione e:ele)
+  {
+      elementDTO.add(convertToDTO(e));
+  }
+  return elementDTO.get(0);
+		
 	}
 }

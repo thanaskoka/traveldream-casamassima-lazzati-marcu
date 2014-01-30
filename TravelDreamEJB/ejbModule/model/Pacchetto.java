@@ -12,10 +12,13 @@ import model.dto.PacchettoDTO;
  * 
  */
 @Entity
-@NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p ORDER BY p.idPacchetto DESC")
+@NamedQueries({@NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p ORDER BY p.idPacchetto DESC"),
+	@NamedQuery(name="Pacchetto.findId", query="SELECT p FROM Pacchetto p WHERE p.idPacchetto= :id ORDER BY p.idPacchetto DESC"),
+	})
 public class Pacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "Pacchetto.findAll";
+	public static final String FIND_ID = "Pacchetto.findId";
 
 	@Id
 	private int idPacchetto;
@@ -28,8 +31,7 @@ public class Pacchetto implements Serializable {
 
 	private int idMezzoRitorno;
 
-	@Column(name="is_modify")
-	private byte isModify;
+	private int isModify;
 
 	private String titolo;
 
@@ -77,11 +79,11 @@ public class Pacchetto implements Serializable {
 	}
 
 	
-	public byte getIsModify() {
+	public int getIsModify() {
 		return this.isModify;
 	}
 
-	public void setIsModify(byte isModify) {
+	public void setIsModify(int isModify) {
 		this.isModify = isModify;
 	}
 
@@ -98,6 +100,7 @@ public Pacchetto(PacchettoDTO lu) {
 		this.idLuogo=lu.getIdLuogo();
 		this.idMezzoAndata=lu.getIdMezzoAndata();
 		this.idMezzoRitorno=lu.getIdMezzoRitorno();
+		this.isModify=lu.getIsModify();
 		this.titolo=lu.getTitolo();
 		this.idAlbergo=lu.getIdAlbergo();
 	}

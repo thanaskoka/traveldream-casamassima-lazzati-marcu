@@ -35,119 +35,40 @@
 		</ui:define>
 		<ui:define name="content">
 			<h:form id="form">
+		<p:panel header="Lista Escursioni">
+					<h:panelGrid columns="" id="regGrid">
+				
+				<p:dataTable id="pacchetti" var="car" value="#{showEscursioneModBean.carsSmall}" update="regGrid" rowKey="#{car.id}" selection="#{showEscursioneModBean.selectesc}" selectionMode="single">
 
-				<p:growl id="messages" showDetail="true" />
+					
 
-				<p:dataTable var="car" value="#{showEscursioneModBean.carsSmall}"
-					id="carList" editable="true">
+					
+					<p:column headerText="Id Escursione" >#{car.id}</p:column>
 
-					<f:facet name="header">  
-           Escursioni  
-        </f:facet>
-
-					<p:ajax event="rowEdit" listener="#{showEscursioneModBean.onEdit}"
-						update=":form:messages" />
-					<p:ajax event="rowEditCancel"
-						listener="#{showEscursioneModBean.onCancel}"
-						update=":form:messages" />
-
-					<p:column headerText="Id Escursione" style="width:30%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.id}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.id}" style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-					<p:column headerText="Posti Disponibili" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.postiDisponibili}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.postiDisponibili}" style="width:100%"
-									label="Year" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Costo Persona" style="width:30%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.costoPerEsc}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{showEscursioneModBean.costoPerEsc}"
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Id Luogo" style="width:24%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.idLuogo}" />
-							</f:facet>
-							<f:facet name="input">
-								<h:selectOneMenu value="#{showEscursioneModBean.idLuogo}">
-									<f:selectItems value="#{showEscursioneModBean.elelis}"
-										var="man" itemLabel="#{man.citta}" itemValue="#{man.id}" />
-								</h:selectOneMenu>
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Data Partenza" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.dataInizio}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:calendar value="#{car.dataInizio}" pattern="MM/dd/yyyy HH:mm" />
-								<h:outputText value="#{car.dataInizio}">
-									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
-								</h:outputText>
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Data Arrivo" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.dataFine}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:calendar value="#{car.dataFine}" pattern="MM/dd/yyyy HH:mm" />
-								<h:outputText value="#{car.dataFine}">
-									<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
-								</h:outputText>
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Descrizione" style="width:20%">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{car.infoEsc}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{car.infoEsc}" style="width:100%"
-									label="Year" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
+					<p:column headerText="Posti Disponibili" >#{car.postiDisponibili}</p:column>
+					<p:column headerText="Costo Persona" >#{car.costoPerEsc}</p:column>
+					<p:column headerText="Id Luogo" >#{car.idLuogo}</p:column>
+					
+					<p:column headerText="Data Inizio" >#{car.dataInizio}</p:column>
+					<p:column headerText="Data Fine" >#{car.dataFine}</p:column>
+					<p:column headerText="Descrizione" >#{car.infoEsc}</p:column>
 
 
 
 
-					<p:column style="width:6%">
-						<p:rowEditor />
-					</p:column>
+					
 
 				</p:dataTable>
 
+			<p:commandButton value="Modifica Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showEscursioneModBean.modify()}" />	
+			<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showEscursioneModBean.delete()}" />	
+			</h:panelGrid>
+			
+			</p:panel>
+			
 			</h:form>
 		</ui:define>
-		<h:link value="Inserisci nuova escursione"
-			outcome="inserimentoEscursione" />
+		<h:link value="Inserisci nuova escursione" outcome="inserimentoEscursione" />
 
 
 	</ui:composition>

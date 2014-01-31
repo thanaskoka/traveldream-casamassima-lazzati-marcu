@@ -110,7 +110,7 @@ public class GiftlistMgrBean implements GiftlistMgr{
      }
     @Override
     public GiftlistDTO returnIdGif(int p,String user){
-    	String queryString = "SELECT p FROM Giftlist p WHERE p.idUser=:u AND p.idPack=:p";
+    	String queryString = "SELECT p FROM Giftlist p INNER JOIN Aderiscegiftlist a ON p.idGiftlist=a.idGift  WHERE a.idUtente=:u AND p.idPack=:p";
     	Query query = em.createQuery(queryString);
     	query.setParameter("p",p);
     	query.setParameter("u",user);

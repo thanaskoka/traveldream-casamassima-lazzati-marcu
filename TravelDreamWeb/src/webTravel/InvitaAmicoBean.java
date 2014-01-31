@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -88,7 +89,7 @@ public class InvitaAmicoBean {
 	}
 	
 	
-	public void invita(){
+	public void invita() throws IOException{
 		PartecipaPacchettoDTO ppDto;
 		if(!(amico1.isEmpty())){
 			email=new Emailer(amico1,"Invito a vedere il mio pacchetto","Guarda il pacchetto che ho appena acquistato su TravelDream e ,se vuoi,acquistalo pure tu!!"+url);
@@ -118,6 +119,8 @@ public class InvitaAmicoBean {
 			ppDto.setIdUtente(amico4);
 			ppMgr.save(ppDto);
 		}
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("amiciInvitatiOk.xhtml?id=");
 			
 		
 		

@@ -46,9 +46,9 @@ public class CompilaPacchettoBean {
 	@EJB
 	private EscursioneMgr escMgr;
 
-	private int n1 = 1;
-	private int n2 = -1;
-	private int n3 = -1;
+	private int n1 = 0;
+	private int n2 = 0;
+	private int n3 = 0;
 	private int idpacc;
 	private int idAlb;
 	private int numPers = 1;
@@ -162,6 +162,10 @@ public class CompilaPacchettoBean {
 			if ((num1 - n1 < 0) || (num2 - n2 < 0) || (num3 - n3 < 0))
 				FacesContext.getCurrentInstance().getExternalContext()
 						.redirect("noCamDisp.xhtml");
+			if(n1==0&&n2==0&&n3==0){
+				FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("noCameraSel.xhtml");
+			}
 			costo += camMgr.getSingole(idAlb).getCostoPersoneCam() * num1;
 			costo += camMgr.getDoppie(idAlb).getCostoPersoneCam() * num2;
 			costo += camMgr.getTriple(idAlb).getCostoPersoneCam() * num3;

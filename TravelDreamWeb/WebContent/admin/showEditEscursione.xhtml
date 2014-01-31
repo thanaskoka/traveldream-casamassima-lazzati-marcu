@@ -62,13 +62,17 @@
 
 			<p:commandButton value="Modifica Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showEscursioneModBean.modify()}" />	
 			<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showEscursioneModBean.delete()}" />	
+			<h:link value="Inserisci nuova escursione" outcome="inserimentoEscursione" />
+			
 			</h:panelGrid>
+			
+			
 			
 			</p:panel>
 			
 			</h:form>
 		</ui:define>
-		<h:link value="Inserisci nuova escursione" outcome="inserimentoEscursione" />
+		
 
 
 	</ui:composition>

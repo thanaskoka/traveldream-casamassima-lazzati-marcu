@@ -10,9 +10,10 @@ import model.dto.GiftlistDTO;
 public interface GiftlistMgr {
 	public void save(GiftlistDTO gif);
     
-    public List<GiftlistDTO> getGiftlistUser(int idUser);
+    public List<GiftlistDTO> getGiftlistUser(String idUser);
     public GiftlistDTO returnLast();
     public GiftlistDTO returnIdPacc(int p);
     public List<GiftlistDTO> returnIdPaccs(String u);
     public GiftlistDTO returnIdGif(int p,String user);
+    public List<GiftlistDTO> returnGifUtenteInvitato(String user);
 }

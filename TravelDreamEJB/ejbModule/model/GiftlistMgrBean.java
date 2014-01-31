@@ -42,7 +42,7 @@ public class GiftlistMgrBean implements GiftlistMgr{
   	}
     
     @Override
-  	public List<GiftlistDTO> getGiftlistUser(int idUser) {
+  	public List<GiftlistDTO> getGiftlistUser(String idUser) {
     	List<Giftlist> ele=new ArrayList<Giftlist>();
         ele=em.createNamedQuery(Giftlist.FIND_UTENTE, Giftlist.class).setParameter("idUser", idUser).getResultList();
         List<GiftlistDTO> elementDTO=new ArrayList<GiftlistDTO>();
@@ -121,6 +121,27 @@ public class GiftlistMgrBean implements GiftlistMgr{
             
         
         return convertToDTO(ele.get(0));
+  		
+  	   	
+    	
+    	
+    }
+    @Override
+    public List<GiftlistDTO> returnGifUtenteInvitato(String user){
+    	String queryString = "SELECT p FROM Giftlist p INNER JOIN Aderiscegiftlist a ON p.idGiftlist=a.idGift  WHERE a.idUtente=:u";
+    	Query query = em.createQuery(queryString);
+    	
+    	query.setParameter("u",user);
+    	List<Giftlist> ele=new ArrayList<Giftlist>();
+        ele=query.getResultList();
+       
+        List<GiftlistDTO> elementDTO=new ArrayList<GiftlistDTO>();
+        for(Giftlist e:ele)
+        {
+        	 elementDTO.add(convertToDTO(e));
+        }
+        
+        return  elementDTO;
   		
   	   	
     	

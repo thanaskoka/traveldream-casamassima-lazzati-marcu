@@ -34,6 +34,25 @@ public class ShowModMezzoBean {
 	private Date dateA;
 	private List<LuogoDTO> elelis;
 	private List<MezzoDTO> carsSmall; 
+	public List<MezzoDTO> getCarsSmall() {
+		return carsSmall;
+	}
+	@PostConstruct
+    public void init()
+    {
+        setCarsSmall(mezzoMgr.getMezzo());
+        
+    }
+
+
+
+	public void setCarsSmall(List<MezzoDTO> carsSmall) {
+		this.carsSmall = carsSmall;
+	}
+
+
+
+
 	private int idmezzo=-1;
 	
 	private MezzoDTO mezzoselect;

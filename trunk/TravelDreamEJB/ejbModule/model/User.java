@@ -66,7 +66,7 @@ public class User implements Serializable {
         this.email        = user.getEmail();
         this.firstName    = user.getFirstName();
         this.lastName     = user.getLastName();        
-        this.password     = DigestUtils.sha512Hex(user.getPassword());
+        this.password     = user.getPassword();
         this.registeredOn = new Date();
     }
 	

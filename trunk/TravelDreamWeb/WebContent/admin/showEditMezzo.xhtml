@@ -85,13 +85,15 @@
 
 				</p:dataTable>
 				<p:commandButton value="Modifica Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showMezzoModBean.modify()}" />	
-			<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showMezzoModBean.delete()}" />	
+				<p:commandButton value="Elimina Selezionato" update="regGrid" icon="ui-icon-search"  action="#{showMezzoModBean.delete()}" />	
+				<h:link value="Inserisci nuovo mezzo" outcome="inserimentoViaggio" />
+				
 				</h:panelGrid>
 				</p:panel>
 
 			</h:form>
 		</ui:define>
-		<h:link value="Inserisci nuovo mezzo" outcome="inserimentoViaggio" />
+		
 			
 
 	</ui:composition>

@@ -1,5 +1,6 @@
 package webTravel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -107,7 +108,7 @@ public class GiftListBean {
 	}
 	
 	
-	public void invita(){
+	public void invita() throws IOException{
 		PartecipaPacchettoDTO ppDto;
 		if(!(amico1.isEmpty())){
 			email=new Emailer(amico1,"Invito a regalarmi una parte del mio sogno","Guarda la mia giftlist e,se vuoi,contribuisci !!"+url);
@@ -137,6 +138,8 @@ public class GiftListBean {
 			adegifDTO.setIdUtente(amico4);
 			adegifMgr.save(adegifDTO);
 		}
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("amiciInvitatiOk.xhtml?id=");
 			
 		
 		

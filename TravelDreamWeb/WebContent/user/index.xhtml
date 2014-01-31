@@ -49,9 +49,13 @@
 
 						<h:outputText />
 						<h:outputText />
-						<h:outputText />
 						<p:commandButton value="Find" icon="ui-icon-search"
 							update="regGrid" actionListener="#{indexBean.findPack()}" />
+							
+						<h:outputText />
+						<h:outputText /><h:outputText />
+						<h:outputText />
+						<h:outputText />
 
 						<p:dataTable id="pacchetti" var="esc"
 							value="#{indexBean.pacchetticonv}" update="regGrid"
@@ -71,13 +75,15 @@
 						<h:outputText />
 						<p:commandButton value="Escursioni" icon="ui-icon-search"
 							update="escu" actionListener="#{indexBean.showEscursioniPacc()}" />
+							
+						<h:outputText />
+						
 						<p:commandButton value="Procedi con l'Aquisto" icon="ui-icon-search"
 							update="escu" action="#{indexBean.procedi()}" />
 						<p:commandButton value="Modifica Pacchetto" icon="ui-icon-search"
 							update="regGrid" actionListener="#{indexBean.modifica()}" />
 						<h:outputText
 							value="Escursioni associate al pacchetto selezionato" />
-						<h:outputText />
 						<h:outputText />
 						<p:dataTable id="escu" var="selectedEsc"
 							value="#{indexBean.escLis}" update="regGrid"

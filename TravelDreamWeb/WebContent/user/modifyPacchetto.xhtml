@@ -21,11 +21,11 @@
 					<p:menuitem value="Home" outcome="index" icon="ui-icon-home" />
 					<p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi"
 						icon="ui-icon-star" />
-					<p:menuitem value="Le Mie GiftList" outcome="index"
+					<p:menuitem value="Le Mie GiftList" outcome="statoGift"
 						icon="ui-icon-star" />
 					<p:menuitem value="Invito Viaggi" outcome="showInviti"
 						icon="ui-icon-star" />
-					<p:menuitem value="Invito Giftlist" outcome="index"
+					<p:menuitem value="Invito Giftlist" outcome="showInvitiGift"
 						icon="ui-icon-star" />
 					<p:menuitem value="Logout" action="#{logoutBean.logout()}"
 						icon="ui-icon-close" />
@@ -40,20 +40,22 @@
 
 				<p>Luogo Partenza:</p>
 				<h:outputText value="#{modifyPackBean.getCittaP()}" />
-
+				
+				<h:outputText />
 				<p>Luogo Destinazione:</p>
 				<h:outputText value="#{modifyPackBean.getCittaA()}" />
 
+<h:outputText />
 				<p>Data partenza:</p>
 				<h:outputText value="#{modifyPackBean.dataA}" id="popupDate1">
 					<f:convertDateTime pattern="d/M/yyyy" />
 				</h:outputText>
-
+<h:outputText />
 				<p>Data ritorno:</p>
 				<h:outputText value="#{modifyPackBean.dataP}" id="popupDate">
 					<f:convertDateTime pattern="d/M/yyyy" />
 				</h:outputText>
-
+<h:outputText />
 
 				<p>Mezzo andata:</p>
 

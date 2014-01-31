@@ -166,6 +166,7 @@ public class PacchettoMgrBean implements PacchettoMgr {
   		
   	}
     
+    
     public void elimina(Pacchetto pacc) {
         em.remove(pacc);
     }

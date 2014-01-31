@@ -76,7 +76,7 @@ public class StatoGiftBean {
 			pacc.setVoloAndata((mezzoMgr.returnData(packLis.get(i).getIdMezzoAndata()).getDataInizio()));
 			pacc.setVoloRitorno((mezzoMgr.returnData(packLis.get(i).getIdMezzoRitorno()).getDataInizio()));
 			pacc.setIdAlb(packLis.get(i).getIdAlbergo());
-			pacc.setIdgif(packLis.get(i).getIdGif());
+			pacc.setIdgif(giflis.get(i).getIdGiftlist());
 			pacc.setLuogo((luogoMgr.getCittaFromId(packLis.get(i).getIdLuogo()).getCitta()));
 			paccconv.add(pacc);
 		}

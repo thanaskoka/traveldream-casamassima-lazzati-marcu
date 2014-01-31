@@ -21,11 +21,11 @@
 						<p:menuitem value="Home" outcome="index" icon="ui-icon-home" />
 						<p:menuitem value="Cronologia Viaggi" outcome="storicoViaggi"
 							icon="ui-icon-star" />
-						<p:menuitem value="Le Mie GiftList" outcome="index"
+						<p:menuitem value="Le Mie GiftList" outcome="statoGift"
 							icon="ui-icon-star" />
 						<p:menuitem value="Invito Viaggi" outcome="showInviti"
 							icon="ui-icon-star" />
-						<p:menuitem value="Invito Giftlist" outcome="index"
+						<p:menuitem value="Invito Giftlist" outcome="showInvitiGift"
 							icon="ui-icon-star" />
 						<p:menuitem value="Logout" action="#{logoutBean.logout()}"
 							icon="ui-icon-close" />
@@ -75,7 +75,8 @@
 
 						<h:outputText />
 						<p:commandButton value="Acquista" icon="ui-icon-search"
-							update="regGrid" actionListener="#{compilaBean.calcola()}" oncomplete="PF('confermaDialog').show()" />
+							update="regGrid" actionListener="#{compilaBean.calcola()}"
+							oncomplete="PF('confermaDialog').show()" />
 						<p:commandButton value="Modifica Pacchetto" icon="ui-icon-search"
 							update="regGrid" actionListener="#{compilaBean.modifica()}" />
 						<p:commandButton value="AcquistaSuggerisci" icon="ui-icon-search"
@@ -84,7 +85,8 @@
 							update="regGrid" actionListener="#{compilaBean.gift()}" />
 						<p:dialog header="conferma" widgetVar="confermaDialog" width="450"
 							showEffect="explode" hideEffect="explode">
-							<h:outputLabel value="SEI SICURO DI VOLER ACQUISTARE? costo tot: #{compilaBean.costo} euro" />
+							<h:outputLabel
+								value="SEI SICURO DI VOLER ACQUISTARE? costo tot: #{compilaBean.costo} euro" />
 							<p:commandButton value="Acquista" update="regGrid"
 								actionListener="#{compilaBean.acqusita()}" />
 

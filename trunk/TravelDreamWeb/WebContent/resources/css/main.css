@@ -94,3 +94,11 @@ div#leftIm{
 .ui-menuitem-text{
 	font-size:medium;
 }
+
+#imghome{
+	margin-top:20px;
+	margin-left:135px;
+	position:relative;
+	height: 250px;
+	width: 60%;
+}

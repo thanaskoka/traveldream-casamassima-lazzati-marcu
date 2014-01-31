@@ -67,10 +67,10 @@ public class StoricopagamentiMgrBean implements StoricopagamentiMgr {
   	}
     @Override
     public int findEscursionePagata(int gif,int esc){
-    	String queryString = "SELECT e FROM Storicopagamenti e WHERE e.giftId= :gif AND e.idElemento= :esc AND e.escursione=1";
+    	String queryString = "SELECT e FROM Storicopagamenti e WHERE e.giftId= :gif AND e.escursione=1";
     	Query query = em.createQuery(queryString);
     	query.setParameter("gif", gif);
-    	query.setParameter("esc", esc);
+    	
     	
     	List<Pacchetto> ele=new ArrayList<Pacchetto>();
         ele=query.getResultList();
